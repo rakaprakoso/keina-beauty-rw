@@ -1,6 +1,7 @@
 import React from 'react'
 import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import Home from '../pages/product/Home';
 
 import Modify from '../pages/product/Modify';
 
@@ -29,8 +30,9 @@ const AdminMain = () => {
 
                     <div className="p-4 w-full">
                         <Switch>
-                            <Route path="/admin/product/create" exact component={Modify} />
-                            <Route path="/admin/product/edit/:id" exact component={Modify} />
+                            <Route path="/admin/product/" exact component={Home} />
+                            <Route path="/admin/product/:method/:id?" exact component={Modify} />
+                            {/* <Route path="/admin/product/edit/:id" exact component={Modify} /> */}
                             {/* <Route path="/admin/maps" exact component={Maps} />
                             <Route path="/admin/settings" exact component={Settings} />
                             <Route path="/admin/tables" exact component={Tables} />

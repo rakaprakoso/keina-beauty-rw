@@ -53,7 +53,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = Product::where('slug',$id)->first();
 
         return response()
         ->json($product);

@@ -108,7 +108,7 @@ class Product extends Component {
                                     <div className="thumbnail-img">
                                         <div className="embed-responsive responsive-1by1">
                                             <img className="object-cover object-center" src={item.thumbnail_img} alt="" />
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="col-lg-6 flex items-center">
@@ -134,14 +134,9 @@ class Product extends Component {
                                                 </a>
                                             </span>
                                         </div> */}
-                                        {/* <div className="direct-contact">
-                                            <a href="#" className="btn whatsapp hvr hvr-icon-pulse-shrink">
-                                                <span className="icon">
-                                                    <FaWhatsapp className="hvr-icon" />
-                                                </span>
-                                                #TanyaKeina
-                                            </a>
-                                        </div> */}
+                                        <div className="direct-contact">
+                                            <ChatToWhatsapp title={item && item.name}/>
+                                        </div>
                                         <div className="actions">
                                             {/* <button className="btn add-to-fav hvr hvr-icon-pulse">
                                                 <span className="icon">
@@ -172,14 +167,14 @@ class Product extends Component {
                                     <div className="product-detail">
                                         <Tabs>
                                             <TabList>
-                                                <Tab>Mengapa memilih kami ?</Tab>
+                                                <Tab>Description</Tab>
                                                 {/* <Tab>Review</Tab> */}
                                             </TabList>
 
                                             <TabPanel>
                                                 <div className="full-description">
                                                     <div className="row">
-                                                        <div className="col-lg-8 flex items-center">
+                                                        <div className="col-lg-12 flex items-center">
                                                             <div>{parse(item.description)}</div>
                                                         </div>
                                                         {/* <div className="col-lg-4 flex items-center">
@@ -267,6 +262,20 @@ class Product extends Component {
             )
         }
     }
+}
+
+const ChatToWhatsapp = (props) => {
+    const phone_number = '6281226727363'
+    const text = encodeURIComponent(`Halo Keina, Saya tertarik dengan produk ${props.title} - ${window.location.href}`);
+    var url = `https://api.whatsapp.com/send?phone=${phone_number}&text=${text}`
+    return (
+        <a href={url} className="btn whatsapp hvr hvr-icon-pulse-shrink">
+            <span className="icon">
+                <FaWhatsapp className="hvr-icon" />
+            </span>
+            #TanyaKeina
+        </a>
+    )
 }
 
 const testimonialsData = [

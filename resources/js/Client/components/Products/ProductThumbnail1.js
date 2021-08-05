@@ -13,7 +13,7 @@ class ProductThumbnail1 extends Component {
                 {this.props.data.map((item, i) => (
                     <div className="product-content">
                         <div className="image-wrap embed-responsive responsive-1by1">
-                            <a href={`/product/${item.id}`}>
+                            <a href={`/product/${item.slug}`}>
                             <img className="object-cover object-center" src={item.thumbnail_img} alt={item.name} />
                             </a>
                         </div>
@@ -22,7 +22,7 @@ class ProductThumbnail1 extends Component {
                                 <a href="#">Skin Care</a>
                             </div>
                             <h3 className="title">
-                            <a className="hvr hvr-underline-reveal pb-1" href={`/product/${item.id}`}>
+                            <a className="hvr hvr-underline-reveal pb-1" href={`/product/${item.slug}`}>
                                 {item.name}
                             </a>
                             </h3>

@@ -177,7 +177,8 @@ return [
 
         // CUSTOM
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
-
+        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -233,6 +234,7 @@ return [
 
         //CUSTOM
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

@@ -204,3 +204,8 @@ ul.slider {
         @apply text-lg;
     }
 }
+
+//
+.img_claim{
+    @apply inline-block w-20 h-20 align-middle object-contain;
+}

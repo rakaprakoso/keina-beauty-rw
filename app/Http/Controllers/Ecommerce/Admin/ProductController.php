@@ -67,6 +67,7 @@ class ProductController extends Controller
         // $product->save();
 
         $product = $this->sendData($request);
+        return redirect('/admin/product');
 
         return response()->json($product);
         // return response()->json($request);
@@ -111,7 +112,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = $this->sendData($request, $id);
-
+        return redirect('/admin/product');
         return response()->json($product);
     }
 
@@ -124,6 +125,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::destroy($id);
+        return redirect('/admin/product');
         return response()->json(['message'=>'Data deleted successfully']);
     }
 
@@ -163,11 +165,12 @@ class ProductController extends Controller
         $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->slug = $this->slugify($request->name);
-        if ($request->file('image')) {
-            $uploadedFile = $request->file('image');
-            $path = $uploadedFile->store('public/products');
-            $product->thumbnail_img = Storage::url($path);
-        }
+        $product->thumbnail_img = $request->image;
+        // if ($request->file('image')) {
+        //     $uploadedFile = $request->file('image');
+        //     $path = $uploadedFile->store('public/products');
+        //     $product->thumbnail_img = Storage::url($path);
+        // }
 
         $product->save();
 
