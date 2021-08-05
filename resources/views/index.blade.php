@@ -8,7 +8,7 @@
     {{-- <title>Keina Beauty</title> --}}
     <meta name="theme-color" content="#2a3f2b"/>
     <link rel="stylesheet" href="/css/app.css">
-    <link rel="shortcut icon" href="\assets\green-white.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="/assets/green-white.png" type="image/x-icon" />
     {!! SEO::generate() !!}
 </head>
 <body>
