@@ -13,6 +13,7 @@ import { CarouselNav1Prev, CarouselNav1Next, CarouselNav1 } from '../../componen
 import { Carousel } from 'react-responsive-carousel';
 
 import axios from "axios"
+import { Helmet } from "react-helmet";
 
 class Product extends Component {
     constructor(props) {
@@ -94,7 +95,10 @@ class Product extends Component {
             return (
 
                 <>
-
+                    <Helmet>
+                        <title>{item.name} - Keina Beauty</title>
+                        <meta name="description" content="Keina memiliki arti cahaya matahari, berkah dan menurut Bahasa Jepang, Keina identik dengan kesegaran alam dan kehijauan. Bermula dari pengertian sederhana, kami memiliki harapan tinggi bahwa nutrisi yang terkandung dalam produk skincare Keina Beauty dapat menjadi cahaya matahari bagi mereka yang ingin memiliki kulit sehat, cantik dan terawat." />
+                    </Helmet>
                     <div className={`alert flex w-full fixed z-30 pb-16 duration-500 ${setAlert ? "opacity-1 bottom-0" : "opacity-0 -bottom-full"}`}>
                         <div className="text m-auto bg-primary text-gray-50 font-bold shadow py-3 px-4 relative">
                             <button className="absolute -top-4 -right-4 bg-red-700 leading-7 w-7 h-7 rounded-full" onClick={() => this.toggleButton(!setAlert)}>X</button>
@@ -136,7 +140,7 @@ class Product extends Component {
                                             </span>
                                         </div> */}
                                         <div className="direct-contact">
-                                            <ChatToWhatsapp title={item && item.name}/>
+                                            <ChatToWhatsapp title={item && item.name} />
                                         </div>
                                         <div className="actions">
                                             {/* <button className="btn add-to-fav hvr hvr-icon-pulse">
