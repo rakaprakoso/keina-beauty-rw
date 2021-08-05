@@ -37,8 +37,9 @@ class Product extends Component {
     async addToCart() {
 
         // POST request using axios with async/await
+        console.log(this.state.item.id)
         const product = {
-            product_id: this.props.match.params.slug,
+            product_id: this.state.item.id,
             qty: 1,
 
         };
