@@ -1,0 +1,25 @@
+%col {
+    padding-left: ($spacing/2);
+    padding-right: ($spacing/2);
+
+}
+
+@for $j from 1 through $columns {
+    .col-#{$j} {
+        @extend %col;
+    }
+    .col-#{$j} {
+        // @extend  .col-#{($j - 1)};
+        width: (100% / ($columns / $j));
+    }
+    .col-lg-#{$j} {
+        @extend %col;
+    }
+    .col-lg-#{$j} {
+        // @extend  .col-#{($j - 1)};
+        width: 100%;
+        @screen lg{
+            width: (100% / ($columns / $j));
+        }
+    }
+}
