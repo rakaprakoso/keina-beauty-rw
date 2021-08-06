@@ -41,7 +41,7 @@ class OrderController extends Controller
         //     ),
         // ));
 
-        $config['origin'] = 94; // Buleleng
+        $config['origin'] = 114; // Buleleng
         $config['weight'] = $weight; // Buleleng
         // $config['weight'] = 700; // Buleleng
         $config['courier'] = 'jne'; // Buleleng
@@ -77,6 +77,7 @@ class OrderController extends Controller
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
+            // return $response;
             $rawData = json_decode(trim($response), true)['rajaongkir'];
             $data['address'] = $rawData['destination_details']['province'] . ' - ' . $rawData['destination_details']['type'] . ' ' . $rawData['destination_details']['city_name'];
             //  $rawData = json_decode(trim($response), true)['rajaongkir']['results'][0];
@@ -96,8 +97,9 @@ class OrderController extends Controller
 
     public function checkout(Request $request)
     {
-
         // return $request->all();
+        // return $this->printShipping($request->city_id, 500, $request->shipping_method);
+
         //$customer = Customer::where('email', $request->email)->first();
         //return $request;
 

@@ -119,7 +119,7 @@ class Product extends Component {
                                 <div className="col-lg-6 flex items-center">
                                     <div className="product-brief">
                                         <h1 className="product-name">{item.name}</h1>
-                                        <h2 className="product-price">Rp. {item.price}</h2>
+                                        <h2 className="product-price">{item.money}</h2>
                                         <div className="product-short-desc">
                                             {item.short_description && parse(item.short_description)}
                                         </div>

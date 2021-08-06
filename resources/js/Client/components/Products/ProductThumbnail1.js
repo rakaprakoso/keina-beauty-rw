@@ -26,7 +26,7 @@ class ProductThumbnail1 extends Component {
                                 {item.name}
                             </a>
                             </h3>
-                            <h4 className="price">Rp. {item.price}</h4>
+                            <h4 className="price">{item.money}</h4>
                         </div>
                     </div>
                 ))}

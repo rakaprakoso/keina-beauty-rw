@@ -23,11 +23,8 @@ function About(props) {
                                     <p><b>Keina</b> memiliki arti cahaya matahari, berkah dan menurut Bahasa Jepang, Keina identik dengan
                                         kesegaran alam dan kehijauan. Bermula dari pengertian sederhana, kami memiliki harapan tinggi bahwa
                                         nutrisi yang terkandung dalam produk skincare Keina Beauty dapat menjadi cahaya matahari bagi mereka
-                                        yang ingin memiliki kulit sehat, cantik dan terawat. Sesuai dengan Motto kami:</p>
-                                    <p className="text-xl mb-2"><b>“Perfect Nutrition for Beautiful Skin”</b></p>
-                                    <p>Sebagai sebuah perusahaan yang memproduksi produk skincare untuk mengatasi berbagai permasalahan
-                                        wajah dengan pendekatan alami berbasis medis, kami memiliki keyakinan bahwa kecantikan alami adalah
-                                        kecantikan yang bersumber dari dan untuk alam.</p>
+                                        yang ingin memiliki kulit sehat, cantik dan terawat.</p>
+
                                     <p>Visi kami adalah untuk menjadi sebuah brand yang eco-friendly, cruelty free dan memiliki dampak
                                         positif pada keberlangsungan bumi, serta memberikan efek maksimal bagi kesehatan dan kecantikan
                                         kulit. Seluruh produk skincare Keina Beauty bersumber dari bahan baku alami yang diperoleh tanpa
@@ -96,9 +93,9 @@ function About(props) {
                         <div className="col-lg-7 text-gray-50 flex bg-gray-800">
                             <div className="my-auto mx-10 py-9 lg:py-0">
                                 <h2 className="text-3xl">“Perfect Nutrition for Beautiful Skin”</h2>
-                                <p className="">I am text block. Click edit button to change this text. Lorem ipsum dolor sit
-                                    amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
-                                    leo.</p>
+                                <p>Sebagai sebuah perusahaan yang memproduksi produk skincare untuk mengatasi berbagai permasalahan
+                                        wajah dengan pendekatan alami berbasis medis, kami memiliki keyakinan bahwa kecantikan alami adalah
+                                        kecantikan yang bersumber dari dan untuk alam.</p>
                             </div>
                         </div>
                     </div>
@@ -160,9 +157,9 @@ function About(props) {
                         </div>
                         <div className="col-lg-7">
                             <div className="m-5">
-                                <div className="flex">
+                                <div className="flex flex-wrap">
                                     {featureProducts.map((item, i) => (
-                                        <div className="w-1/2 lg:w-1/4 px-3">
+                                        <div className="w-1/2 lg:w-1/4 px-3 mb-5 lg:mb-0">
                                             <img src={item} className="rounded w-full" style={{ objectFit: 'cover', height: '200px' }} alt />
                                         </div>
                                     ))}

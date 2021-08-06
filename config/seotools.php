@@ -10,10 +10,10 @@ return [
          */
         'defaults'       => [
             'title'        => "Keina Beauty", // set false to total remove
-            'titleBefore'  => false, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
-            'description'  => 'For those who helped create the Genki Dama', // set false to total remove
+            'titleBefore'  => true, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
+            'description'  => false, // set false to total remove
             'separator'    => ' - ',
-            'keywords'     => [],
+            'keywords'     => ['Beauty','Skin Care', 'Organic'],
             'canonical'    => false, // Set null for using Url::current(), set false to total remove
             'robots'       => false, // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
         ],
@@ -36,11 +36,11 @@ return [
          * The default configurations to be used by the opengraph generator.
          */
         'defaults' => [
-            'title'       => 'Over 9000 Thousand!', // set false to total remove
-            'description' => 'For those who helped create the Genki Dama', // set false to total remove
+            'title'       => 'Keina Beauty', // set false to total remove
+            'description' => false, // set false to total remove
             'url'         => false, // Set null for using Url::current(), set false to total remove
             'type'        => false,
-            'site_name'   => false,
+            'site_name'   => 'Keina Beauty',
             'images'      => [],
         ],
     ],

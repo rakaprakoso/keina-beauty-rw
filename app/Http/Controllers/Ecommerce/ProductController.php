@@ -54,7 +54,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::where('slug',$id)->first();
-
+        // $product->money =  $product->money;
         return response()
         ->json($product);
     }
