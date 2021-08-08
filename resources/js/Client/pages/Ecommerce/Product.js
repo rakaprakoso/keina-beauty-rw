@@ -14,6 +14,15 @@ import { Carousel } from 'react-responsive-carousel';
 
 import axios from "axios"
 import { Helmet } from "react-helmet";
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemHeading,
+    AccordionItemButton,
+    AccordionItemPanel,
+} from 'react-accessible-accordion';
+
+import HtmlToReact from '../../components/Functions/HtmlToReact'
 
 class Product extends Component {
     constructor(props) {
@@ -180,7 +189,7 @@ class Product extends Component {
                                                 <div className="full-description">
                                                     <div className="row">
                                                         <div className="col-lg-12 flex items-center">
-                                                            <div>{parse(item.description)}</div>
+                                                           <HtmlToReact data={item.description}/>
                                                         </div>
                                                         {/* <div className="col-lg-4 flex items-center">
                                                             <div className="px-0 lg:px-10 py-0 lg:py-3">
@@ -270,8 +279,8 @@ class Product extends Component {
 }
 
 const ChatToWhatsapp = (props) => {
-    const phone_number = '6281226727363'
-    const text = encodeURIComponent(`Halo Keina, Saya tertarik dengan produk ${props.title} - ${window.location.href}`);
+    const phone_number = '6281138902333'
+    const text = encodeURIComponent(`Hai, Saya ingin order ${props.title}, apa saja ya kandungannya? Apakah baik untuk kondisi kulit saya?`);
     var url = `https://api.whatsapp.com/send?phone=${phone_number}&text=${text}`
     return (
         <a href={url} className="btn whatsapp hvr hvr-icon-pulse-shrink">

@@ -205,7 +205,14 @@ ul.slider {
     }
 }
 
-//
+//Full Desc
 .img_claim{
     @apply inline-block w-20 h-20 align-middle object-contain;
+}
+
+[react-element^="Accordion"]{
+    @apply w-full;
+    [react-element^="AccordionHead"] h3{
+        @apply inline-block m-0;
+    }
 }

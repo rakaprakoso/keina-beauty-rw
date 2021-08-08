@@ -49,8 +49,10 @@ function About(props) {
                                 </div>
                             </div>
                             <div className="col-lg-4 flex-grow flex-row rounded py-half lg:py-0 order-1 lg:order-2 mb-4 lg:mb-0"
-                            style={{ backgroundImage: 'url("/images/Products/KYP_0059_revisi1-min-scaled.jpg")',
-                            backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                                style={{
+                                    backgroundImage: 'url("/images/Products/KYP_0059_revisi1-min-scaled.jpg")',
+                                    backgroundSize: 'cover', backgroundPosition: 'center'
+                                }}>
                             </div>
                         </div>
                     </div>
@@ -94,8 +96,8 @@ function About(props) {
                             <div className="my-auto mx-10 py-9 lg:py-0">
                                 <h2 className="text-3xl">“Perfect Nutrition for Beautiful Skin”</h2>
                                 <p>Sebagai sebuah perusahaan yang memproduksi produk skincare untuk mengatasi berbagai permasalahan
-                                        wajah dengan pendekatan alami berbasis medis, kami memiliki keyakinan bahwa kecantikan alami adalah
-                                        kecantikan yang bersumber dari dan untuk alam.</p>
+                                    wajah dengan pendekatan alami berbasis medis, kami memiliki keyakinan bahwa kecantikan alami adalah
+                                    kecantikan yang bersumber dari dan untuk alam.</p>
                             </div>
                         </div>
                     </div>
@@ -108,35 +110,15 @@ function About(props) {
                                     <h3 className="text-left mb-4 text-2xl"><strong>Letter
                                         Owner</strong></h3>
                                     <hr className="mb-4" />
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur totam eaque accusantium
-                                        deleniti reprehenderit adipisci minima a dolores. Dolores quidem ab veritatis laborum, corporis
-                                        modi unde ipsam quia quae aspernatur.</p>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim reprehenderit aut ex! Mollitia
-                                        illum, excepturi aliquam perspiciatis quae animi doloremque itaque odio laudantium earum dolor
-                                        sed ut inventore nesciunt numquam.
-                                        Delectus, incidunt qui. Magnam ipsam ipsa asperiores magni consequatur nemo vitae perspiciatis,
-                                        eius voluptates optio nihil officiis aliquid voluptatibus quaerat a, dolor quod provident
-                                        voluptas possimus doloremque at harum? Perferendis.</p>
-                                    <p>Repudiandae deleniti consequatur numquam suscipit magni, placeat repellendus? Aliquid
-                                        dignissimos ratione ducimus quis atque? Beatae iste, mollitia voluptatibus id, necessitatibus
-                                        earum aliquam perspiciatis a obcaecati sequi, consectetur tenetur. Asperiores, unde.
-                                        Illo quo officia asperiores facere neque laboriosam magni voluptatibus reprehenderit, ratione
-                                        quasi labore dignissimos necessitatibus totam autem atque veniam odio natus, perferendis id?
-                                        Rerum, corrupti reiciendis quisquam enim alias error.
-                                        Illum numquam modi magni natus error sint in accusamus eveniet et, consectetur nam doloribus
-                                        laborum, quam mollitia magnam corrupti ullam, culpa aut animi. Quasi at odit, modi quod tempore
-                                        suscipit.</p>
-                                    <p>Iusto soluta reiciendis ex omnis accusamus alias sint rem aliquam ad. Id odio inventore
-                                        obcaecati quasi numquam, quibusdam, deleniti quas odit maiores natus at reprehenderit qui,
-                                        fugiat ratione! Sapiente, harum.
-                                        Sint nihil ipsam commodi. Eum in asperiores obcaecati laborum nostrum itaque impedit, ratione
-                                        eveniet deleniti labore rem illum mollitia repudiandae quo quos maxime facilis doloribus et
-                                        harum aut, tempora nam.</p>
-                                    <p> Consectetur hic quisquam tempora sequi? Labore fuga odit neque aut pariatur dolorum iusto
-                                        deserunt sint sit, sunt eligendi quia magnam esse, eveniet delectus ut dolore. Modi vitae aut
-                                        deserunt officiis.</p>
+                                    <p>Keina Beauty believe, to be beautiful is to have a healthy skin</p>
+                                    <p>The largest organ that we have is our skin, and it keeps the rest of our body alive. It is essential for the proper functioning of our immune system and works around the clock to guard, care for, and keep us healthy. It's only natural to take care of our skin with items that refill it and provide it with the nutrients it requires to perform properly.</p>
+                                    <p>The founder of Keina Beauty which consist of five people, have the same goal to give the best skincare product as well as to protect our environment. One thing that people around the world have in common is earth, we cannot live without nature so we have to protect it.</p>
+                                    <p>Our research and development team ensure in Keina Beauty’s product there are no chemical ingredients that harmful for the skin health and for the environment. We developed our products carefully and chose the best ingredients we can give to our beloved customer. Moreover, we pay so much attention in our packaging, Keina Beauty does not use any boxes because we believe it will just be trash and do not have any important role. Instead, we replaced it with pouch which can be reuse and it is more sustainable than using boxes. Mostly, we use glass material for our product’s packaging, the aim is that people can utilize it as other thing when their products already run out.</p>
+                                    <p>Keina Beauty launched in 2021 exclusively in Bali. Since then, Keina Beauty has vision to extend our reach in national. We are proud to say that Keina Beauty is 100% made by Indonesian and will always giving you the best skincare products.</p>
+                                    <p>We have already certified with BPOM which means that our products is save to use. Keina Beauty has goal to get certificate in cruelty free because now we are not using any animals to test our products. In the future, we want to get organics certificate because we believe our products is all based on organics ingredients. We're proud of what we've done and can't wait for you to try it out.</p>
                                     <span>
-                                        Gyshel
+                                        With love,<br/>
+                                        Keluarga Keina
                                     </span>
                                 </div>
                             </div>
@@ -172,11 +154,11 @@ function About(props) {
                 <section className="featured spad">
                     <div className="page-wrapper py-7">
                         <div className="flex">
-                                {features.map((item, i) => (
-                                    <div className="w-1/5 px-2 flex">
-                                        <img src={item} className="mx-auto" style={{ objectFit: 'contain', height:"80px" }} alt />
-                                    </div>
-                                ))}
+                            {features.map((item, i) => (
+                                <div className="w-1/5 px-2 flex">
+                                    <img src={item} className="mx-auto" style={{ objectFit: 'contain', height: "80px" }} alt />
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>

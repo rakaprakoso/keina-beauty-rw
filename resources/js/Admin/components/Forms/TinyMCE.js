@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import { Editor as TinyMCE } from '@tinymce/tinymce-react';
+import ProductTemplate from './ProductTemplate'
 
 const TinyMCEForm = (props) => {
     const name = props.name;
@@ -11,19 +12,26 @@ const TinyMCEForm = (props) => {
             console.log(editorRef.current.getContent());
         }
     };
-
+    const createAccordionElement = '<div react-element="Accordion">'
+        + '<div react-element="AccordionItem">'
+        + '<div react-element="AccordionHead">{Test}</div>'
+        + '<div react-element="AccordionPanel">{Content}</div>'
+        + '</div></div>'
     var editor_config = {
         height: 800,
         path_absolute: "/",
+        // content_css : '/css/app.css',
         selector: "textarea.my-editor",
         menubar: false,
+        extended_valid_elements: "div[react-element],span",
         plugins: [
             "advlist autolink lists link image charmap print preview hr anchor pagebreak",
             "searchreplace wordcount visualblocks visualchars code fullscreen",
             "insertdatetime media nonbreaking save table directionality",
-            "emoticons template paste textpattern"
+            "emoticons template paste textpattern template"
         ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | removeformat code | help",
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | "
+            + "bullist numlist outdent indent | link image media | removeformat code | addAccordion template | help",
         relative_urls: false,
         file_picker_callback: function (callback, value, meta) {
             var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
@@ -51,7 +59,23 @@ const TinyMCEForm = (props) => {
         image_class_list: [
             { title: 'None', value: '' },
             { title: 'Claim Logo', value: 'img_claim' },
-        ]
+        ],
+        setup: function (editor) {
+
+            editor.ui.registry.addButton('addAccordion', {
+                text: 'Add Accordion',
+                onAction: function (_) {
+                    editor.insertContent(createAccordionElement);
+                }
+            });
+        },
+        templates: [
+            {
+                title: 'Full Desc',
+                description: 'Full Description',
+                content: ProductTemplate,
+            },
+        ],
     };
 
     return (

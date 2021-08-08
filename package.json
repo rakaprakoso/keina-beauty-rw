@@ -63,6 +63,8 @@
         "ckeditor5-custom-build": "file:resources/js/Admin/components/ckeditor",
         "hover.css": "^2.3.2",
         "html-react-parser": "^1.2.7",
+        "html-to-react": "^1.4.5",
+        "react-accessible-accordion": "^3.3.5",
         "react-alert": "^7.0.3",
         "react-helmet": "^6.1.0",
         "react-icons": "^4.2.0",
