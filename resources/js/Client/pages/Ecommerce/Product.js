@@ -188,7 +188,7 @@ class Product extends Component {
                                             <TabPanel>
                                                 <div className="full-description">
                                                     <div className="row">
-                                                        <div className="col-lg-12 flex items-center">
+                                                        <div className="col-lg-12">
                                                            <HtmlToReact data={item.description}/>
                                                         </div>
                                                         {/* <div className="col-lg-4 flex items-center">

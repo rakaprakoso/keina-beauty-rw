@@ -8,6 +8,7 @@
     <title>Keina Beauty</title>
     <meta name="theme-color" content="#2a3f2b"/>
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/appAdmin.css">
 </head>
 <body>
     <div id="root">

@@ -9,6 +9,7 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
+import Video from '../Embed/Video';
 
 const HtmlToReact = ({ data }) => {
     // const [data, setData] = useState(false);
@@ -83,6 +84,10 @@ var processingInstructions = [
                         <AccordionItemPanel>
                             {children}
                         </AccordionItemPanel>
+                    )
+                case 'Video':
+                    return (
+                        <Video url={children[0]}/>
                     )
                 default:
                     break;

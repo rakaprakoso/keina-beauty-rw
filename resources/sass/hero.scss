@@ -31,7 +31,7 @@
             }
         }
         .title{
-            @apply text-3xl font-bold uppercase;
+            @apply text-3xl font-bold capitalize ;
             @screen lg{
                 @apply text-6xl;
             }

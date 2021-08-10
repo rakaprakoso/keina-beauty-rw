@@ -21,9 +21,9 @@ const Main = props => {
                 <link rel="shortcut icon" href="\assets\green-white.png" type="image/x-icon" />
             </Helmet>
             <Switch>
-                <Route exact path="/admin/" component={Admin}/>
-                <Route path="/admin/product" component={AdminMain}/>
-                <Route path="/admin/dashboard" component={Home}/>
+                <Route path="/admin/" component={Admin}/>
+                {/* <Route path="/admin/product" component={AdminMain}/>
+                <Route path="/admin/dashboard" component={Home}/> */}
                 {/* <Route path="/about" component={About} />
                 <Route path="/shop" component={Shop} />
                 <Route path="/product/:slug" component={Product}/>

@@ -23,15 +23,15 @@ const TinyMCEForm = (props) => {
         // content_css : '/css/app.css',
         selector: "textarea.my-editor",
         menubar: false,
-        extended_valid_elements: "div[react-element],span",
+        extended_valid_elements: "div[*],span",
         plugins: [
             "advlist autolink lists link image charmap print preview hr anchor pagebreak",
             "searchreplace wordcount visualblocks visualchars code fullscreen",
             "insertdatetime media nonbreaking save table directionality",
-            "emoticons template paste textpattern template"
+            "emoticons template paste textpattern template table"
         ],
         toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | "
-            + "bullist numlist outdent indent | link image media | removeformat code | addAccordion template | help",
+            + "bullist numlist outdent indent | link image media table | removeformat code | addAccordion template | help",
         relative_urls: false,
         file_picker_callback: function (callback, value, meta) {
             var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
@@ -76,6 +76,22 @@ const TinyMCEForm = (props) => {
                 content: ProductTemplate,
             },
         ],
+        // external_plugins: {
+        //     'example': '/vendor/tinymce/external_plugins/Accordion.js',
+        // },
+        content_css: [
+            "/css/appAdmin.css",
+        ],
+        // contextmenu: 'link image imagetools table spellchecker lists',
+        // table_class_list: [
+        //     { title: 'None', value: '' },
+        //     { title: 'Accordion', value: 'Accordion' },
+        // ],
+        // table_row_class_list: [
+        //     { title: 'None', value: '' },
+        //     { title: 'Accordion Head', value: 'AccordionHead' },
+        //     { title: 'Accordion Panel', value: 'AccordionPanel' },
+        // ],
     };
 
     return (

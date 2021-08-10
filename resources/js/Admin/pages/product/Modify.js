@@ -94,7 +94,7 @@ const Modify = () => {
 
 
     return (
-        <div className="w-full">
+        <div className="w-full p-10 bg-white shadow">
             <form action={path}
                 // "/api/admin/product"
                 method="POST" enctype="multipart/form-data">
@@ -102,7 +102,6 @@ const Modify = () => {
                     <input type="hidden" name="_method" value="put" /> : null
                 }
                 <div>
-                    <h2>{id}</h2>
                     {dataForm && dataForm.map((item, i) => (
                         <Form list={item} />
                     ))

@@ -19,6 +19,8 @@ mix
     .js('resources/js/Admin/app.js', 'public/js/admin')
     .react()
     .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/appClient.scss', 'public/css')
+    .sass('resources/sass/appAdmin.scss', 'public/css')
     .options({
         postCss: [tailwindcss('./tailwind.config.js')],
     })
