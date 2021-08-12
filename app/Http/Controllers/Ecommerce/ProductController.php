@@ -17,8 +17,12 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         // return $request->full;
-        $products = Product::paginate(12);
 
+        if($request->random){
+            $products = Product::inRandomOrder()->where('slug', '!=', $request->slug)->take(3)->get();
+        }else{
+            $products = Product::paginate(12);
+        }
         return response()
         ->json($products);
         // ->json(["data"=>$products]);

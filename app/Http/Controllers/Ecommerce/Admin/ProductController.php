@@ -24,8 +24,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if ($this->authServer($request->key)) { // return $request->full;
-            $products = Product::paginate(12);
 
+            $products = Product::paginate(12);
             return response()
                 ->json($products);
             // ->json(["data"=>$products]);

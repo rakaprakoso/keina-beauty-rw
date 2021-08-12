@@ -21,7 +21,7 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
-
+import ProductThumbnail1 from '../../components/Products/ProductThumbnail1'
 import HtmlToReact from '../../components/Functions/HtmlToReact'
 
 class Product extends Component {
@@ -30,6 +30,7 @@ class Product extends Component {
         this.state = {
             error: null,
             isLoaded: false,
+            otherItems: [],
             item: [],
 
             alert: false,
@@ -76,7 +77,7 @@ class Product extends Component {
             .then(
                 (result) => {
                     this.setState({
-                        isLoaded: true,
+                        // isLoaded: true,
                         item: result
                     });
                     console.log(result);
@@ -86,8 +87,29 @@ class Product extends Component {
                 // exceptions from actual bugs in components.
                 (error) => {
                     this.setState({
-                        isLoaded: true,
+                        // isLoaded: true,
                         error
+                    });
+                    console.log(error);
+                }
+            )
+            fetch(`/api/product?random=true&slug=${this.props.match.params.slug}`)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        otherItems: result
+                    });
+                    console.log(result);
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        // error
                     });
                     console.log(error);
                 }
@@ -95,7 +117,7 @@ class Product extends Component {
     }
 
     render() {
-        const { error, isLoaded, item, setAlert } = this.state;
+        const { error, isLoaded, item, setAlert, otherItems } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
@@ -189,7 +211,7 @@ class Product extends Component {
                                                 <div className="full-description">
                                                     <div className="row">
                                                         <div className="col-lg-12">
-                                                           <HtmlToReact data={item.description}/>
+                                                            <HtmlToReact data={item.description} />
                                                         </div>
                                                         {/* <div className="col-lg-4 flex items-center">
                                                             <div className="px-0 lg:px-10 py-0 lg:py-3">
@@ -270,6 +292,7 @@ class Product extends Component {
                                     </div>
                                 </div>
                             </div>
+                            <ProductThumbnail1 data={otherItems} columns={3}/>
                         </section>
                     </div>
                 </>

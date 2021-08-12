@@ -17,9 +17,9 @@ import { Carousel } from 'react-responsive-carousel';
 
 const Hero1 = () => {
     const heroData = [
-        'Cy-Brightening Moisturizer Cream',
-        'Cy-Brightening',
-        'Package',
+        'Calming Cy-Essence',
+        'Reviving Facial Wash',
+        'All Is Calm All Is Bright',
     ];
 
     return (
