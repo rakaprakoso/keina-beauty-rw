@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
-// const BrowserRouter = require("react-router-dom").BrowserRouter;
 import Main from './Router';
+
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+import ReduxThunk from "redux-thunk";
+import rootReducer from './redux/reducer/globalReducer'
+
+//Store
+const storeRedux = createStore(rootReducer, applyMiddleware(ReduxThunk));
+
 // class Index extends Component {
 export const Index = () => {
 
@@ -20,5 +28,5 @@ export const Index = () => {
 // export default Index;
 if (document.getElementById('root')) {
     // ReactDOM.render(<Header />, document.getElementById('header'));
-    ReactDOM.render(<Index />, document.getElementById('root'));
+    ReactDOM.render(<Provider store={storeRedux}><Index /></Provider>, document.getElementById('root'));
 }

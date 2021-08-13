@@ -129,6 +129,7 @@ class AjaxController extends Controller
             $cookie = cookie('cart', json_encode($cart), 60 * 24 * 5);
             $message = "Product Added to Cookie!";
             return Response::json(["data" => $message])->cookie($cookie);
+            // return redirect()->route('listCart')->cookie($cookie);
         }
     }
     public function deleteCart(Request $request)

@@ -13,30 +13,50 @@ import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent, Menu, MenuIte
 // import 'react-pro-sidebar/dist/css/styles.css';
 
 import logo from "../../Public/Logo Big.png"
+import { fetchCart } from '../redux/actions/globalAction'
+import { connect, useSelector, useDispatch } from 'react-redux'
 
-export const Header = () => {
+const mapStateToProps = (state) => {
+    return {
+        totalCart: state.totalCart,
+        cartData: state.cartData,
+    }
+}
+
+const Header = (props) => {
 
     const history = useHistory();
     const location = useLocation();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    // const cartCounter = props.totalCart;
 
-    const [cartCounter, setCartCounter] = useState(null);
-
-    useEffect(async () => {
-        const dataFetch = await axios
-            .get("/api/cart")
-            .then(function (response) {
-                console.log(response);
-                return response.data;
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+    // useEffect(async () => {
+    //     const dataFetch = await axios
+    //         .get("/api/cart")
+    //         .then(function (response) {
+    //             // console.log(response);
+    //             return response.data;
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
 
 
-        setCartCounter(dataFetch.qtyTotal);
-        // setData(dataFetch.cart);
-    }, []);
+    //     setCartCounter(dataFetch.qtyTotal);
+    //     // setCartCounter(props.order);
+    //     console.log(props.order);
+    //     // setData(dataFetch.cart);
+    // }, []);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const loadCart = async () => {
+            // setIsLoading(true);
+            await dispatch(fetchCart());
+            // setIsLoading(false);
+        };
+        loadCart();
+    }, [dispatch]);
 
     return (
         <header className="site-header shadow-lg">
@@ -69,7 +89,7 @@ export const Header = () => {
                                         text-gray-50 w-4 h-4 text-xs rounded-full
                                         absolute right-1 top-1 text-center
                                         ${item.counter ? '' : 'hidden'}`}>
-                                            {cartCounter}
+                                            {props.cartData.qtyTotal || 0}
                                         </div>
                                     </a>
                                 </li>
@@ -136,7 +156,7 @@ export const Header = () => {
                                         text-gray-50 w-4 h-4 text-xs rounded-full
                                         absolute right-1 top-1 text-center
                                         ${item.counter ? '' : 'hidden'}`}>
-                                            {cartCounter}
+                                           {props.cartData.qtyTotal || 0}
                                         </div>
                                     </a>
                                 </li>
@@ -188,6 +208,8 @@ export const Header = () => {
         </header>
     )
 }
+
+export default connect(mapStateToProps)(Header);
 
 const dataHeader = [
     {

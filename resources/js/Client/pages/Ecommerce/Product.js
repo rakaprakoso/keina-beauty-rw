@@ -23,6 +23,11 @@ import {
 } from 'react-accessible-accordion';
 import ProductThumbnail1 from '../../components/Products/ProductThumbnail1'
 import HtmlToReact from '../../components/Functions/HtmlToReact'
+import {connect, useSelector, useDispatch} from 'react-redux'
+import ActionType from '../../redux/reducer/globalActionType';
+
+import { addCart } from '../../redux/actions/globalAction'
+
 
 class Product extends Component {
     constructor(props) {
@@ -45,28 +50,9 @@ class Product extends Component {
         });
     }
 
-    async addToCart() {
-
-        // POST request using axios with async/await
-        console.log(this.state.item.id)
-        const product = {
-            product_id: this.state.item.id,
-            qty: 1,
-
-        };
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(product)
-        };
-        const response = await fetch('/api/ajax/cart', requestOptions);
-
-        const data = await response.json();
-        console.log(data);
-        // alert(data.data);
+    addToCart = async () => {
+        await this.props.addCart(this.state.item.id)
         this.toggleButton(!this.setAlert);
-
-        // this.setState({ articleId: response.data.id });
     };
 
     //Fetch Data
@@ -124,7 +110,6 @@ class Product extends Component {
             return <div>Loading...</div>;
         } else {
             return (
-
                 <>
                     <Helmet>
                         <title>{item.name} - Keina Beauty</title>
@@ -180,6 +165,7 @@ class Product extends Component {
                                                 </span>
                                                 Add to Favorites
                                             </button> */}
+                                            {/* <button onClick={() => this.props.addCart()} className="btn add-to-cart hvr hvr-icon-forward"> */}
                                             <button onClick={() => this.addToCart()} className="btn add-to-cart hvr hvr-icon-forward">
                                                 <span className="icon">
                                                     <IoCart className="hvr-icon " />
@@ -213,31 +199,6 @@ class Product extends Component {
                                                         <div className="col-lg-12">
                                                             <HtmlToReact data={item.description} />
                                                         </div>
-                                                        {/* <div className="col-lg-4 flex items-center">
-                                                            <div className="px-0 lg:px-10 py-0 lg:py-3">
-                                                                <div className="row">
-                                                                    <div className="col-4">
-                                                                        <img src="https://keinabeauty.com/wp-content/uploads/2021/05/No-Additional-Fragrances-Green.png" alt="" />
-                                                                    </div>
-                                                                    <div className="col-4">
-                                                                        <img src="https://keinabeauty.com/wp-content/uploads/2021/05/No-Additional-Fragrances-Green.png" alt="" />
-                                                                    </div>
-                                                                    <div className="col-4">
-                                                                        <img src="https://keinabeauty.com/wp-content/uploads/2021/05/No-Additional-Fragrances-Green.png" alt="" />
-                                                                    </div>
-                                                                    <div className="col-4">
-                                                                        <img src="https://keinabeauty.com/wp-content/uploads/2021/05/No-Additional-Fragrances-Green.png" alt="" />
-                                                                    </div>
-                                                                    <div className="col-4">
-                                                                        <img src="https://keinabeauty.com/wp-content/uploads/2021/05/No-Additional-Fragrances-Green.png" alt="" />
-                                                                    </div>
-                                                                    <div className="col-4">
-                                                                        <img src="https://keinabeauty.com/wp-content/uploads/2021/05/No-Additional-Fragrances-Green.png" alt="" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                     */}
                                                     </div>
 
                                                     {/* <div className="px-0 lg:px-44">
@@ -317,37 +278,36 @@ const ChatToWhatsapp = (props) => {
 
 const testimonialsData = [
     {
-        name: 'John Doe',
-        testimonial: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae rem iure voluptas soluta recusandae voluptatum, rerum asperiores, veritatis quibusdam quis, consequuntur ab. Nostrum ad labore quia sunt veritatis, ab harum!'
+        name: 'Putri Maharani',
+        testimonial: 'Barang bagus, kualitas luarbiasa. Nggak bakal nyesel'
     },
     {
-        name: 'John Doe',
-        testimonial: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae rem iure voluptas soluta recusandae voluptatum, rerum asperiores, veritatis quibusdam quis, consequuntur ab. Nostrum ad labore quia sunt veritatis, ab harum!'
+        name: 'Ovi',
+        testimonial: 'Efek nya sangat tidak terduga, bermanfaat dan juga menyehatkan'
     },
     {
-        name: 'John Doe',
-        testimonial: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae rem iure voluptas soluta recusandae voluptatum, rerum asperiores, veritatis quibusdam quis, consequuntur ab. Nostrum ad labore quia sunt veritatis, ab harum!'
+        name: 'Novita Sari',
+        testimonial: 'Pelayanan ramah, kualitas memuaskan!'
     },
     {
-        name: 'John Doe',
-        testimonial: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae rem iure voluptas soluta recusandae voluptatum, rerum asperiores, veritatis quibusdam quis, consequuntur ab. Nostrum ad labore quia sunt veritatis, ab harum!'
-    },
-    {
-        name: 'John Doe',
-        testimonial: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae rem iure voluptas soluta recusandae voluptatum, rerum asperiores, veritatis quibusdam quis, consequuntur ab. Nostrum ad labore quia sunt veritatis, ab harum!'
-    },
-    {
-        name: 'John Doe',
-        testimonial: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae rem iure voluptas soluta recusandae voluptatum, rerum asperiores, veritatis quibusdam quis, consequuntur ab. Nostrum ad labore quia sunt veritatis, ab harum!'
-    },
-    {
-        name: 'John Doe',
-        testimonial: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae rem iure voluptas soluta recusandae voluptatum, rerum asperiores, veritatis quibusdam quis, consequuntur ab. Nostrum ad labore quia sunt veritatis, ab harum!'
-    },
-    {
-        name: 'John Doe',
-        testimonial: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae rem iure voluptas soluta recusandae voluptatum, rerum asperiores, veritatis quibusdam quis, consequuntur ab. Nostrum ad labore quia sunt veritatis, ab harum!'
+        name: 'Ummu Yuliandari',
+        testimonial: 'Nggak akan nyesel order disini'
     },
 ]
 
-export default Product
+const mapStateToProps = (state) => {
+    return {
+        totalCart: state.totalCart,
+        cartData: state.cartData
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addToCart: () => dispatch({type: ActionType.ADD_CART}),
+    }
+}
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Product)
+// export default connect(mapStateToProps, {addCart})(Product)
+export default connect(mapStateToProps, {addCart,mapDispatchToProps})(Product)

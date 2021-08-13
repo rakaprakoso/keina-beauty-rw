@@ -2,7 +2,7 @@ import { React,useEffect } from 'react';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import {Helmet} from "react-helmet";
 
-import { Header as Navbar } from './components/Header';
+import Header from './components/Header';
 import Footer1 from './components/Footer/Footer1';
 import NotFound from './pages/NotFound';
 
@@ -22,7 +22,7 @@ const Main = props => {
                 <link rel="shortcut icon" href="\assets\green-white.png" type="image/x-icon" />
             </Helmet>
             <div id="header">
-                <Navbar />
+                <Header />
             </div>
             <Switch>
                 <Route exact path="/" component={Home}/>
