@@ -21,7 +21,7 @@ class ProductController extends Controller
         if($request->random){
             $products = Product::inRandomOrder()->where('slug', '!=', $request->slug)->take(3)->get();
         }else{
-            $products = Product::paginate(12);
+            $products = Product::show()->paginate(12);
         }
         return response()
         ->json($products);

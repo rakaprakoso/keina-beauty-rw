@@ -187,6 +187,9 @@ class AjaxController extends Controller
         } else {
 
             $cart = json_decode($request->cookie('cart'), true);
+            if(!$cart){
+                return redirect()->back();
+            }
             // return Response::json($cart);
             // return Response::json($request->all());
             foreach ($request->product_id as $key => $value) {

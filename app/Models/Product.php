@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -25,4 +26,7 @@ class Product extends Model
         return sprintf('Rp. %s', number_format(floatval($this->price), 0, null, '.'));
     }
     protected $appends = ['money'];
+    public function scopeShow($query){
+        return $query->where('preview', true);
+    }
 }

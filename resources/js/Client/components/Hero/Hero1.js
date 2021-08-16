@@ -17,9 +17,8 @@ import { Carousel } from 'react-responsive-carousel';
 
 const Hero1 = () => {
     const heroData = [
-        'Calming Cy-Essence',
-        'Reviving Facial Wash',
-        'All Is Calm All Is Bright',
+        'Protecting CC Cream',
+        'Cy-Brightening Moisturizer',
     ];
 
     return (
@@ -107,7 +106,7 @@ const Hero1 = () => {
                                     autoPlay={true}
                                     loop={true}
                                     muted={true}
-                                    src="/assets\video\tutorial-jkt-3.mp4"
+                                    src={`/assets/video/tutorial-jkt-${i}.mp4`}
                                 />
                             </div>
                         </div>
@@ -115,7 +114,7 @@ const Hero1 = () => {
                                 <div className="flex flex-col h-full justify-center">
                                     <div className="content-container">
                                         <h2 className="title">{item}</h2>
-                                        <h3 className="sub-title">Skin Care Keina</h3>
+                                        <h3 className="sub-title">Keina Product</h3>
                                     </div>
                                 </div>
                             </div>

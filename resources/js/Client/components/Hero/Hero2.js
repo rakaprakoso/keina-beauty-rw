@@ -35,7 +35,9 @@ const Hero2 = () => {
                             <div className="hero-content h-full">
                                 <div className="flex flex-col h-full justify-center">
                                     <div className="content-container">
+                                        <a href="/product/all-is-calm-all-is-bright">
                                         <h2 className="title">"All is Calm <br/>All is Bright"<br/>Skin Care Set</h2>
+                                        </a>
                                         <h3 className="sub-title">Rp. 699.000</h3>
                                     </div>
                                 </div>
