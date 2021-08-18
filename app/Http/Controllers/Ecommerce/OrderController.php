@@ -243,7 +243,7 @@ class OrderController extends Controller
 
         $shipping_address = array(
             'first_name'    => $request->name,
-            'address'       => $order->addressBuyer + " - " + $order->shippingAddressBuyer,
+            'address'       => $order->addressBuyer . " - " . $order->shippingAddressBuyer,
         );
         $params = array(
             'transaction_details' => array(
@@ -335,7 +335,7 @@ class OrderController extends Controller
             try {
                 $data['status'] = \Midtrans\Transaction::status($orderId);
             } catch (\Exception $e) {
-                $data['link'] = "https://app." + $this->isProduction ? "" : "sandbox" + ".midtrans.com/snap/v2/vtweb/" . $data['order']->payment->midtrans_order_id;
+                $data['link'] = "https://app." . $this->isProduction ? "" : "sandbox" . ".midtrans.com/snap/v2/vtweb/" . $data['order']->payment->midtrans_order_id;
                 $data['status'] = null;
                 //return redirect($link);
                 //return Response::json($e->getMessage());
