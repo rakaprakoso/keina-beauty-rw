@@ -21,6 +21,13 @@ use App\Http\Controllers\Controller;
 class OrderController extends Controller
 {
     // use helper;
+    private $isProduction = false;
+    private $serverKeyStag = 'SB-Mid-server-DoxmbQYZuh-aGP6ceJT2NsdN';
+    private $serverKeyProd = 'Mid-server-2U-uO4fIv_7MtL-Fdeh2Q68_';
+    // Set sanitization on (default)
+    private $isSanitized = true;
+    // Set 3DS transaction for credit card to true
+    private $is3ds = true;
 
     private function printShipping($destination, $weight, $shipping_method)
     {
@@ -229,26 +236,28 @@ class OrderController extends Controller
         // ->whereIn('product_id',$request->product_id)->delete();
 
 
-        // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = 'SB-Mid-server-DoxmbQYZuh-aGP6ceJT2NsdN';
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
+        \Midtrans\Config::$isProduction = $this->isProduction;
+        \Midtrans\Config::$serverKey = $this->isProduction ? $this->serverKeyProd : $this->serverKeyStag;
+        \Midtrans\Config::$isSanitized = $this->isSanitized;
+        \Midtrans\Config::$is3ds = $this->is3ds;
 
+        $shipping_address = array(
+            'first_name'    => $request->name,
+            'address'       => $order->addressBuyer + " - " + $order->shippingAddressBuyer,
+        );
         $params = array(
             'transaction_details' => array(
                 'order_id' =>  $order->order_id,
                 'gross_amount' => $data['price']['net_price'] + $shippingData['cost'],
             ),
+
             'customer_details' => array(
                 // 'first_name' => Auth::guard('user')->user()->name,
                 // 'email' => Auth::guard('user')->user()->email,
                 'first_name' => $request->name,
                 'email' => $request->email,
-                'phone_number' => $request->phone_number,
+                'phone' => $request->phone_number,
+                'shipping_address' => $shipping_address,
             ),
         );
 
@@ -289,14 +298,10 @@ class OrderController extends Controller
     }
     public function notification(Request $request)
     {
-        // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = 'SB-Mid-server-DoxmbQYZuh-aGP6ceJT2NsdN';
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
+        \Midtrans\Config::$isProduction = $this->isProduction;
+        \Midtrans\Config::$serverKey = $this->isProduction ? $this->serverKeyProd : $this->serverKeyStag;
+        \Midtrans\Config::$isSanitized = $this->isSanitized;
+        \Midtrans\Config::$is3ds = $this->is3ds;
 
         $orderId = $request->order;
         $status = \Midtrans\Transaction::status($orderId);
@@ -305,16 +310,16 @@ class OrderController extends Controller
     }
     public function status(Request $request)
     {
-        \Midtrans\Config::$serverKey = 'SB-Mid-server-DoxmbQYZuh-aGP6ceJT2NsdN';
-        \Midtrans\Config::$isProduction = false;
-        \Midtrans\Config::$isSanitized = true;
-        \Midtrans\Config::$is3ds = true;
+        \Midtrans\Config::$isProduction = $this->isProduction;
+        \Midtrans\Config::$serverKey = $this->isProduction ? $this->serverKeyProd : $this->serverKeyStag;
+        \Midtrans\Config::$isSanitized = $this->isSanitized;
+        \Midtrans\Config::$is3ds = $this->is3ds;
 
         $orderId = $request->order_id;
         $data['order'] = Order::where('order_id', $orderId)
-        ->with('order_details.product')->first();
+            ->with('order_details.product')->first();
 
-        if ($data['order'] !==null) {
+        if ($data['order'] !== null) {
             $data['normal_price'] = 0;
             $data['discount_price'] = 0;
             $data['net_price'] = 0;
@@ -330,15 +335,15 @@ class OrderController extends Controller
             try {
                 $data['status'] = \Midtrans\Transaction::status($orderId);
             } catch (\Exception $e) {
-                $data['link'] = "https://app.sandbox.midtrans.com/snap/v2/vtweb/" . $data['order']->payment->midtrans_order_id;
+                $data['link'] = "https://app." + $this->isProduction ? "" : "sandbox" + ".midtrans.com/snap/v2/vtweb/" . $data['order']->payment->midtrans_order_id;
                 $data['status'] = null;
                 //return redirect($link);
                 //return Response::json($e->getMessage());
             }
 
             return response()->json($data);
-        } else{
-            return response()->json(['status'=>'order not found'],404);
+        } else {
+            return response()->json(['status' => 'order not found'], 404);
         }
 
         return view('page.eCommerce.order_detail')
@@ -361,13 +366,10 @@ class OrderController extends Controller
 
         //return "Halo";
         // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = 'SB-Mid-server-4AHZynjkYAfEnyqGjOgRQ1El';
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
+        \Midtrans\Config::$isProduction = $this->isProduction;
+        \Midtrans\Config::$serverKey = $this->isProduction ? $this->serverKeyProd : $this->serverKeyStag;
+        \Midtrans\Config::$isSanitized = $this->isSanitized;
+        \Midtrans\Config::$is3ds = $this->is3ds;
 
         $orderId = $request->order;
         $status = \Midtrans\Transaction::status($orderId);
@@ -380,13 +382,10 @@ class OrderController extends Controller
             ->update(['status' => $request->transaction_status]);
         return $payment;
         // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = 'SB-Mid-server-4AHZynjkYAfEnyqGjOgRQ1El';
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
+        \Midtrans\Config::$isProduction = $this->isProduction;
+        \Midtrans\Config::$serverKey = $this->isProduction ? $this->serverKeyProd : $this->serverKeyStag;
+        \Midtrans\Config::$isSanitized = $this->isSanitized;
+        \Midtrans\Config::$is3ds = $this->is3ds;
 
         $orderId = $request->order;
         $status = \Midtrans\Transaction::status($orderId);

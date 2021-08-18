@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import {CarouselNav1Prev,CarouselNav1Next,CarouselNav1} from '../Carousel/CarouselNav1'
+import { CarouselNav1Prev, CarouselNav1Next, CarouselNav1 } from '../Carousel/CarouselNav1'
 // import './style.scss';
 
 // import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,12 +14,34 @@ import {CarouselNav1Prev,CarouselNav1Next,CarouselNav1} from '../Carousel/Carous
 // SwiperCore.use([Pagination, Navigation]);
 
 import { Carousel } from 'react-responsive-carousel';
+import axios from 'axios';
 
 const Hero1 = () => {
     const heroData = [
         'Protecting CC Cream',
         'Cy-Brightening Moisturizer',
     ];
+    const [heroData2, setHeroData2] = useState(false);
+    useEffect(async () => {
+        const dataFetch = await axios
+            .get("/js/data/homeSlider.json")
+            .then(function (response) {
+                console.log(response.data);
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        setHeroData2(dataFetch);
+
+        // const loadCart = async () => {
+        //     // setIsLoading(true);
+        //     await dispatch(fetchCart());
+        //     // setIsLoading(false);
+        // };
+        // loadCart();
+    }, []);
 
     return (
         <section className="hero hero-90">
@@ -86,44 +108,46 @@ const Hero1 = () => {
             setWrapperSize={false}
 
             className="mySwiper"> */}
-            <Carousel
+            {heroData2 &&
+                <Carousel
 
-            emulateTouch={true}
-            showStatus={false}
-            autoPlay={false}
-            infiniteLoop={true}
-            internal={1000000}
-            showThumbs={false}
+                    emulateTouch={true}
+                    showStatus={false}
+                    autoPlay={false}
+                    infiniteLoop={true}
+                    internal={1000000}
+                    showThumbs={false}
 
-            renderArrowPrev={CarouselNav1Prev}
-            renderArrowNext={CarouselNav1Next}
-            >
-                {heroData.map((item, i) => (
-                    <div className="h-full">
-                        <div className="hero-background overlay">
-                            <div className="absolute w-full h-full object-cover" style={{ zIndex: '-1' }}>
-                                <video
-                                    autoPlay={true}
-                                    loop={true}
-                                    muted={true}
-                                    src={`/assets/video/tutorial-jkt-${i}.mp4`}
-                                />
+                    renderArrowPrev={CarouselNav1Prev}
+                    renderArrowNext={CarouselNav1Next}
+                >
+                    {heroData2.map((item, i) => (
+                        <div className="h-full">
+                            <div className="hero-background overlay">
+                                <div className="absolute w-full h-full object-cover" style={{ zIndex: '-1' }}>
+                                    <video
+                                        autoPlay={true}
+                                        loop={true}
+                                        muted={true}
+                                        src={item.video}
+                                    />
+                                </div>
                             </div>
-                        </div>
                             <div className="hero-content h-full">
                                 <div className="flex flex-col h-full justify-center">
                                     <div className="content-container">
-                                        <h2 className="title">{item}</h2>
+                                        <h2 className="title">{item.name}</h2>
                                         <h3 className="sub-title">Keina Product</h3>
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                ))}
+                        </div>
+                    ))}
                 </Carousel>
-            {/* </Swiper> */ }
+            }
+            {/* </Swiper> */}
         </section>
-            )
+    )
 }
 
-            export default Hero1;
+export default Hero1;
