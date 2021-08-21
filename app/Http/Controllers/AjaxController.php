@@ -282,8 +282,8 @@ class AjaxController extends Controller
                 if ($selected[$key] == 'true') {
                     $cartSession[$value]['selected'] = 1;
                     $price['normal_price'] += $price['product'][$key];
-                    //$price['discount_price']+=$cartDetailRaw->product->price*$cartDetailRaw->qty;
                     $price['net_price'] += $this->markupPrice($cartDetailRaw->product->price) * $cartDetailRaw->qty;
+                    $price['discount_price']+=$this->markupPrice($cartDetailRaw->product->discount_price) * $cartDetailRaw->qty;
                     $total_qty += $cartDetailRaw->qty;
                 }
 

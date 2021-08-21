@@ -5,4 +5,11 @@ const NumberFormat = (number, append = '', prepend = '') => {
     );
 }
 
-export default NumberFormat;
+const PercentFormat = (Numerator, Denominator, limit=2) => {
+    const percentFormatted = ((parseInt(Denominator)-parseInt(Numerator)) / parseInt(Denominator) * 100).toFixed(limit);
+    return (
+        percentFormatted + "%"
+    )
+}
+
+export {NumberFormat, PercentFormat};

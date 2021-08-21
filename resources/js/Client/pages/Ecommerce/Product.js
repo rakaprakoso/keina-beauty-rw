@@ -23,10 +23,11 @@ import {
 } from 'react-accessible-accordion';
 import ProductThumbnail1 from '../../components/Products/ProductThumbnail1'
 import HtmlToReact from '../../components/Functions/HtmlToReact'
-import {connect, useSelector, useDispatch} from 'react-redux'
+import { connect, useSelector, useDispatch } from 'react-redux'
 import ActionType from '../../redux/reducer/globalActionType';
 
 import { addCart } from '../../redux/actions/globalAction'
+import { NumberFormat, PercentFormat } from '../../components/Functions/NumberFormat';
 
 
 class Product extends Component {
@@ -79,7 +80,7 @@ class Product extends Component {
                     console.log(error);
                 }
             )
-            fetch(`/api/product?random=true&slug=${this.props.match.params.slug}`)
+        fetch(`/api/product?random=true&slug=${this.props.match.params.slug}`)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -135,7 +136,17 @@ class Product extends Component {
                                 <div className="col-lg-6 flex items-center">
                                     <div className="product-brief">
                                         <h1 className="product-name">{item.name}</h1>
-                                        <h2 className="product-price">{item.money}</h2>
+                                        {item.discount_price !== null ? (
+                                            <>
+                                                <h2 className="text-red-600 line-through text-base inline-block">
+                                                    {NumberFormat(item.price, 'Rp.')}
+                                                </h2>
+                                                <span className="inline-block bg-gray-200 p-1 ml-2 rounded">{PercentFormat(item.discount_price, item.price)}</span>
+                                                <h2 className="product-price">{NumberFormat(item.discount_price, 'Rp.')}</h2>
+                                            </>
+                                        ) :
+                                            <h2 className="product-price">{item.money}</h2>
+                                        }
                                         <div className="product-short-desc">
                                             {item.short_description && parse(item.short_description)}
                                         </div>
@@ -253,7 +264,7 @@ class Product extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <ProductThumbnail1 data={otherItems} columns={3}/>
+                            <ProductThumbnail1 data={otherItems} columns={3} />
                         </section>
                     </div>
                 </>
@@ -304,10 +315,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addToCart: () => dispatch({type: ActionType.ADD_CART}),
+        addToCart: () => dispatch({ type: ActionType.ADD_CART }),
     }
 }
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Product)
 // export default connect(mapStateToProps, {addCart})(Product)
-export default connect(mapStateToProps, {addCart,mapDispatchToProps})(Product)
+export default connect(mapStateToProps, { addCart, mapDispatchToProps })(Product)

@@ -61,6 +61,12 @@ const Modify = () => {
             value: data?.price,
         },
         {
+            name: 'discount_price',
+            label: 'Discount Price',
+            type: 'number',
+            value: data?.discount_price,
+        },
+        {
             name: 'weight',
             label: 'Weight (gr)',
             type: 'number',

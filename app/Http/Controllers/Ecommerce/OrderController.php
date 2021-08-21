@@ -180,11 +180,12 @@ class OrderController extends Controller
             $data['total_qty'] += $request->qty[$key];
             // $data['price']['normal_price']+=$this->markupPrice($product->price)*$request->qty[$key];
             $data['price']['normal_price'] += $product->price * $request->qty[$key];
-            // $data['price']['discount_price']=$data['total_qty']*$this->shop_config['markup_price'];
+            $data['price']['discount_price']+=empty($product->discount_price) ? 0 : ($product->price - $product->discount_price)* $orderDetail->qty;
+            // $data['total_qty']*$this->shop_config['markup_price'];
             // $data['price']['net_price']= $data['price']['normal_price']-$data['price']['discount_price'];
-            $data['price']['net_price'] += $product->price * $request->qty[$key];
             $data['weight'] += $product->weight * $request->qty[$key];
         }
+        $data['price']['net_price'] += $data['price']['normal_price'] - $data['price']['discount_price'];
 
         $shippingData = $this->printShipping($request->city_id, $data['weight'], $request->shipping_method);
         $order->shippingAddressBuyer = $shippingData['address'];

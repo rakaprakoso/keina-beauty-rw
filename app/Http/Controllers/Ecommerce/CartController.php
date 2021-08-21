@@ -102,7 +102,7 @@ class CartController extends Controller
                     if ($value->selected==1) {
                         // $data['price']['normal_price']+=$this->markupPrice($value->product->price)*$value->qty;
                         $data['price']['normal_price']+=$value->product->price*$value->qty;
-                        //$data['price']['discount_price']+=$value->product->price*$value->qty;
+                        $data['price']['discount_price']+=$value->product->discount_price*$value->qty;
                         // $data['price']['net_price']+=$this->markupPrice($value->product->price)*$value->qty;
                         $data['price']['net_price']+=$value->product->price*$value->qty;
                     }
@@ -124,11 +124,12 @@ class CartController extends Controller
 
                 foreach ($data['cart'] as $key => $value) {
                     $data['price']['normal_price']+=$value->price*$data['cartSession'][$value->id]['qty'];
-                    //$data['price']['discount_price']+=$value->price*$data['cartSession'][$value->id]['qty'];
-                    $data['price']['net_price']+=$value->price*$data['cartSession'][$value->id]['qty'];
+                    $data['price']['discount_price']+=empty($value->discount_price) ? 0 : ($value->price - $value->discount_price)*$data['cartSession'][$value->id]['qty'];
+
                     $data['weight']+=$value->weight*$data['cartSession'][$value->id]['qty'];
                     $data['qtyTotal']+=$data['cartSession'][$value->id]['qty'];
                 }
+                $data['price']['net_price']+=$data['price']['normal_price']-$data['price']['discount_price'];
                 $data['cartSession'] = $data['cartSession'];
             }else{
                 $data['cart']=null;

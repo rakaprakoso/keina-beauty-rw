@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from 'react'
 import CartItem1 from '../../components/CartItem/CartItem1';
-import NumberFormat from '../../components/Functions/NumberFormat';
+import {NumberFormat} from '../../components/Functions/NumberFormat';
 
 const data = [0, 1, 2, 3, 5, 6];
 
@@ -60,7 +60,7 @@ const Cart = () => {
             .catch(function (error) {
                 console.log(error);
             });
-        // console.log(dataFetch.cartSession[5]);
+        console.log(dataFetch);
         setRawData(dataFetch);
         setData(dataFetch.cart);
 
@@ -252,7 +252,7 @@ const Checkout = () => {
         const dataFetch = await axios
             .post("/api/rajaongkir", data)
             .then(function (response) {
-                console.log(response.data.rajaongkir.results);
+                console.log(response.data.rajaongkir);
                 return response.data.rajaongkir.results;
             })
             .catch(function (error) {
@@ -334,7 +334,7 @@ const Checkout = () => {
                                             <select required onChange={calculateTotal} className="bg-white w-full mt-2 mb-6 px-4 py-2 border rounded-sm text-gray-700 focus:outline-none focus:border-primary text-sm">
                                                 {cost && <option className="py-1" value='null' disabled selected>Select shipping cost</option>}
                                                 {cost ? cost[0]['costs'].map((item, i) =>
-                                                    <option className="py-1" data-price={item.cost[0].value} value={item.service}>{`${item.service} - ${NumberFormat(item.cost[0].value, 'Rp.')}`}</option>
+                                                    <option className="py-1" data-price={item.cost[0].value} value={item.service}>{`${cost[0]?.code.toUpperCase()} ${item.service} - ${NumberFormat(item.cost[0].value, 'Rp.')}`}</option>
                                                 ) : <option className="py-1" disabled selected>Select your address first</option>}
                                                 {/* // <option className="py-1">JNE - Rp. 25.000</option>
                                                 // <option className="py-1">J&T - Rp. 23.000</option>
@@ -356,7 +356,8 @@ const Checkout = () => {
                                                             <input type="hidden" name="product_id[]" value={item.id} />
                                                             <input type="hidden" name="qty[]" value={rawData.cartSession[item.id]['qty']} />
                                                         </td>
-                                                        <td>{NumberFormat(item.price * rawData.cartSession[item.id]['qty'], 'Rp.')}</td>
+
+                                                        <td>{NumberFormat((item.discount_price !== null ? item.discount_price : item.price) * rawData.cartSession[item.id]['qty'], 'Rp.')}</td>
                                                     </tr>
                                                 ) : <tr><td>Loading</td></tr>}
 

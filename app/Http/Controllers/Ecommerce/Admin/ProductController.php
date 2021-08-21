@@ -161,6 +161,7 @@ class ProductController extends Controller
 
         $product->name = $request->name;
         $product->price = $request->price;
+        $product->discount_price = $request->discount_price;
         $product->weight = $request->weight;
         $product->short_description = $request->short_description;
         $product->description = $request->description;

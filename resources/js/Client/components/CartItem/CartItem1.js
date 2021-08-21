@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 
 import { BsTrash } from "react-icons/bs";
 import axios from "axios";
-import NumberFormat from '../Functions/NumberFormat';
+import {NumberFormat, PercentFormat} from '../Functions/NumberFormat';
 
 const CartItem1 = (props, cb) => {
     console.log(props.data);
     // console.log(props.quantity);
-    const { name, price, thumbnail_img, id, money } = props.data;
+    var { name, price, thumbnail_img, id, money, discount_price } = props.data;
+    var price = discount_price !== null ? discount_price : price;
+
     // const quantity2 = quantity;
     const [qty, setQty] = useState(props.quantity);
 
@@ -31,7 +33,7 @@ const CartItem1 = (props, cb) => {
                     <img className="h-10 w-10 rounded-full inline-block mr-4 overflow-hidden" src={thumbnail_img} alt={name} />
                     {name}
                 </td>
-                <td className="px-4 py-4">{money}</td>
+                <td className="px-4 py-4">{NumberFormat(price,'Rp.')}</td>
                 <td className="px-4 py-4">
                     <input type="hidden" name="product_id[]" value={id} />
                     <input type="number" className="w-24" name={`qty[]`} value={qty} id={`qty-`} onChange={(e) => { setQty(e.target.value); setTotalPrice(e.target.value * price) }} />
