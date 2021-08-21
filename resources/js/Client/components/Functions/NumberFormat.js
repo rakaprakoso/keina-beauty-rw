@@ -1,4 +1,5 @@
 const NumberFormat = (number, append = '', prepend = '') => {
+    var number = parseFloat(number);
     var num_parts = number.toFixed(0).toString().split(".");
     num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     var numberFormatted = num_parts.join(".");
