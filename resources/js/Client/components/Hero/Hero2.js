@@ -38,7 +38,9 @@ const Hero2 = () => {
                                         <a href="/product/all-is-calm-all-is-bright">
                                         <h2 className="title">"All is Calm <br/>All is Bright"<br/>Skin Care Set</h2>
                                         </a>
-                                        <h3 className="sub-title">Rp. 699.000</h3>
+                                        <h3 className="sub-title text-red-600 line-through inline-block align-middle">Rp. 699.000</h3>
+                                        <span className="bg-gray-300 inline-block align-middle p-1 rounded ml-2">Disc 20%</span>
+                                        <h3 className="sub-title">Rp. 559.200</h3>
                                     </div>
                                 </div>
                             </div>
