@@ -1,5 +1,10 @@
 const NumberFormat = (number, append = '', prepend = '') => {
-    const numberFormatted = append + ' ' + number.toLocaleString("id-ID") + ' ' + prepend;
+    var num_parts = number.toFixed(0).toString().split(".");
+    num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    var numberFormatted = num_parts.join(".");
+
+    numberFormatted = append + ' ' + numberFormatted + ' ' + prepend;
+    // const numberFormatted = append + ' ' + number.toLocaleString("id-ID") + ' ' + prepend;
     return (
         numberFormatted
     );
