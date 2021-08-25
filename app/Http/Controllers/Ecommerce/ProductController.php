@@ -20,6 +20,8 @@ class ProductController extends Controller
 
         if($request->random){
             $products = Product::inRandomOrder()->where('slug', '!=', $request->slug)->take(3)->get();
+        }elseif($request->hero == 'true'){
+            $products = Product::where('hero', true)->first();
         }else{
             $products = Product::show()->paginate(12);
         }
