@@ -9,6 +9,8 @@ import HeaderStats from "../components/Headers/HeaderStats.js";
 import FooterAdmin from "../components/Footers/FooterAdmin.js";
 import Home from '../pages/product/Home';
 import Modify from '../pages/product/Modify';
+import CampaignHome from '../pages/Campaign/Home';
+import CampaignModify from '../pages/Campaign/Modify';
 
 // // views
 
@@ -30,6 +32,8 @@ export default function Admin() {
                     <Switch>
                         <Route path="/admin/product/" exact component={Home} />
                         <Route path="/admin/product/:method/:id?" exact component={Modify} />
+                        <Route path="/admin/campaign/" exact component={CampaignHome} />
+                        <Route path="/admin/campaign/:method/:id?" exact component={CampaignModify} />
                         {/* <Route path="/admin/dashboard" exact component={Dashboard} />
             <Route path="/admin/maps" exact component={Maps} />
             <Route path="/admin/settings" exact component={Settings} />

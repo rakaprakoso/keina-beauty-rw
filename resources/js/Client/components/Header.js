@@ -237,7 +237,7 @@ const dataHeader = [
     // },
     {
         title: 'Join Campaign',
-        itemId: 'https://lindungihutan.com/keinabeauty',
+        itemId: '/joincampaign',
     },
 ]
 

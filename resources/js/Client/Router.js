@@ -13,6 +13,7 @@ import Contact from './pages/Contact'
 import Product from './pages/Ecommerce/Product';
 import {Cart,Checkout} from './pages/Ecommerce/Transactions.module'
 import Order from './pages/Ecommerce/Order';
+import JoinCampaign from './pages/JoinCampaign';
 
 const Main = props => {
     return (
@@ -28,6 +29,7 @@ const Main = props => {
                 <Route exact path="/" component={Home}/>
                 <Route path="/about" component={About} />
                 <Route path="/shop" component={Shop} />
+                <Route path="/joincampaign" component={JoinCampaign} />
                 <Route path="/product/:slug" component={Product}/>
                 <Route path="/cart" component={Cart}/>
                 <Route path="/checkout" component={Checkout}/>

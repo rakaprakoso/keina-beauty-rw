@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\CampaignController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ecommerce\ProductController;
 use App\Http\Controllers\Ecommerce\CartController;
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\APIController;
 use App\Http\Controllers\Ecommerce\OrderController;
 
 use App\Http\Controllers\Ecommerce\Admin\ProductController as AdminProductController;
@@ -33,6 +35,7 @@ Route::group([
 ], function () {
     Route::resource('product', AdminProductController::class);
     Route::resource('image', ImageController::class);
+    Route::resource('campaign', CampaignController::class);
 });
 
 
@@ -54,6 +57,7 @@ Route::post('/rajaongkir',[AjaxController::class,'rajaongkir']);
 
 Route::post('/createOrder',[OrderController::class,'checkout']);
 
+Route::post('/joincampaign',[APIController::class,'postJoinCampaign']);
 
 Route::resource('/product', ProductController::class);
 
