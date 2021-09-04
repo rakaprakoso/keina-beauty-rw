@@ -16,7 +16,8 @@
     <div id="root">
     </div>
 
-    <script src="{{ mix('/js/app.js') }}"></script>
+    {{-- <script src="{{ mix('/js/app.js') }}"></script> --}}
+    <script src="{{ asset('/js/app.js') }}?ver={{ filemtime(public_path('/js/app.js')) }}"></script>
     {{-- <script defer src="{{ asset('js/app.js') }}"></script> --}}
 </body>
 </html>
