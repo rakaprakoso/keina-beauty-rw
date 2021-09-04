@@ -14,7 +14,7 @@
     <div id="root">
     </div>
 
-    <script defer src="{{ mix('/js/admin/app.js') }}"></script>
+    <script src="{{ mix('/js/admin/app.js') }}"></script>
     {{-- <script defer src="/js/admin/app.js"></script> --}}
     {{-- <script defer src="{{ asset('js/app.js') }}"></script> --}}
 </body>

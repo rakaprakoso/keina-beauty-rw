@@ -24,10 +24,13 @@ mix
     .options({
         postCss: [tailwindcss('./tailwind.config.js')],
     })
-    .version()
     // .purgeCss({
     //     enabled: mix.inProduction(),
     //     folders: ['src', 'templates'],
     //     extensions: ['html', 'js', 'php', 'vue'],
     // })
     ;
+
+if (mix.inProduction()) {
+    mix.version();
+}
