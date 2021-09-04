@@ -21,11 +21,17 @@ class Product extends Model
     // {
     //     return $this->attributes['price'] = sprintf('Rp. %s', number_format($price, 0, null, '.'));
     // }
-    public function getMoneyAttribute()
-    {
+    public function images(){
+        return $this->hasMany(ProductImage::class);
+    }
+    public function getMoneyAttribute(){
         return sprintf('Rp. %s', number_format(floatval($this->price), 0, null, '.'));
     }
+    // public function getImagesArrAttribute(){
+    //     return $this->images;
+    // }
     protected $appends = ['money'];
+    protected $with = ['images'];
     public function scopeShow($query){
         return $query->where('preview', true);
     }

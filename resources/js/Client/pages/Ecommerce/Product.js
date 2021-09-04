@@ -127,11 +127,33 @@ class Product extends Component {
                         <section className="py-10">
                             <div className="row">
                                 <div className="col-lg-6">
-                                    <div className="thumbnail-img">
-                                        <div className="embed-responsive responsive-1by1">
-                                            <img className="object-cover object-center" src={item.thumbnail_img} alt="" />
+                                    <Carousel
+
+                                        emulateTouch={true}
+                                        showStatus={false}
+                                        autoPlay={false}
+                                        infiniteLoop={true}
+                                        internal={1000000}
+                                        showThumbs={false}
+
+                                        renderArrowPrev={CarouselNav1Prev}
+                                        renderArrowNext={CarouselNav1Next}
+                                    >
+                                        <div className="thumbnail-img">
+                                            <div className="embed-responsive responsive-1by1">
+                                                <img className="object-cover object-center left-0" src={item.thumbnail_img} alt={item.name} />
+                                            </div>
                                         </div>
-                                    </div>
+                                        {item.images.map((img, i) => (
+                                                <div className="thumbnail-img">
+                                                    <div className="embed-responsive responsive-1by1">
+                                                        <img className="object-cover object-center left-0" src={img.image_path} alt={item.name} />
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                    </Carousel>
+
                                 </div>
                                 <div className="col-lg-6 flex items-center">
                                     <div className="product-brief">

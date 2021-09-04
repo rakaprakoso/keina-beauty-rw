@@ -91,13 +91,14 @@ const Modify = () => {
             filetype: 'image',
             value: data?.thumbnail_img,
         },
+        {
+            name: 'imageGallery',
+            label: 'image Gallery',
+            type: 'file',
+            filetype: 'image',
+            value: data?.imagesArr.join(','),
+        },
     ]
-
-
-
-
-
-
 
     return (
         <div className="w-full p-10 bg-white shadow">

@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import TinyMCEForm from './TinyMCE'
 
 const Form = (props, cb) => {
-    console.log(props.list);
+    // console.log(props.list);
 
     // const [data, setData] = useState(null);
 
     var { name, label, type, value, filetype } = props.list;
-    console.log(filetype);
+    // console.log(filetype);
 
     // setData(props.list)
 
@@ -85,7 +85,7 @@ const Form = (props, cb) => {
             )
         } else if (type == 'file') {
             filetype = filetype ? filetype : type;
-            console.log(filetype);
+            // console.log(filetype);
             return (
                 // <input type="file" className={className} name={name}
                 // value={value}
@@ -93,15 +93,15 @@ const Form = (props, cb) => {
                 <div className={className}>
                     <div className="input-group">
                         <span className="input-group-btn">
-                            <button type="button" data-input="thumbnail" data-preview="holder" className="btn btn-primary" onClick={(e) => {
+                            <button type="button" data-input={`thumbnail-${name}`} data-preview={`holder-${name}`} className="btn btn-primary" onClick={(e) => {
                                 lfm(e, filetype);
                             }}>
                                 <i className="fa fa-picture-o" /> Choose
                             </button>
                         </span>
-                        <input id="thumbnail" className="form-control" type="text" name={name} defaultValue={value} />
+                        <input id={`thumbnail-${name}`} className="form-control" type="text" name={name} defaultValue={value} />
                     </div>
-                    <div id="holder" style={{ marginTop: 15, maxHeight: 100 }} />
+                    <div id={`holder-${name}`} style={{ marginTop: 15, maxHeight: 100 }} />
                 </div>
             )
         } else if (type == 'tinyMCE') {

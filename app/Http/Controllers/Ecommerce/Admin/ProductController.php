@@ -81,12 +81,12 @@ class ProductController extends Controller
      */
     public function show($id, Request $request)
     {
+        $product = Product::find($id);
+        $product['imagesArr'] = $product->images->pluck('image_path');
 
+        return response()
+            ->json($product);
         if ($this->authServer($request->key)) {
-            $product = Product::find($id);
-
-            return response()
-                ->json($product);
         }
         return response()->json(null);
     }
@@ -111,6 +111,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // return $request->all();
         $product = $this->sendData($request, $id);
         return redirect('/admin/product');
         return response()->json($product);
@@ -126,7 +127,7 @@ class ProductController extends Controller
     {
         Product::destroy($id);
         return redirect('/admin/product');
-        return response()->json(['message'=>'Data deleted successfully']);
+        return response()->json(['message' => 'Data deleted successfully']);
     }
 
     private function slugify($text, string $divider = '-')
@@ -156,7 +157,8 @@ class ProductController extends Controller
         return $text;
     }
 
-    private function sendData($request, $id=null){
+    private function sendData($request, $id = null)
+    {
         $product = $id == null ? new Product : Product::find($id);
 
         $product->name = $request->name;
@@ -172,8 +174,16 @@ class ProductController extends Controller
         //     $path = $uploadedFile->store('public/products');
         //     $product->thumbnail_img = Storage::url($path);
         // }
+        $tempImg = explode(',', $request->imageGallery);
+        $imageGallery = [];
+        foreach ($tempImg as $key => $value) {
+            $imageGallery[$key] = ['image_path' => $value];
+        }
 
         $product->save();
+
+        $product->images()->delete();
+        $product->images()->createMany($imageGallery);
 
         return $product;
     }
