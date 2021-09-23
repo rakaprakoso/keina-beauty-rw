@@ -21,7 +21,7 @@ use App\Http\Controllers\Controller;
 class OrderController extends Controller
 {
     // use helper;
-    private $isProduction = false;
+    // private $isProduction = false;
     private $serverKeyStag = 'SB-Mid-server-DoxmbQYZuh-aGP6ceJT2NsdN';
     private $serverKeyProd = 'Mid-server-2U-uO4fIv_7MtL-Fdeh2Q68_';
     // Set sanitization on (default)
@@ -29,6 +29,9 @@ class OrderController extends Controller
     // Set 3DS transaction for credit card to true
     private $is3ds = true;
 
+    private function isProduction(){
+        return config('app.env') == 'prod' ? true : false;
+    }
     private function printShipping($destination, $weight, $shipping_method)
     {
         // $baseUrl = "https://api.rajaongkir.com/starter/city?id=".$id;
@@ -237,8 +240,8 @@ class OrderController extends Controller
         // ->whereIn('product_id',$request->product_id)->delete();
 
 
-        \Midtrans\Config::$isProduction = $this->isProduction;
-        \Midtrans\Config::$serverKey = $this->isProduction ? $this->serverKeyProd : $this->serverKeyStag;
+        \Midtrans\Config::$isProduction = $this->isProduction();
+        \Midtrans\Config::$serverKey = $this->isProduction() ? $this->serverKeyProd : $this->serverKeyStag;
         \Midtrans\Config::$isSanitized = $this->isSanitized;
         \Midtrans\Config::$is3ds = $this->is3ds;
 
@@ -299,8 +302,8 @@ class OrderController extends Controller
     }
     public function notification(Request $request)
     {
-        \Midtrans\Config::$isProduction = $this->isProduction;
-        \Midtrans\Config::$serverKey = $this->isProduction ? $this->serverKeyProd : $this->serverKeyStag;
+        \Midtrans\Config::$isProduction = $this->isProduction();
+        \Midtrans\Config::$serverKey = $this->isProduction() ? $this->serverKeyProd : $this->serverKeyStag;
         \Midtrans\Config::$isSanitized = $this->isSanitized;
         \Midtrans\Config::$is3ds = $this->is3ds;
 
@@ -311,8 +314,8 @@ class OrderController extends Controller
     }
     public function status(Request $request)
     {
-        \Midtrans\Config::$isProduction = $this->isProduction;
-        \Midtrans\Config::$serverKey = $this->isProduction ? $this->serverKeyProd : $this->serverKeyStag;
+        \Midtrans\Config::$isProduction = $this->isProduction();
+        \Midtrans\Config::$serverKey = $this->isProduction() ? $this->serverKeyProd : $this->serverKeyStag;
         \Midtrans\Config::$isSanitized = $this->isSanitized;
         \Midtrans\Config::$is3ds = $this->is3ds;
 
@@ -336,7 +339,7 @@ class OrderController extends Controller
             try {
                 $data['status'] = \Midtrans\Transaction::status($orderId);
             } catch (\Exception $e) {
-                $data['link'] = "https://app." . $this->isProduction ? "" : "sandbox" . ".midtrans.com/snap/v2/vtweb/" . $data['order']->payment->midtrans_order_id;
+                $data['link'] = "https://app." . $this->isProduction() ? "" : "sandbox" . ".midtrans.com/snap/v2/vtweb/" . $data['order']->payment->midtrans_order_id;
                 $data['status'] = null;
                 //return redirect($link);
                 //return Response::json($e->getMessage());
@@ -367,8 +370,8 @@ class OrderController extends Controller
 
         //return "Halo";
         // Set your Merchant Server Key
-        \Midtrans\Config::$isProduction = $this->isProduction;
-        \Midtrans\Config::$serverKey = $this->isProduction ? $this->serverKeyProd : $this->serverKeyStag;
+        \Midtrans\Config::$isProduction = $this->isProduction();
+        \Midtrans\Config::$serverKey = $this->isProduction() ? $this->serverKeyProd : $this->serverKeyStag;
         \Midtrans\Config::$isSanitized = $this->isSanitized;
         \Midtrans\Config::$is3ds = $this->is3ds;
 
@@ -383,8 +386,8 @@ class OrderController extends Controller
             ->update(['status' => $request->transaction_status]);
         return $payment;
         // Set your Merchant Server Key
-        \Midtrans\Config::$isProduction = $this->isProduction;
-        \Midtrans\Config::$serverKey = $this->isProduction ? $this->serverKeyProd : $this->serverKeyStag;
+        \Midtrans\Config::$isProduction = $this->isProduction();
+        \Midtrans\Config::$serverKey = $this->isProduction() ? $this->serverKeyProd : $this->serverKeyStag;
         \Midtrans\Config::$isSanitized = $this->isSanitized;
         \Midtrans\Config::$is3ds = $this->is3ds;
 
