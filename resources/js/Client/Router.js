@@ -1,4 +1,4 @@
-import { React,useEffect } from 'react';
+import { React,useEffect,useState } from 'react';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import {Helmet} from "react-helmet";
 
@@ -14,6 +14,7 @@ import Product from './pages/Ecommerce/Product';
 import {Cart,Checkout} from './pages/Ecommerce/Transactions.module'
 import Order from './pages/Ecommerce/Order';
 import JoinCampaign from './pages/JoinCampaign';
+import NewsLetter from './components/Modal/NewsLetter';
 
 const Main = props => {
     return (
@@ -38,6 +39,9 @@ const Main = props => {
                 <Route path="/contact" component={Contact}/>
                 <Route component={NotFound} />
             </Switch>
+            <NewsLetter
+            // openModal={isOpen} setIsOpen={setIsOpen}
+            />
             <Footer1 />
         </>
     )

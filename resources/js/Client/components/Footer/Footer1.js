@@ -1,23 +1,23 @@
 import React from 'react'
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 import logo from "../../../Public/Logo Big.png"
 
 const Footer1 = () => {
     const socmedData = [
         {
-            social: "Facebook",
-            url: "http://facebook.com",
-            icon: <FaFacebookF />,
+            social: "Youtube",
+            url: "https://www.youtube.com/channel/UCds9yHedZkZg4dtZu7TzDIA",
+            icon: <FaYoutube />,
         },
         {
             social: "Instagram",
-            url: "http://Instagram.com",
+            url: "https://www.instagram.com/keina.beauty/",
             icon: <FaInstagram />,
         },
         {
             social: "Twitter",
-            url: "http://Twitter.com",
+            url: "https://twitter.com/keinabeauty",
             icon: <FaTwitter />,
         },
     ]
@@ -28,8 +28,8 @@ const Footer1 = () => {
                     <div className="row">
                         <div className="col-lg-6">
 
-                            <div className="logo">
-                                <a href="/" className="remove_underline">
+                            <div className="logo flex">
+                                <a href="/" className="remove_underline mx-auto lg:mx-0 ">
                                     <img className="mx-auto lg:mx-0"
                                     src={logo} alt="Keina Beauty" />
                                 </a>

@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import Main from './Router';
 
-import {createStore, combineReducers, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import ReduxThunk from "redux-thunk";
 import rootReducer from './redux/reducer/globalReducer'
+import { CookiesProvider } from 'react-cookie';
 
 //Store
 const storeRedux = createStore(rootReducer, applyMiddleware(ReduxThunk));
@@ -17,9 +18,13 @@ export const Index = () => {
     return (
 
         <>
-            <BrowserRouter>
-                <Route component={Main} />
-            </BrowserRouter>
+            <CookiesProvider>
+                <Provider store={storeRedux}>
+                    <BrowserRouter>
+                        <Route component={Main} />
+                    </BrowserRouter>
+                </Provider>
+            </CookiesProvider>
         </>
     );
 
@@ -28,5 +33,6 @@ export const Index = () => {
 // export default Index;
 if (document.getElementById('root')) {
     // ReactDOM.render(<Header />, document.getElementById('header'));
-    ReactDOM.render(<Provider store={storeRedux}><Index /></Provider>, document.getElementById('root'));
+    // ReactDOM.render(<Provider store={storeRedux}><Index /></Provider>, document.getElementById('root'));
+    ReactDOM.render(<Index />, document.getElementById('root'));
 }

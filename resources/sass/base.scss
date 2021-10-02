@@ -259,9 +259,16 @@ select {
 }
 
 [react-element^="Accordion"] {
-    @apply w-full;
+    @apply w-full mb-2;
 
     [react-element^="AccordionHead"] h3 {
         @apply inline-block m-0;
     }
+}
+.accordion__button {
+    @apply rounded-lg;
+}
+
+.ReactModal__Overlay.ReactModal__Overlay--after-open{
+    z-index: 1000;
 }
