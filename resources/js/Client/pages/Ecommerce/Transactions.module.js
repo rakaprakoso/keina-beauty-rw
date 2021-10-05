@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from 'react'
 import CartItem1 from '../../components/CartItem/CartItem1';
-import {NumberFormat} from '../../components/Functions/NumberFormat';
+import { NumberFormat } from '../../components/Functions/NumberFormat';
 
 const data = [0, 1, 2, 3, 5, 6];
 
@@ -161,13 +161,15 @@ const Checkout = () => {
 
     const [data, setData] = useState(null);
     const [rawData, setRawData] = useState(null);
+    const [discount, setDiscount] = useState(0);
+    const [ongkir, setOngkir] = useState(0);
     const [weight, setWeight] = useState(null);
 
     useEffect(async () => {
         const dataFetch = await axios
             .get("/api/cart?checkout=true")
             .then(function (response) {
-                // console.log(response);
+                console.log(response);
                 return response.data;
             })
             .catch(function (error) {
@@ -176,6 +178,7 @@ const Checkout = () => {
         // console.log(dataFetch.cartSession[5]);
         setRawData(dataFetch);
         setData(dataFetch.cart);
+        calculateTotal(null, false, dataFetch.price)
         // var tempWeight = 0;
         // data.forEach((item, i) => {
         //     tempWeight += rawData.cartSession[item.id]['qty'] * item.weight;
@@ -209,6 +212,7 @@ const Checkout = () => {
                 console.log(error);
             });
         setProvinces(dataFetch);
+
         // console.log(provinces);
         // setData(dataFetch.cart);
         // console.log(dataFetch);
@@ -261,21 +265,55 @@ const Checkout = () => {
         setCost(dataFetch);
 
     }
-    function calculateTotal(e) {
-        // console.log(e.target.value);
-        // console.log(rawData['price']['net_price']);
-        // console.log(e.target.selectedOptions[0].getAttribute('data-price'));
-
-        if (e.target.value !== 'null') {
+    async function calculateTotal(e = null, coupon = false, price = null) {
+        if (price) {
             setTotalPrice([
-                rawData['price']['net_price'] + parseInt(e.target.selectedOptions[0].getAttribute('data-price')),
-                parseInt(e.target.selectedOptions[0].getAttribute('data-price')),
-                e.target.value,
+                price.net_price,
+                0,
+                0,
+                0,
             ]);
         }
-        // console.log(totalPrice);
+        if (e?.target.value !== 'null' && e !== null) {
+            const dataFetch = await parseInt(e.target.selectedOptions[0].getAttribute('data-price'))
+            console.log(dataFetch)
+            setOngkir(dataFetch)
+            setTotalPrice([
+                rawData['price']['net_price'] - discount + dataFetch,
+                dataFetch,
+                e.target.value,
+                discount,
+            ]);
+        }
+        if (coupon) {
+            const data = {
+                couponcode: document.getElementById('couponcode').value,
+            };
+            const dataFetch = await axios
+                .post("/api/checkcouponcode", data)
+                .then(function (response) {
+                    console.log(response.data);
+                    setDiscount(response.data.amount)
+                    return response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            if (dataFetch?.amount == 0) {
+                document.getElementById('couponcode').value = ""
+            }
+            setTotalPrice([
+                rawData.price.net_price - dataFetch.amount + ongkir,
+                totalPrice[1],
+                totalPrice[2],
+                dataFetch?.amount,
+            ]);
+            // alert(document.getElementById('couponcode').value)
+            return null
+        }
 
     }
+
 
 
     return (
@@ -379,11 +417,27 @@ const Checkout = () => {
                                                     <td>{totalPrice && NumberFormat(totalPrice[1], 'Rp.')}</td>
                                                 </tr>
                                                 <tr className="border-b">
+                                                    <td><strong>Discount</strong></td>
+                                                    <td>{totalPrice && NumberFormat(totalPrice[3], 'Rp.')}</td>
+                                                </tr>
+                                                <tr className="border-b">
                                                     <td><strong>Total</strong></td>
                                                     <td>{totalPrice && NumberFormat(totalPrice[0], 'Rp.')}</td>
                                                 </tr>
                                             </tfoot>
                                         </table>
+
+                                        <label className="text-gray-600 font-light">Coupon Code</label>
+                                        <input name="couponcode" type="text" placeholder={`Enter Your Coupon Code`} id="couponcode"
+                                            className={"w-full mt-2 mb-6 px-4 py-2 border rounded-sm text-gray-700 focus:outline-none focus:border-primary text-sm " +
+                                            (discount>0 ? "ring ring-green-600" : null)}
+                                        />
+                                        <button type="button"
+                                            onClick={() => calculateTotal(null, true)}
+                                            className="btn w-full text-center border border-primary">
+                                            Redeem Code
+                                        </button>
+
                                         <input required type="hidden" name="shipping_method" value={totalPrice && totalPrice[2]} />
                                         <input required type="hidden" name="weight" value={weight} />
                                         <button className="btn btn-primary w-full text-center">

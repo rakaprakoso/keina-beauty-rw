@@ -16,6 +16,8 @@ use Auth;
 use Response;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use App\Models\CouponCode;
+
 // use App\Traits\helper;
 
 class OrderController extends Controller
@@ -105,6 +107,14 @@ class OrderController extends Controller
         }
     }
 
+    private function couponCalculate($code){
+        $CouponCode = CouponCode::where('code', $code)->first();
+        if (!$CouponCode) {
+            $CouponCode['amount'] = 0;
+        }
+        return $CouponCode['amount'];
+    }
+
     public function checkout(Request $request)
     {
         // return $request->all();
@@ -121,6 +131,7 @@ class OrderController extends Controller
 
         $data['price']['normal_price'] = 0;
         $data['price']['discount_price'] = 0;
+        $data['price']['coupon'] = 0;
         $data['price']['net_price'] = 0;
         $data['total_qty'] = 0;
         $data['weight'] = 0;
@@ -163,7 +174,6 @@ class OrderController extends Controller
         $order->addressBuyer = $request->address;
         $order->shippingMethod = $request->shipping_method;
 
-
         $order->save();
 
         //LOOPING DATA DI CARTS
@@ -175,7 +185,7 @@ class OrderController extends Controller
             $orderDetail->order_id = $order->id;
             $orderDetail->product_id = $product->id;
             // $orderDetail->price=$this->markupPrice($product->price);
-            $orderDetail->price = $product->price;
+            $orderDetail->price = $product->discount_price ? $product->discount_price : $product->price;
             $orderDetail->qty = $request->qty[$key];
             $orderDetail->save();
             //$orderDetail->sales_code=$request->sales_code;
@@ -193,6 +203,13 @@ class OrderController extends Controller
         $shippingData = $this->printShipping($request->city_id, $data['weight'], $request->shipping_method);
         $order->shippingAddressBuyer = $shippingData['address'];
         $order->shipping_cost = $shippingData['cost'];
+
+        $data['price']['coupon'] = $this->couponCalculate($request->couponcode);
+        if ($data['price']['coupon'] > 0) {
+            $order->couponcode = $request->couponcode;
+            $order->couponamount = $data['price']['coupon'];
+            $data['price']['net_price'] -= $data['price']['coupon'];
+        }
 
         $order->save();
 

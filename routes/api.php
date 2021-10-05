@@ -52,6 +52,7 @@ Route::group([
 Route::get('/cart',[CartController::class,'cart'])->name('listCart');
 Route::get('/deleteCart',[AjaxController::class,'deleteCart'])->name('deleteCart');
 Route::post('/toCheckout',[AjaxController::class,'cartToCheckout']);
+Route::post('/checkcouponcode',[APIController::class,'checkCouponCode']);
 
 Route::post('/rajaongkir',[AjaxController::class,'rajaongkir']);
 
@@ -64,3 +65,8 @@ Route::resource('/product', ProductController::class);
 Route::get('/payment/notification',[OrderController::class,'NotificationAPI'])->name('NotificationAPI');
 Route::post('/payment/notification',[OrderController::class,'postNotificationAPI'])->name('postNotificationAPI');
 Route::get('/orderStatus',[OrderController::class,'status'])->name('status');
+
+// Route::group(['middleware' => ['web']], function () {
+//     Route::get('/dummydata',[APIController::class,'dummyData'])->name('dummyData');
+//     Route::get('/setDiscountCode',[APIController::class,'setSession'])->name('setSession');
+// });

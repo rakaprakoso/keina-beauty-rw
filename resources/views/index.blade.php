@@ -17,6 +17,7 @@
 <body>
     <div id="root">
     </div>
+    @if (env('APP_ENV')!='local')
     <!-- Histats.com  START  (aync)-->
     <script type="text/javascript">
         var _Hasync = _Hasync || [];
@@ -34,6 +35,7 @@
     <noscript><a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?4588782&101" alt=""
                 border="0"></a></noscript>
     <!-- Histats.com  END  -->
+    @endif
 
     {{-- <script src="{{ mix('/js/app.js') }}"></script> --}}
     {{-- <script src="{{ asset('/js/app.js') }}?ver={{ filemtime(public_path('/js/app.js')) }}"></script> --}}

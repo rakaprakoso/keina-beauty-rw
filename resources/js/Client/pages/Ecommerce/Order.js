@@ -4,6 +4,7 @@ import {
     Link,
     useLocation
 } from "react-router-dom";
+import { NumberFormat } from '../../components/Functions/NumberFormat';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -132,12 +133,12 @@ const Order = () => {
                                                                 <img className="h-10 w-10 rounded-full inline-block mr-4" src={item.product.thumbnail_img} alt={item.name}/>
                                                                 {item.product.name}
                                                             </td>
-                                                            <td className="px-4 py-4">Rp. {item.price}</td>
+                                                            <td className="px-4 py-4">{NumberFormat(item.price, 'Rp.')}</td>
                                                             <td className="px-4 py-4">
                                                                 {item.qty}
                                                             </td>
                                                             <td className="px-4 py-4">
-                                                                Rp. {item.price * item.qty}
+                                                            {NumberFormat(item.price * item.qty, 'Rp.')}
                                                             </td>
 
                                                         </tr>
@@ -154,15 +155,19 @@ const Order = () => {
                                                     <tfoot className="w-full text-gray-800 bg-gray-50 whitespace-no-wrap">
                                                         <tr className="border border-b-0">
                                                             <td className="px-4 py-2 text-right font-bold" colSpan="3">Subtotal</td>
-                                                            <td className="px-4 py-2">Rp. {data.net_price}</td>
+                                                            <td className="px-4 py-2">{NumberFormat(data.net_price, 'Rp.')}</td>
                                                         </tr>
                                                         <tr className="border border-b-0">
                                                             <td className="px-4 py-2 text-right font-bold" colSpan="3">Shipping Cost</td>
-                                                            <td className="px-4 py-2">Rp. {data.order.shipping_cost}</td>
+                                                            <td className="px-4 py-2">{NumberFormat(data.order.shipping_cost, 'Rp.')}</td>
+                                                        </tr>
+                                                        <tr className="border border-b-0">
+                                                            <td className="px-4 py-2 text-right font-bold" colSpan="3">Discount</td>
+                                                            <td className="px-4 py-2">{NumberFormat(data.order?.couponamount ? data.order?.couponamount : 0, 'Rp.')}</td>
                                                         </tr>
                                                         <tr className="border">
                                                             <td className="px-4 py-2 text-right font-bold" colSpan="3">Total</td>
-                                                            <td className="px-4 py-2">Rp. {parseInt(data.net_price) + parseInt(data.order.shipping_cost)}</td>
+                                                            <td className="px-4 py-2">{NumberFormat(parseInt(data.net_price) + parseInt(data.order.shipping_cost) - parseInt(data.order?.couponamount ? data.order?.couponamount : 0), 'Rp.')}</td>
                                                         </tr>
                                                     </tfoot>
                                                 }

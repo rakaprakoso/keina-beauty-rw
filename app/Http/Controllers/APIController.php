@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
+use App\Models\CouponCode;
 use Illuminate\Http\Request;
 
 class APIController extends Controller
@@ -21,5 +22,21 @@ class APIController extends Controller
         $campaign->save();
 
         return response()->json('success');
+    }
+    public function checkCouponCode(Request $request){
+        $CouponCode = CouponCode::where('code', $request->couponcode)->first();
+        if (!$CouponCode) {
+            $CouponCode['amount'] = 0;
+        }
+        return response()->json($CouponCode);
+    }
+    public function dummyData(Request $request){
+        // session()->push('key', 'value');
+        $value = $request->session()->get('key');
+        return response()->json($value);
+    }
+    public function setSession(Request $request){
+        session()->push('key', 'value');
+        return "session Set";
     }
 }

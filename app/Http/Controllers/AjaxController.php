@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\Cart;
 use App\Models\CartDetail;
 use Auth;
+use Illuminate\Support\Facades\Session;
 // use App\Traits\helper;
 
 class AjaxController extends Controller
@@ -139,19 +140,19 @@ class AjaxController extends Controller
         ]);
 
 
-            // $message['status']="login";
-            // $message['url']=route('user.login', ['nextURL' => url()->previous()]);;
-            // return Response::json($message);
+        // $message['status']="login";
+        // $message['url']=route('user.login', ['nextURL' => url()->previous()]);;
+        // return Response::json($message);
 
-            $cart = json_decode($request->cookie('cart'), true);
-            if ($cart && array_key_exists($request->product_id, $cart)) {
-                // array_splice($cart, $request->product_id, 1);
-                unset($cart[$request->product_id]);
-            }
-            $cookie = cookie('cart', json_encode($cart), 60 * 24 * 5);
-            $message = "Product Added to Cookie!";
-            return redirect('/api/cart')->cookie($cookie);
-            return Response::json(["data" => $message])->cookie($cookie);
+        $cart = json_decode($request->cookie('cart'), true);
+        if ($cart && array_key_exists($request->product_id, $cart)) {
+            // array_splice($cart, $request->product_id, 1);
+            unset($cart[$request->product_id]);
+        }
+        $cookie = cookie('cart', json_encode($cart), 60 * 24 * 5);
+        $message = "Product Added to Cookie!";
+        return redirect('/api/cart')->cookie($cookie);
+        return Response::json(["data" => $message])->cookie($cookie);
     }
 
     public function cartToCheckout(Request $request)
@@ -187,7 +188,7 @@ class AjaxController extends Controller
         } else {
 
             $cart = json_decode($request->cookie('cart'), true);
-            if(!$cart){
+            if (!$cart) {
                 return redirect()->back();
             }
             // return Response::json($cart);
@@ -283,7 +284,7 @@ class AjaxController extends Controller
                     $cartSession[$value]['selected'] = 1;
                     $price['normal_price'] += $price['product'][$key];
                     $price['net_price'] += $this->markupPrice($cartDetailRaw->product->price) * $cartDetailRaw->qty;
-                    $price['discount_price']+=$this->markupPrice($cartDetailRaw->product->discount_price) * $cartDetailRaw->qty;
+                    $price['discount_price'] += $this->markupPrice($cartDetailRaw->product->discount_price) * $cartDetailRaw->qty;
                     $total_qty += $cartDetailRaw->qty;
                 }
 
@@ -318,7 +319,7 @@ class AjaxController extends Controller
 
         $baseUrl = "https://api.rajaongkir.com/starter/";
         $completedUrl = null;
-        if ($request->type=='cost') {
+        if ($request->type == 'cost') {
             // $parameter = $request->parameter ?
             // "?"
             // .'destination='.$request->parameter
@@ -327,10 +328,10 @@ class AjaxController extends Controller
             // .'&courier='.$config['courier']
 
             // : null;
-            $completedUrl = $baseUrl.$request->type;
-        }else{
-            $parameter = $request->parameter ? "?".$request->parameter : null;
-            $completedUrl = $baseUrl.$request->type.$parameter;
+            $completedUrl = $baseUrl . $request->type;
+        } else {
+            $parameter = $request->parameter ? "?" . $request->parameter : null;
+            $completedUrl = $baseUrl . $request->type . $parameter;
         }
 
         $curl = curl_init();
@@ -342,11 +343,11 @@ class AjaxController extends Controller
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => $request->type=='cost' ? "POST" : "GET",
-            CURLOPT_POSTFIELDS => "origin=".$config['origin']."&destination=".$request->destination."&weight=".$config['weight']."&courier=".$config['courier'],
+            CURLOPT_CUSTOMREQUEST => $request->type == 'cost' ? "POST" : "GET",
+            CURLOPT_POSTFIELDS => "origin=" . $config['origin'] . "&destination=" . $request->destination . "&weight=" . $config['weight'] . "&courier=" . $config['courier'],
             CURLOPT_HTTPHEADER => array(
                 "content-type: application/x-www-form-urlencoded",
-                "key: ".$request->key
+                "key: " . $request->key
             ),
         ));
 
@@ -361,6 +362,30 @@ class AjaxController extends Controller
             return $response;
             // return response::json($response);
         }
-
+    }
+    private function setDiscountCode($couponCode = null)
+    {
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http:localhost:8000/api/setDiscountCode",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_TIMEOUT => 30000,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                // Set Here Your Requesred Headers
+                'Content-Type: application/json',
+            ),
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        curl_close($curl);
+        return $response;
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            print_r(json_decode($response));
+        }
     }
 }
