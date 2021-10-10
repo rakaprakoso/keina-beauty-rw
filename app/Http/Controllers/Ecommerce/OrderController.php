@@ -135,6 +135,7 @@ class OrderController extends Controller
         $data['price']['net_price'] = 0;
         $data['total_qty'] = 0;
         $data['weight'] = 0;
+        $items=[];
         /*$data['cart'] = Cart::where('user_id',Auth::guard('user')->user()->id)->first();
         $data['cart'] = $data['cart']!=null ? $data['cart']->cart_detail : null;
         if ($data['cart']!=null) {
@@ -197,18 +198,40 @@ class OrderController extends Controller
             // $data['total_qty']*$this->shop_config['markup_price'];
             // $data['price']['net_price']= $data['price']['normal_price']-$data['price']['discount_price'];
             $data['weight'] += $product->weight * $request->qty[$key];
+
+            $itemBarang = array(
+                'id'                => $product_id,
+                'price'         => $orderDetail->price,
+                'quantity'  => $orderDetail->qty,
+                'name'          => $product->name
+            );
+            array_push($items, $itemBarang);
         }
         $data['price']['net_price'] += $data['price']['normal_price'] - $data['price']['discount_price'];
 
         $shippingData = $this->printShipping($request->city_id, $data['weight'], $request->shipping_method);
         $order->shippingAddressBuyer = $shippingData['address'];
         $order->shipping_cost = $shippingData['cost'];
+        $itemShippingCost = array(
+            'id'                => 'shipcost',
+            'price'         => $order->shipping_cost,
+            'quantity'  => 1,
+            'name'          => 'Shipping Cost'
+        );
+        array_push($items, $itemShippingCost);
 
         $data['price']['coupon'] = $this->couponCalculate($request->couponcode);
         if ($data['price']['coupon'] > 0) {
             $order->couponcode = $request->couponcode;
             $order->couponamount = $data['price']['coupon'];
             $data['price']['net_price'] -= $data['price']['coupon'];
+            $itemDiscount = array(
+                'id'                => 'disc',
+                'price'         => -$order->couponamount,
+                'quantity'  => 1,
+                'name'          => 'Discount'
+            );
+            array_push($items, $itemDiscount);
         }
 
         $order->save();
@@ -261,7 +284,6 @@ class OrderController extends Controller
         \Midtrans\Config::$serverKey = $this->isProduction() ? $this->serverKeyProd : $this->serverKeyStag;
         \Midtrans\Config::$isSanitized = $this->isSanitized;
         \Midtrans\Config::$is3ds = $this->is3ds;
-
         $shipping_address = array(
             'first_name'    => $request->name,
             'address'       => $order->addressBuyer . " - " . $order->shippingAddressBuyer,
@@ -271,7 +293,7 @@ class OrderController extends Controller
                 'order_id' =>  $order->order_id,
                 'gross_amount' => $data['price']['net_price'] + $shippingData['cost'],
             ),
-
+            'item_details'           => $items,
             'customer_details' => array(
                 // 'first_name' => Auth::guard('user')->user()->name,
                 // 'email' => Auth::guard('user')->user()->email,
@@ -353,6 +375,10 @@ class OrderController extends Controller
                 $data['discount_price'] = $data['normal_price'] - $data['net_price'];
             }
 
+            // $data['link'] = "https://app." . $this->isProduction() ? "" : "sandbox" . ".midtrans.com/snap/v2/vtweb/" . $data['order']->payment->midtrans_order_id;
+            $data['typelink'] = $this->isProduction() ? "" : "sandbox";
+            // $data['rawlink'] = "https://app.".$data['typelink'].".midtrans.com/snap/v2/vtweb/".$data['order']->payment->midtrans_order_id;
+            $data['link'] = "https://app.".$data['typelink'].".midtrans.com/snap/v2/vtweb/".$data['order']->payment->midtrans_order_id;
             try {
                 $data['status'] = \Midtrans\Transaction::status($orderId);
             } catch (\Exception $e) {

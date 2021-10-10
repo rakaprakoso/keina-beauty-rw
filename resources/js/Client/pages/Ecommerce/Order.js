@@ -181,7 +181,7 @@ const Order = () => {
                                                 <>
                                                     <h2 className="text-lg font-semibold mb-4 text-center">Payment Detail : <span className="font-bold">{data && data?.status !== null ? data?.status?.transaction_status : 'Not Paid'}</span></h2>
                                                     <div className="divider mb-5" />
-                                                    <div className={`${data?.status?.transaction_status != 'settlement' ? 'block' : 'hidden'}`}>
+                                                    <div className={`${data?.status?.transaction_status != 'settlement' && data?.status?.transaction_status != 'expire' ? 'block' : 'hidden'}`}>
                                                         <a href={data.link} className={`btn btn-primary w-full text-center`}>
                                                             Pay Now
                                                         </a>
