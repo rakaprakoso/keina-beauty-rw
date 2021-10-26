@@ -257,6 +257,15 @@ const Checkout = () => {
             .post("/api/rajaongkir", data)
             .then(function (response) {
                 console.log(response.data.rajaongkir);
+                if (response.data.freeongkir == '1') {
+                    setTotalPrice([
+                        rawData['price']['net_price'],
+                        0,
+                        'freeongkir',
+                        totalPrice[3],
+                    ]);
+                    return response.data.freeongkir;
+                }
                 return response.data.rajaongkir.results;
             })
             .catch(function (error) {
@@ -370,13 +379,13 @@ const Checkout = () => {
                                         <div className="shipping-cost">
                                             <label className="">Shipping Cost</label>
                                             <select required onChange={calculateTotal} className="bg-white w-full mt-2 mb-6 px-4 py-2 border rounded-sm text-gray-700 focus:outline-none focus:border-primary text-sm">
-                                                {cost && <option className="py-1" value='null' disabled selected>Select shipping cost</option>}
-                                                {cost ? cost[0]['costs'].map((item, i) =>
-                                                    <option className="py-1" data-price={item.cost[0].value} value={item.service}>{`${cost[0]?.code.toUpperCase()} ${item.service} - ${NumberFormat(item.cost[0].value, 'Rp.')}`}</option>
-                                                ) : <option className="py-1" disabled selected>Select your address first</option>}
-                                                {/* // <option className="py-1">JNE - Rp. 25.000</option>
-                                                // <option className="py-1">J&T - Rp. 23.000</option>
-                                                // <option className="py-1">TIKI - Rp. 27.000</option> */}
+                                                {cost && cost != "1" && <option className="py-1" value='null' disabled selected>Select shipping cost</option>}
+                                                {cost ? cost == "1" ?
+                                                    <option className="py-1" value='freeongkir' selected>Gratis Ongkir</option>
+                                                    : cost[0]['costs'].map((item, i) =>
+                                                        <option className="py-1" data-price={item.cost[0].value} value={item.service}>{`${cost[0]?.code.toUpperCase()} ${item.service} - ${NumberFormat(item.cost[0].value, 'Rp.')}`}</option>
+                                                    ) : <option className="py-1" disabled selected>Select your address first</option>}
+                                                {/* {cost && cost == "1" && <option className="py-1" value='freeongkir' disabled selected>Gratis Ongkir</option>} */}
                                             </select>
                                         </div>
                                         <table className="w-full rounded-lg mb-4">
@@ -430,7 +439,7 @@ const Checkout = () => {
                                         <label className="text-gray-600 font-light">Coupon Code</label>
                                         <input name="couponcode" type="text" placeholder={`Enter Your Coupon Code`} id="couponcode"
                                             className={"w-full mt-2 mb-6 px-4 py-2 border rounded-sm text-gray-700 focus:outline-none focus:border-primary text-sm " +
-                                            (discount>0 ? "ring ring-green-600" : null)}
+                                                (discount > 0 ? "ring ring-green-600" : null)}
                                         />
                                         <button type="button"
                                             onClick={() => calculateTotal(null, true)}

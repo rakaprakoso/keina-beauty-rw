@@ -58,6 +58,7 @@ class OrderController extends Controller
         // $config['weight'] = 700; // Buleleng
         $config['courier'] = 'jne'; // Buleleng
         // $config['courier'] = 'jne'; // Buleleng
+        $config['freeongkir'] = [1];
 
 
         $baseUrl = "https://api.rajaongkir.com/starter/cost";
@@ -85,7 +86,7 @@ class OrderController extends Controller
         $err = curl_error($curl);
 
         curl_close($curl);
-
+        // return $response;
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
@@ -94,13 +95,19 @@ class OrderController extends Controller
             $data['address'] = $rawData['destination_details']['province'] . ' - ' . $rawData['destination_details']['type'] . ' ' . $rawData['destination_details']['city_name'];
             //  $rawData = json_decode(trim($response), true)['rajaongkir']['results'][0];
             //  return $rawData;
-            foreach ($rawData['results'][0]['costs'] as $key => $value) {
-                if ($value['service'] == $shipping_method) {
-                    $data['cost'] = $value['cost'][0]['value'];
-                    break;
+            if($shipping_method == 'freeongkir' && in_array($rawData['destination_details']['province_id'],$config['freeongkir'])) {
+                $data['cost'] = 0;
+                return $data;
+            }else{
+                foreach ($rawData['results'][0]['costs'] as $key => $value) {
+                    if ($value['service'] == $shipping_method) {
+                        $data['cost'] = $value['cost'][0]['value'];
+                        return $data;
+                        break;
+                    }
                 }
             }
-            return $data;
+            return false;
             //$data['cost'] =
             // return json_encode($response);
             // return response::json($response);
@@ -117,6 +124,11 @@ class OrderController extends Controller
 
     public function checkout(Request $request)
     {
+
+        // return $request->shipping_method;
+        if(!$this->printShipping($request->city_id, $request->weight, $request->shipping_method)){
+            return "Shipping Method Error";
+        }
         // return $request->all();
         // return $this->printShipping($request->city_id, 500, $request->shipping_method);
 

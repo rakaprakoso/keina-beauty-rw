@@ -315,6 +315,7 @@ class AjaxController extends Controller
         // $config['weight'] = 700; // Buleleng
         $config['courier'] = 'jne'; // Buleleng
         // $config['courier'] = 'jne'; // Buleleng
+        $config['freeongkir'] = [1];
 
 
         $baseUrl = "https://api.rajaongkir.com/starter/";
@@ -359,7 +360,12 @@ class AjaxController extends Controller
         if ($err) {
             echo "cURL Error #:" . $err;
         } else {
-            return $response;
+            // echo($response);
+            if($request->type == 'cost' && in_array(json_decode($response,true)['rajaongkir']['destination_details']['province_id'], $config['freeongkir'])){
+                return response()->json(["message" =>"Gratis Ongkir","freeongkir"=>1]);
+            }else{
+                return $response;
+            }
             // return response::json($response);
         }
     }
