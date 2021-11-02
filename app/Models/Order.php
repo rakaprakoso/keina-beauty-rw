@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    protected $with =['order_details','payment'];
+    protected $appends = ['totalPrice'];
+
+    public function getTotalPriceAttribute()
+    {
+        return $this->order_details->sum(function($t){
+            return $t->qty * $t->price;
+        });
+    }
     public function payment(){
         return $this->belongsTo(
             'App\Models\Payment',

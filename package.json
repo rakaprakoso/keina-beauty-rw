@@ -57,6 +57,7 @@
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^29.2.0",
         "@ckeditor/ckeditor5-react": "^3.0.3",
+        "@fortawesome/fontawesome-free": "^5.15.4",
         "@popperjs/core": "^2.10.2",
         "@tinymce/tinymce-react": "^3.13.0",
         "chart.js": "^3.6.0",

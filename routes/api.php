@@ -10,6 +10,7 @@ use App\Http\Controllers\APIController;
 use App\Http\Controllers\Ecommerce\OrderController;
 
 use App\Http\Controllers\Ecommerce\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Ecommerce\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Ecommerce\Admin\ImageController;
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::group([
     // 'middleware' => 'auth',
 ], function () {
     Route::resource('product', AdminProductController::class);
+    Route::resource('orders', AdminOrderController::class);
     Route::resource('image', ImageController::class);
     Route::resource('campaign', CampaignController::class);
 });

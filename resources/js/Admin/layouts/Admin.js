@@ -11,6 +11,8 @@ import Home from '../pages/product/Home';
 import Modify from '../pages/product/Modify';
 import CampaignHome from '../pages/Campaign/Home';
 import CampaignModify from '../pages/Campaign/Modify';
+import Orders from "../pages/orders/Orders.js";
+import OrdersModify from "../pages/orders/OrdersModify.js";
 
 // // views
 
@@ -32,6 +34,8 @@ export default function Admin() {
                     <Switch>
                         <Route path="/admin/product/" exact component={Home} />
                         <Route path="/admin/product/:method/:id?" exact component={Modify} />
+                        <Route path="/admin/orders/" exact component={Orders} />
+                        <Route path="/admin/orders/:id?" exact component={OrdersModify} />
                         <Route path="/admin/campaign/" exact component={CampaignHome} />
                         <Route path="/admin/campaign/:method/:id?" exact component={CampaignModify} />
                         {/* <Route path="/admin/dashboard" exact component={Dashboard} />

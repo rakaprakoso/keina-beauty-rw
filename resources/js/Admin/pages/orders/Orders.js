@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
-import CardProducts from '../../components/Cards/CardProducts'
+import CardOrders from '../../components/Cards/CardOrders'
 
-const Home = () => {
+const Orders = () => {
     const [data, setData] = useState(null)
     const key = 'koderahasia'
     useEffect(async () => {
 
         const dataFetch = await axios
-            .get(`/api/admin/product?key=${key}`)
+            .get(`/api/admin/orders?key=${key}`)
             .then(function (response) {
                 console.log(response);
                 // return response.data;
@@ -33,7 +33,7 @@ const Home = () => {
         <div>
             <div className="flex flex-wrap">
                 <div className="w-full mb-12 xl:mb-0 px-4">
-                    {data && <CardProducts products={data}/>}
+                    {data && <CardOrders orders={data}/>}
                 </div>
             </div>
             {/* <div className="table w-full p-2">
@@ -100,4 +100,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Orders
