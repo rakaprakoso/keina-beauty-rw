@@ -16,7 +16,9 @@ use Auth;
 use Response;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
+use App\Mail\OrderStatus;
 use App\Models\CouponCode;
+use Illuminate\Support\Facades\Mail;
 
 // use App\Traits\helper;
 
@@ -119,7 +121,11 @@ class OrderController extends Controller
         if (!$CouponCode) {
             $CouponCode['amount'] = 0;
         }
-        return $CouponCode['amount'];
+        if ($CouponCode->percent) {
+            $CouponCode->type = 'percent';
+            $CouponCode->amount = $CouponCode->percent;
+        }
+        return $CouponCode;
     }
 
     public function checkout(Request $request)
@@ -233,15 +239,19 @@ class OrderController extends Controller
         array_push($items, $itemShippingCost);
 
         $data['price']['coupon'] = $this->couponCalculate($request->couponcode);
-        if ($data['price']['coupon'] > 0) {
+        if ($data['price']['coupon']['amount'] > 0) {
             $order->couponcode = $request->couponcode;
-            $order->couponamount = $data['price']['coupon'];
-            $data['price']['net_price'] -= $data['price']['coupon'];
+            if ($data['price']['coupon']['type'] == 'percent') {
+                $order->couponamount = ($data['price']['coupon']['amount']/100) *  $data['price']['net_price'];
+            }else{
+                $order->couponamount = $data['price']['coupon']['amount'];
+            }
+            $data['price']['net_price'] -= $data['price']['coupon']['amount'];
             $itemDiscount = array(
                 'id'                => 'disc',
                 'price'         => -$order->couponamount,
                 'quantity'  => 1,
-                'name'          => 'Discount'
+                'name'          => 'Discount Code : '.$request->couponcode,
             );
             array_push($items, $itemDiscount);
         }
@@ -330,6 +340,9 @@ class OrderController extends Controller
             $payment->save();
 
             $cookie = \Cookie::forget('cart');
+
+            // Mail::to($request->email)->send(new OrderStatus($order, 1));
+
             return redirect($midtrans_order->redirect_url)->withCookie($cookie);
             // Redirect to Snap Payment Page
             header('Location: ' . $paymentUrl);
@@ -394,7 +407,7 @@ class OrderController extends Controller
             try {
                 $data['status'] = \Midtrans\Transaction::status($orderId);
             } catch (\Exception $e) {
-                $data['link'] = "https://app." . $this->isProduction() ? "" : "sandbox" . ".midtrans.com/snap/v2/vtweb/" . $data['order']->payment->midtrans_order_id;
+                // $data['link'] = "https://app." . $this->isProduction() ? "" : "sandbox" . ".midtrans.com/snap/v2/vtweb/" . $data['order']->payment->midtrans_order_id;
                 $data['status'] = null;
                 //return redirect($link);
                 //return Response::json($e->getMessage());

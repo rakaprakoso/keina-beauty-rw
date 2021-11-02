@@ -258,16 +258,16 @@ class Product extends Component {
                                                             >
                                                                 {testimonialsData.map((item, i) => (
                                                                     <div className="mx-6 lg:mx-24 md:px-4 mt-6 md:mt-0 ">
-                                                                        <div className="testimonial rounded-xl p-6 border-2 border-solid flex flex-col lg:flex-row hover:border-indigo-400 hover:bg-indigo-100 transition-colors duration-300">
-                                                                            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden m-auto md:mr-6 flex-shrink-0">
+                                                                        <div className="testimonial rounded-xl p-6 border-2 border-solid flex flex-col lg:flex-row hover:border-indigo-400 hover:bg-indigo-100 transition-colors duration-300 m-auto justify-center">
+                                                                            {/* <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden md:mr-6 flex-shrink-0">
                                                                                 <img src="//via.placeholder.com/100/eee" alt="profile image" className="w-full h-full object-cover" />
-                                                                            </div>
+                                                                            </div> */}
                                                                             <div>
                                                                                 <p className="text-gray-600">
                                                                                     {`" ${item.testimonial} "`}
                                                                                 </p>
                                                                                 <div className="text-gray-900 font-bold uppercase mt-6">- {item.name}</div>
-                                                                                <div className="text-gray-600">Apple</div>
+                                                                                <div className="text-gray-600">{item.city}</div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -312,19 +312,23 @@ const ChatToWhatsapp = (props) => {
 const testimonialsData = [
     {
         name: 'Putri Maharani',
-        testimonial: 'Barang bagus, kualitas luarbiasa. Nggak bakal nyesel'
+        testimonial: 'Barang bagus, kualitas luarbiasa. Nggak bakal nyesel',
+        city:'Depok'
     },
     {
         name: 'Ovi',
-        testimonial: 'Efek nya sangat tidak terduga, bermanfaat dan juga menyehatkan'
+        testimonial: 'Efek nya sangat tidak terduga, bermanfaat dan juga menyehatkan',
+        city:'Jakarta'
     },
     {
         name: 'Novita Sari',
-        testimonial: 'Pelayanan ramah, kualitas memuaskan!'
+        testimonial: 'Pelayanan ramah, kualitas memuaskan!',
+        city:'Surabaya'
     },
     {
         name: 'Ummu Yuliandari',
-        testimonial: 'Nggak akan nyesel order disini'
+        testimonial: 'Nggak akan nyesel order disini',
+        city:'Semarang'
     },
 ]
 

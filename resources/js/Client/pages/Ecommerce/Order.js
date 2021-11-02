@@ -79,8 +79,8 @@ const Order = () => {
                     <div className="block mx-6">
 
                         {query.get("order_id") == null ?
-                            <form action="/order" method="get">
-                                <input type="text" name="order_id" placeholder="Input Your Order ID" />
+                            <form action="/order" className="flex" method="get">
+                                <input type="text" className="flex-grow" name="order_id" placeholder="Input Your Order ID" />
                                 <button type="submit" class="btn btn-primary">
                                     Check Order
                                 </button>
@@ -130,7 +130,7 @@ const Order = () => {
                                                         <tr className="w-full font-light text-gray-700 bg-gray-100 whitespace-no-wrap border border-b-0">
                                                             <td className="px-4 py-4">
                                                                 {/* <input className="inline-block mr-3" type="checkbox" name={`product-1`} id="" /> */}
-                                                                <img className="h-10 w-10 rounded-full inline-block mr-4" src={item.product.thumbnail_img} alt={item.name}/>
+                                                                <img className="h-10 w-10 rounded-full inline-block mr-4" src={item.product.thumbnail_img} alt={item.name} />
                                                                 {item.product.name}
                                                             </td>
                                                             <td className="px-4 py-4">{NumberFormat(item.price, 'Rp.')}</td>
@@ -138,7 +138,7 @@ const Order = () => {
                                                                 {item.qty}
                                                             </td>
                                                             <td className="px-4 py-4">
-                                                            {NumberFormat(item.price * item.qty, 'Rp.')}
+                                                                {NumberFormat(item.price * item.qty, 'Rp.')}
                                                             </td>
 
                                                         </tr>
@@ -163,7 +163,7 @@ const Order = () => {
                                                         </tr>
                                                         <tr className="border border-b-0">
                                                             <td className="px-4 py-2 text-right font-bold" colSpan="3">Discount</td>
-                                                            <td className="px-4 py-2">{NumberFormat(data.order?.couponamount ? data.order?.couponamount : 0, 'Rp.')}</td>
+                                                            <td className="px-4 py-2">{NumberFormat(data.order?.couponamount ? -1 * data.order?.couponamount : 0, 'Rp.')}</td>
                                                         </tr>
                                                         <tr className="border">
                                                             <td className="px-4 py-2 text-right font-bold" colSpan="3">Total</td>
@@ -176,22 +176,31 @@ const Order = () => {
 
                                     </div>
                                     <div className="col-lg-4">
-                                        <div className="bg-gray-50 p-8 mb-3">
+                                        <div className="bg-gray-100 p-8 mb-3">
                                             {data &&
                                                 <>
-                                                    <h2 className="text-lg font-semibold mb-4 text-center">Payment Detail : <span className="font-bold">{data && data?.status !== null ? data?.status?.transaction_status : 'Not Paid'}</span></h2>
-                                                    <div className="divider mb-5" />
-                                                    <div className={`${data?.status?.transaction_status != 'settlement' && data?.status?.transaction_status != 'expire' ? 'block' : 'hidden'}`}>
-                                                        <a href={data.link} className={`btn btn-primary w-full text-center`}>
-                                                            Pay Now
-                                                        </a>
-                                                    </div>
+                                                    <h2 className="text-lg font-semibold mb-4 text-center">Payment Detail :
+                                                        <span className="font-bold">
+                                                            {data && data?.status?.transaction_status == 'settlement' ? ' Paid' : null}
+                                                            {data && data?.status !== null ? null : ' Not Paid'}
+                                                        </span>
+                                                    </h2>
+                                                    {data?.status?.transaction_status != 'settlement' && data?.status?.transaction_status != 'expire' &&
+                                                        <>
+                                                            <div className="divider mb-5" />
+                                                            <div className={`${data?.status?.transaction_status != 'settlement' && data?.status?.transaction_status != 'expire' ? 'block' : 'hidden'}`}>
+                                                                <a href={data.link} className={`btn btn-primary w-full text-center`}>
+                                                                    Pay Now
+                                                                </a>
+                                                            </div>
+                                                        </>
+                                                    }
                                                 </>
                                             }
                                         </div>
                                         <h2 className="text-xl block">Find Another Order ?</h2>
-                                        <form action="/order" method="get">
-                                            <input type="text" name="order_id" placeholder="Input Your Order ID" />
+                                        <form action="/order" className="flex" method="get">
+                                            <input type="text" className="flex-grow" name="order_id" placeholder="Input Your Order ID" />
                                             <button type="submit" class="btn btn-primary">
                                                 Check Order
                                             </button>
@@ -201,8 +210,8 @@ const Order = () => {
                                 :
                                 <>
                                     <h2>Data Not Found</h2>
-                                    <form action="/order" method="get">
-                                        <input type="text" name="order_id" placeholder="Input Your Order ID" />
+                                    <form action="/order" className="flex" method="get">
+                                        <input type="text" className="flex-grow" name="order_id" placeholder="Input Your Order ID" />
                                         <button type="submit" class="btn btn-primary">
                                             Check Order
                                         </button>

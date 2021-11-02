@@ -298,6 +298,7 @@ const Checkout = () => {
             const data = {
                 couponcode: document.getElementById('couponcode').value,
             };
+            var tempDiscount = 0;
             const dataFetch = await axios
                 .post("/api/checkcouponcode", data)
                 .then(function (response) {
@@ -308,14 +309,20 @@ const Checkout = () => {
                 .catch(function (error) {
                     console.log(error);
                 });
-            if (dataFetch?.amount == 0) {
-                document.getElementById('couponcode').value = ""
-            }
+                if (dataFetch?.amount == 0) {
+                    document.getElementById('couponcode').value = ""
+                } else {
+                    tempDiscount = dataFetch?.amount
+                }
+                if (dataFetch?.type == 'percent') {
+                    tempDiscount = (dataFetch?.amount/100) * rawData.price.net_price
+                }
+                setDiscount(tempDiscount)
             setTotalPrice([
-                rawData.price.net_price - dataFetch.amount + ongkir,
+                rawData.price.net_price - tempDiscount + ongkir,
                 totalPrice[1],
                 totalPrice[2],
-                dataFetch?.amount,
+                tempDiscount,
             ]);
             // alert(document.getElementById('couponcode').value)
             return null
@@ -427,7 +434,7 @@ const Checkout = () => {
                                                 </tr>
                                                 <tr className="border-b">
                                                     <td><strong>Discount</strong></td>
-                                                    <td>{totalPrice && NumberFormat(totalPrice[3], 'Rp.')}</td>
+                                                    <td>{totalPrice && NumberFormat(-1*totalPrice[3], 'Rp.')}</td>
                                                 </tr>
                                                 <tr className="border-b">
                                                     <td><strong>Total</strong></td>

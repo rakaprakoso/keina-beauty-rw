@@ -28,6 +28,12 @@ class APIController extends Controller
         if (!$CouponCode) {
             $CouponCode['amount'] = 0;
         }
+
+        if ($CouponCode->percent) {
+            $CouponCode->type = 'percent';
+            $CouponCode->amount = $CouponCode->percent;
+        }
+
         return response()->json($CouponCode);
     }
     public function dummyData(Request $request){
