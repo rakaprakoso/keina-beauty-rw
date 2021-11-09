@@ -26,8 +26,8 @@ class OrderController extends Controller
 {
     // use helper;
     // private $isProduction = false;
-    private $serverKeyStag = 'SB-Mid-server-DoxmbQYZuh-aGP6ceJT2NsdN';
-    private $serverKeyProd = 'Mid-server-2U-uO4fIv_7MtL-Fdeh2Q68_';
+    private $serverKeyStag = 'SB-Mid-server-aDUksiK8anqGB73nM5h6RkKL';
+    private $serverKeyProd = 'Mid-server-2yXVsrXPgDOQwmqHlWsSOmDf';
     // Set sanitization on (default)
     private $isSanitized = true;
     // Set 3DS transaction for credit card to true
