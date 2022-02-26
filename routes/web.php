@@ -19,12 +19,22 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/admin/{path?}', function () {
 //     return view('index_admin');
 // })->middleware(['auth'])->name('admin');
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::view('/admin/{path?}', 'index_admin')->where('path', '([A-z\d\-\/_.]+)?')->middleware(['auth']);
+Route::group([
+    'prefix' => 'filemanager',
+    // 'middleware' => ['auth:api']
+], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
+Route::get('/admin/{path?}', [PageController::class, 'indexAdmin'])->where('path', '([A-z\d\-\/_.]+)?')
+    // ->middleware(['auth:web'])
+    // ->middleware('auth:api')
+;
 
 
 Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function () {
@@ -36,5 +46,3 @@ Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function (
 
 // Route::view('/{any}', 'index')->where('any', '.*');
 // Route::get('/', [PageController::class, 'home']);
-
-

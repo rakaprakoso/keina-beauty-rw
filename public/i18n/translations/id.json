@@ -1,0 +1,20 @@
+{
+    "subscribe.title": "Berlangganan NewsLetter",
+    "subscribe.subtitle": "Tetap Update Untuk Koleksi Baru & Penawaran Khusus",
+    "subscribe.input": "Masukkan alamat email",
+    "subscribe.choice": "Tidak, Terima Kasih",
+
+    "menu.about": "Tentang Kami",
+    "menu.product": "Produk",
+    "menu.campaign": "Ikuti Kampanye",
+
+    "about.title": "Tentang Keina Beauty",
+    "about.content1": "<p><b>Keina</b> memiliki arti cahaya matahari, berkah dan menurut Bahasa Jepang, Keina identik dengan kesegaran alam dan kehijauan.Bermula dari pengertian sederhana, kami memiliki harapan tinggi bahwa nutrisi yang terkandung dalam produk skincare Keina Beauty dapat menjadi cahaya matahari bagi mereka yang ingin memiliki kulit sehat, cantik dan terawat.</p><p>Visi kami adalah untuk menjadi sebuah brand yang eco-friendly, cruelty free dan memiliki dampak positif pada keberlangsungan bumi, serta memberikan efek maksimal bagi kesehatan dan kecantikan kulit. Seluruh produk skincare Keina Beauty bersumber dari bahan baku alami yang diperoleh tanpa mengeksploitasi alam. Tidak adanya kandungan iritan dan minimnya bahan kimia membuat produk skincare Keina Beauty aman diaplikasikan pada semua jenis kulit. Proses produksi dilakukan tanpa uji coba pada hewan dan setiap produk dikemas secara bertanggung jawab dalam kemasan yang ramah terhadap lingkungan.</p><p>Menjadikan produk skincare Keina Beauty sebagai pilihan aman bagi kulit dan bumi adalah komitmen kami untuk masa depan yang lebih baik dan sejalan dengan Misi kami untuk:</p><p> <ul> <li> Memberikan nutrisi yang tepat untuk kulit yang sehat kepada berbagai generasi </li> <li> Memberikan pemahaman bahwa kecantikan akan terpancar melalui kulit yang sehat </li> <li> Memberikan manfaat untuk bumi dan Lingkungan dengan menggunakan kemasan yang dapat di daur ulang </li> <li> Memberikan formula berbasis medis terbaik dan aman yang dapat melindungi wajah dalam penggunaan jangka panjang </li> <li> Menciptakan Lingkungan kerja yang aman, nyaman, kondusif dan saling mendukung dengan harapan kita semua dapat tumbuh dan berkembang bersama.</li></ul></p>",
+    "about.content2.title": "Menuju Clean Beauty & Organic Skin Care",
+    "about.content2" : "<p>Berkontribusi demi terwujudnya Clean Beauty tanpa mengesampingkan hasil yang maksimal untuk kesehatan kulit dan kecantikan serta menjaga keamanan produk untuk penggunaan jangka panjang adalah prioritas kami sebagai salah satu penggagas produk skincare organik yang eco-friendly.</p><p>Kami sangat yakin, bahwa anda dan bumi ini layak mendapatkan produk skincare yang dipersiapkan lebih baik dari yang pernah ada sebelumnya. Bersama Keina Beauty, dapatkan kulit sehat untuk kecantikan kini dan masa depan.</p>",
+    "about.content3.title": "“Perfect Nutrition for Beautiful Skin”",
+    "about.content3" : "Sebagai sebuah perusahaan yang memproduksi produk skincare untuk mengatasi berbagai permasalahan wajah dengan pendekatan alami berbasis medis, kami memiliki keyakinan bahwa kecantikan alami adalah kecantikan yang bersumber dari dan untuk alam.",
+
+    "chat.wa.ask":"#TanyaKeina"
+
+}

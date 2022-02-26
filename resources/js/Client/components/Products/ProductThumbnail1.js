@@ -30,7 +30,7 @@ class ProductThumbnail1 extends Component {
                             {item.discount_price !== null ? (
                                 <>
                                     <h4 className="price text-red-600 line-through inline-block">{NumberFormat(item.price,'Rp.')}</h4>
-                                    <span className="inline-block bg-gray-200 p-1 ml-2 rounded">{PercentFormat(item.discount_price, item.price)}</span>
+                                    <span className="inline-block bg-gray-200 p-1 ml-2 rounded">{PercentFormat(item.discount_price, item.price,0)}</span>
                                     <h4 className="price">{NumberFormat(item.discount_price,'Rp.')}</h4>
                                 </>
                             ) :

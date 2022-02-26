@@ -28,6 +28,7 @@ import ActionType from '../../redux/reducer/globalActionType';
 
 import { addCart } from '../../redux/actions/globalAction'
 import { NumberFormat, PercentFormat } from '../../components/Functions/NumberFormat';
+import { useTranslation } from 'react-i18next';
 
 
 class Product extends Component {
@@ -296,6 +297,7 @@ class Product extends Component {
 }
 
 const ChatToWhatsapp = (props) => {
+    const { t, i18n } = useTranslation();
     const phone_number = '6281138902333'
     const text = encodeURIComponent(`Hai, Saya ingin order ${props.title}, apa saja ya kandungannya? Apakah baik untuk kondisi kulit saya?`);
     var url = `https://api.whatsapp.com/send?phone=${phone_number}&text=${text}`
@@ -304,7 +306,7 @@ const ChatToWhatsapp = (props) => {
             <span className="icon">
                 <FaWhatsapp className="hvr-icon" />
             </span>
-            #TanyaKeina
+            {t("chat.wa.ask")}
         </a>
     )
 }

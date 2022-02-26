@@ -41,11 +41,11 @@ return [
             'provider' => 'users',
         ],
 
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'users',
-            'hash' => false,
-        ],
+        // 'api' => [
+        //     'driver' => 'token',
+        //     'provider' => 'users',
+        //     'hash' => false,
+        // ],
         #CUSTOM
         'admin' => [
             'driver' => 'session',
@@ -54,6 +54,11 @@ return [
         'user' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+        'api' => [
+            'driver' => 'passport', // set this to passport
+            'provider' => 'users',
+            'hash' => false,
         ],
     ],
 

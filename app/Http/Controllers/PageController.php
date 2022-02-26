@@ -21,4 +21,7 @@ class PageController extends Controller
 
         return view('index');
     }
+    public function indexAdmin(Request $request){
+        return view('index_admin');
+    }
 }

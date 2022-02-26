@@ -16,6 +16,9 @@ import logo from "../../Public/Logo Big.png"
 import { fetchCart } from '../redux/actions/globalAction'
 import { connect, useSelector, useDispatch } from 'react-redux'
 
+import { useTranslation } from "react-i18next";
+import LanguageSelector from '../LanguageSelector';
+
 const mapStateToProps = (state) => {
     return {
         totalCart: state.totalCart,
@@ -24,6 +27,8 @@ const mapStateToProps = (state) => {
 }
 
 const Header = (props) => {
+
+    const { t, i18n } = useTranslation();
 
     const history = useHistory();
     const location = useLocation();
@@ -94,6 +99,9 @@ const Header = (props) => {
                                     </a>
                                 </li>
                             ))}
+                            <li className="self-center">
+                            <LanguageSelector />
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -103,7 +111,7 @@ const Header = (props) => {
                         <ul>
                             {dataHeader.map((item, i) => (
                                 <li className="hvr hvr-underline-from-center">
-                                    <a href={item.itemId}>{item.title}</a>
+                                    <a href={item.itemId}>{t("menu."+item.title) }</a>
                                 </li>
                             ))
                             }
@@ -137,7 +145,7 @@ const Header = (props) => {
                         <ul>
                             {dataHeader.map((item, i) => (
                                 <li className="my-2">
-                                    <a className="hvr hvr-underline-from-center" href={item.itemId}>{item.title}</a>
+                                    <a className="hvr hvr-underline-from-center" href={item.itemId}>{t("menu."+item.title) }</a>
                                 </li>
                             ))
                             }
@@ -161,6 +169,9 @@ const Header = (props) => {
                                     </a>
                                 </li>
                             ))}
+                             <li className="self-center">
+                            <LanguageSelector />
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -213,12 +224,12 @@ export default connect(mapStateToProps)(Header);
 
 const dataHeader = [
     {
-        title: 'About',
+        title: 'about',
         itemId: '/about',
         // elemBefore: () => <Icon name="inbox" />,
     },
     {
-        title: 'Products',
+        title: 'product',
         itemId: '/shop',
         subNav: [
             {
@@ -236,7 +247,7 @@ const dataHeader = [
     //     itemId: '/article',
     // },
     {
-        title: 'Join Campaign',
+        title: 'campaign',
         itemId: '/joincampaign',
     },
 ]

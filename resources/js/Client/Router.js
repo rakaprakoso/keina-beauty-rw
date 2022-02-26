@@ -20,7 +20,6 @@ const Main = props => {
     return (
         <>
             <Helmet>
-
                 <link rel="shortcut icon" href="\assets\green-white.png" type="image/x-icon" />
             </Helmet>
             <div id="header">

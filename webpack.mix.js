@@ -17,6 +17,7 @@ require('laravel-mix-purgecss');
 mix
     .js('resources/js/Client/app.js', 'public/js')
     .js('resources/js/Admin/app.js', 'public/js/admin')
+    // .js('resources/js/index.js', 'public/js/admin/app.js')
     .react()
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/appClient.scss', 'public/css')

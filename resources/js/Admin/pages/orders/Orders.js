@@ -1,39 +1,35 @@
-import React, { useEffect, useState, useRef } from 'react'
-import axios from 'axios'
-import CardOrders from '../../components/Cards/CardOrders'
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import CardOrders from "../../components/Cards/CardOrders";
+import HttpService from "../../services/HttpService";
 
 const Orders = () => {
-    const [data, setData] = useState(null)
-    const key = 'koderahasia'
+    const [data, setData] = useState(null);
+    const key = "koderahasia";
     useEffect(async () => {
-
-        const dataFetch = await axios
-            .get(`/api/admin/orders?key=${key}`)
-            .then(function (response) {
-                console.log(response);
-                // return response.data;
-                return response;
+        const http = new HttpService();
+        const url = `admin/orders?key=${key}`;
+        const tokenId = "accessToken";
+        const dataFetch = await http
+            .getDataAdmin(url, tokenId)
+            .then((data) => {
+                return data;
             })
-            .catch(function (error) {
-                return 404;
-                console.log(error);
+            .catch((error) => {
+                return error;
             });
-        // console.log(dataFetch.cartSession[5]);
-        // setRawData(dataFetch);
+
         if (dataFetch.status == 200) {
             setData(dataFetch.data.data);
-            // console.log(dataFetch.data);
         } else {
             setData(dataFetch);
-            // console.log(dataFetch);
         }
-
     }, []);
     return (
         <div>
             <div className="flex flex-wrap">
                 <div className="w-full mb-12 xl:mb-0 px-4">
-                    {data && <CardOrders orders={data}/>}
+                    {data && <CardOrders orders={data} />}
                 </div>
             </div>
             {/* <div className="table w-full p-2">
@@ -95,9 +91,8 @@ const Orders = () => {
                     </tbody>
                 </table>
             </div> */}
-
         </div>
-    )
-}
+    );
+};
 
-export default Orders
+export default Orders;

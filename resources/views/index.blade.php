@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -17,6 +17,7 @@
 <body>
     <div id="root">
     </div>
+    <noscript>Please Enable JavaScript to view the page!</noscript>
     @if (env('APP_ENV')!='local')
     <!-- Histats.com  START  (aync)-->
     <script type="text/javascript">

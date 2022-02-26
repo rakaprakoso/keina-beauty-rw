@@ -5,6 +5,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { Editor as TinyMCE } from '@tinymce/tinymce-react';
+import HttpService from '../../services/HttpService';
 
 const Modify = () => {
 
@@ -16,16 +17,16 @@ const Modify = () => {
 
     useEffect(async () => {
         if(method === 'edit'){
-            const dataFetch = await axios
-                .get(`/api/admin/product/${id}?key=${key}`)
-                .then(function (response) {
-                    // console.log(response);
-                    // return response.data;
-                    return response;
+            const http = new HttpService();
+            const url = `admin/product/${id}?key=${key}`;
+            const tokenId = "accessToken";
+            const dataFetch = await http
+                .getDataAdmin(url, tokenId)
+                .then((data) => {
+                    return data;
                 })
-                .catch(function (error) {
-                    return 404;
-                    console.log(error);
+                .catch((error) => {
+                    return error;
                 });
             // console.log(dataFetch.cartSession[5]);
             // setRawData(dataFetch);
@@ -101,29 +102,31 @@ const Modify = () => {
     ]
 
     return (
-        <div className="w-full p-10 bg-white shadow">
-            <form action={path}
-                // "/api/admin/product"
-                method="POST" enctype="multipart/form-data">
-                {method === 'edit' ?
-                    <input type="hidden" name="_method" value="put" /> : null
-                }
-                <div>
-                    {dataForm && dataForm.map((item, i) => (
-                        <Form list={item} />
-                    ))
+        <div className="px-4">
+            <div className="w-full p-10 bg-white shadow rounded">
+                <form action={path}
+                    // "/api/admin/product"
+                    method="POST" enctype="multipart/form-data">
+                    {method === 'edit' ?
+                        <input type="hidden" name="_method" value="put" /> : null
                     }
-                    {/* <button type="button" id="lfm" onClick={(e) => {
-                        lfm(e, 'lfm', 'file');
-                    }} className="btn btn-primary">
-                        Browser File
-                    </button> */}
+                    <div>
+                        {dataForm && dataForm.map((item, i) => (
+                            <Form list={item} />
+                        ))
+                        }
+                        {/* <button type="button" id="lfm" onClick={(e) => {
+                            lfm(e, 'lfm', 'file');
+                        }} className="btn btn-primary">
+                            Browser File
+                        </button> */}
 
 
-                    {/* {lfm('lfm','file')} */}
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                </div>
-            </form>
+                        {/* {lfm('lfm','file')} */}
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }
