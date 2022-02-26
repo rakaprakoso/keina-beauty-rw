@@ -1,6 +1,8 @@
 import axios from "axios"
+
+const {MIX_API_URL} = process.env
 export default class HttpService {
-    url = "http://localhost:8000/api";
+    url = `${MIX_API_URL}`;
     // url = "http://localhost:8000/api";
     postData = async (item, added_url, tokenId = "") => {
         const token = await localStorage.getItem(tokenId);
