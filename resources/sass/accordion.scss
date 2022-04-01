@@ -1,0 +1,12 @@
+.accordion__input:checked~.accordion__content {
+    display: block;
+}
+
+
+.accordion__label{
+    @apply p-4 block font-bold cursor-pointer relative transition bg-gray-50 hover:bg-gray-200;
+}
+
+.accordion__content {
+    @apply bg-white leading-relaxed p-4 hidden;
+}

@@ -1,0 +1,11 @@
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+[react-element=Accordion],[react-element=AccordionItem],[react-element=AccordionHead],[react-element=AccordionPanel] {
+    @apply px-4 py-2 border border-gray-300 border-solid rounded;
+    h3{
+        @apply my-0;
+    }
+}
+[react-element=AccordionItem]{
+    @apply relative;
+}

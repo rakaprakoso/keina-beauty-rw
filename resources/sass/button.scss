@@ -1,0 +1,15 @@
+.btn{
+    @apply px-3 py-2 rounded inline-block mr-1 mb-1;
+    .icon{
+        svg{
+        @apply inline-block;
+        }
+    }
+
+    &.btn-primary{
+        @apply bg-primary text-gray-50;
+    }
+    &.btn-outline-primary{
+        @apply text-primary border-primary border;
+    }
+}

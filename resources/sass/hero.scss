@@ -1,0 +1,76 @@
+.hero{
+    @apply w-full h-auto relative;
+    &.hero-100{
+        @apply h-screen;
+    }
+    &.hero-90{
+        height:90vh;
+    }
+    &.hero-75{
+        height:75vh;
+    }
+    .hero-background{
+        @apply absolute w-full h-full;
+        z-index: -1;
+        &.overlay:before{
+            @apply bg-gray-50 opacity-50 w-full h-full absolute left-0;
+            content:"";
+        }
+    }
+    .hero-background{
+        video{
+            @apply w-full h-full object-cover;
+        }
+    }
+    .hero-content{
+        @apply w-full;
+        .content-container{
+            @apply px-16 w-full;
+            @screen lg{
+                @apply px-24 w-1/2;
+            }
+        }
+        .title{
+            @apply text-3xl font-bold capitalize ;
+            @screen lg{
+                @apply text-6xl;
+            }
+        }
+        .sub-title{
+            @apply text-xl;
+            @screen lg{
+            @apply text-3xl;
+            }
+        }
+    }
+    .carousel .slide{
+        @apply text-left;
+    }
+
+    .carousel.carousel-slider .control-arrow {
+        top: 50%;
+        transform: translate(0, -50px);
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+        bottom: 0;
+        margin-top: 0;
+        padding: 5px;
+        border-radius: 100%;
+
+        color: #32353c;
+        margin-left: 0px;
+        margin-right: 0px;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 7%);
+        background-color: #fff;
+        border-radius: 50%;
+        position: relative;
+        z-index: 1;
+    }
+    .carousel.carousel-slider .control-arrow.control-prev{
+        left: 50px;
+    }
+    .carousel.carousel-slider .control-arrow.control-next{
+        right: 50px;
+    }
+}
