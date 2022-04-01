@@ -19,6 +19,11 @@ export default function Sidebar() {
         icon: "fas fa-user-edit",
     },
     {
+        path: "/admin/post",
+        name: "Post",
+        icon: "fas fa-cog",
+    },
+    {
         path: "/admin/orders",
         name: "Orders",
         icon: "fas fa-cog",

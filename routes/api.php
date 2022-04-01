@@ -8,6 +8,7 @@ use App\Http\Controllers\Ecommerce\CartController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\APIController;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\Ecommerce\OrderController;
 
 use App\Http\Controllers\Ecommerce\Admin\ProductController as AdminProductController;
@@ -61,6 +62,10 @@ Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout'
 Route::group(['middleware' => ['CORS']], function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
+<<<<<<< HEAD
+=======
+    Route::get('/v1/post', [PostController::class, 'index']);
+>>>>>>> post
 });
 
 
@@ -76,6 +81,10 @@ Route::group([
     Route::resource('orders', AdminOrderController::class);
     Route::resource('image', ImageController::class);
     Route::resource('campaign', CampaignController::class);
+<<<<<<< HEAD
+=======
+    Route::resource('post', PostController::class);
+>>>>>>> post
 });
 
 

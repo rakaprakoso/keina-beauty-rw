@@ -7,6 +7,10 @@ const Form = (props, cb) => {
     // const [data, setData] = useState(null);
 
     var { name, label, type, value, filetype } = props.list;
+<<<<<<< HEAD
+=======
+    var formik = props.formik
+>>>>>>> post
     // console.log(filetype);
 
     // setData(props.list)
@@ -88,6 +92,11 @@ const Form = (props, cb) => {
                     placeholder={label}
                     className={className}
                     defaultValue={value}
+<<<<<<< HEAD
+=======
+                    // onChange={formik.handleChange}
+                    // value={formik.values[value]}
+>>>>>>> post
                 />
             );
         } else if (type == "textarea") {
@@ -97,6 +106,11 @@ const Form = (props, cb) => {
                     rows="10"
                     className={className}
                     value={value}
+<<<<<<< HEAD
+=======
+                    // onChange={formik.handleChange}
+                    // value={formik.values[value]}
+>>>>>>> post
                 ></textarea>
             );
         } else if (type == "file") {
@@ -138,6 +152,11 @@ const Form = (props, cb) => {
                             type="text"
                             name={name}
                             defaultValue={value}
+<<<<<<< HEAD
+=======
+                            // onChange={formik.handleChange}
+                            // value={formik.values[value]}
+>>>>>>> post
                         />
                     </div>
                     <div
@@ -149,7 +168,15 @@ const Form = (props, cb) => {
         } else if (type == "tinyMCE") {
             return (
                 // HALO
+<<<<<<< HEAD
                 <TinyMCEForm name={name} value={value} />
+=======
+                <TinyMCEForm name={name}
+                value={value}
+                // onChange={formik.handleChange}
+                // value={formik.values[value]}
+                />
+>>>>>>> post
             );
         } else {
             return <p>HALOO</p>;

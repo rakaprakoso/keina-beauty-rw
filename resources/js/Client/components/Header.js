@@ -242,13 +242,13 @@ const dataHeader = [
             },
         ],
     },
-    // {
-    //     title: 'Article',
-    //     itemId: '/article',
-    // },
     {
         title: 'campaign',
         itemId: '/joincampaign',
+    },
+    {
+        title: 'article',
+        itemId: '/journey',
     },
 ]
 

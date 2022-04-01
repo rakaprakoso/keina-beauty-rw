@@ -22,6 +22,8 @@ import OrdersModify from "../pages/orders/OrdersModify.js";
 // import Tables from "views/admin/Tables.js";
 import { useDispatch, useSelector } from "react-redux";
 import { LoadProfileAction } from "../../redux/actions/ProfileActions.js";
+import Post from "../pages/post/Post.js";
+import PostModify from "../pages/post/PostModify.js";
 
 function Admin2(props) {
     return (
@@ -125,6 +127,19 @@ export default function Admin(props) {
                                         component={OrdersModify}
                                     />
                                     <Route
+<<<<<<< HEAD
+=======
+                                        path="/admin/post/"
+                                        exact
+                                        component={Post}
+                                    />
+                                    <Route
+                                        path="/admin/post/:method/:id?"
+                                        exact
+                                        component={PostModify}
+                                    />
+                                    <Route
+>>>>>>> post
                                         path="/admin/campaign/"
                                         exact
                                         component={CampaignHome}
