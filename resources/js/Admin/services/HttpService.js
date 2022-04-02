@@ -4,9 +4,9 @@ const {MIX_API_URL} = process.env
 export default class HttpService {
     // url = `${MIX_API_URL}`;
     url = "http://localhost:8000/api";
-    postData = async (item, added_url, tokenId = "") => {
+    postData = async (item, added_url, tokenId = "", method = "POST") => {
         const token = await localStorage.getItem(tokenId);
-        const requestOptions = this.postRequestOptions(token, item);
+        const requestOptions = this.postRequestOptions(token, item,method);
         return fetch(this.url + "/" + added_url, requestOptions).then(
             (response) => response.json()
         );
@@ -63,7 +63,7 @@ export default class HttpService {
             };
             return requestOptions;
         };
-    postRequestOptions = (token, item) => {
+    postRequestOptions = (token, item, method) => {
         var headers;
         if (token) {
             headers = {
@@ -76,7 +76,7 @@ export default class HttpService {
             };
         }
         let requestOptions = {
-            method: "POST",
+            method: method,
             headers: headers,
             body: JSON.stringify(item),
         };

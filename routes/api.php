@@ -62,11 +62,10 @@ Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout'
 Route::group(['middleware' => ['CORS']], function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
-<<<<<<< HEAD
-=======
-    Route::get('/v1/post', [PostController::class, 'index']);
->>>>>>> post
 });
+
+Route::get('/v1-post', [PostController::class, 'index']);
+Route::get('/v1-post/{post}', [PostController::class, 'show']);
 
 
 Route::apiResource('/passport/products', AdminProductController::class)
@@ -81,10 +80,7 @@ Route::group([
     Route::resource('orders', AdminOrderController::class);
     Route::resource('image', ImageController::class);
     Route::resource('campaign', CampaignController::class);
-<<<<<<< HEAD
-=======
     Route::resource('post', PostController::class);
->>>>>>> post
 });
 
 

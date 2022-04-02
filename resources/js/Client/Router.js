@@ -16,6 +16,7 @@ import Order from './pages/Ecommerce/Order';
 import JoinCampaign from './pages/JoinCampaign';
 import NewsLetter from './components/Modal/NewsLetter';
 import Post from './pages/Post';
+import PostDetail from './pages/PostDetail';
 
 const Main = props => {
     return (
@@ -30,10 +31,8 @@ const Main = props => {
                 <Route exact path="/" component={Home}/>
                 <Route path="/about" component={About} />
                 <Route path="/shop" component={Shop} />
-<<<<<<< HEAD
-=======
-                <Route path="/journey" component={Post} />
->>>>>>> post
+                <Route exact path="/journey" component={Post} />
+                <Route path="/journey/:slug" component={PostDetail} />
                 <Route path="/joincampaign" component={JoinCampaign} />
                 <Route path="/product/:slug" component={Product}/>
                 <Route path="/cart" component={Cart}/>

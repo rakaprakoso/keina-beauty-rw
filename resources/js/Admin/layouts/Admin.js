@@ -127,8 +127,6 @@ export default function Admin(props) {
                                         component={OrdersModify}
                                     />
                                     <Route
-<<<<<<< HEAD
-=======
                                         path="/admin/post/"
                                         exact
                                         component={Post}
@@ -139,7 +137,6 @@ export default function Admin(props) {
                                         component={PostModify}
                                     />
                                     <Route
->>>>>>> post
                                         path="/admin/campaign/"
                                         exact
                                         component={CampaignHome}

@@ -12,17 +12,17 @@ const Post = () => {
         const dataFetch = await http
             .getDataAdmin(url, tokenId)
             .then((data) => {
-                return data;
+                return data.data;
             })
             .catch((error) => {
                 return error;
             });
 
-        if (dataFetch.status == 200) {
+        if (dataFetch.success) {
             console.log(dataFetch.data.data)
             setData(dataFetch.data.data);
         } else {
-            setData(dataFetch);
+            setData(null);
         }
     }, []);
     return (

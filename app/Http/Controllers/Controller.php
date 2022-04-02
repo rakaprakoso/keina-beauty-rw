@@ -25,4 +25,21 @@ class Controller extends BaseController
             'access_token' => $token,
         ], 200);
     }
+
+    public function responseSuccess($responseMessage, $data)
+    {
+        return \response()->json([
+            "success" => true,
+            "message" => $responseMessage,
+            "data" => $data,
+        ], 200);
+    }
+    public function responseFail($responseMessage, $data)
+    {
+        return \response()->json([
+            "success" => false,
+            "message" => $responseMessage,
+            "data" => $data,
+        ], 200);
+    }
 }

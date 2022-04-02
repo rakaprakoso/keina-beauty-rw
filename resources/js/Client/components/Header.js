@@ -18,6 +18,7 @@ import { connect, useSelector, useDispatch } from 'react-redux'
 
 import { useTranslation } from "react-i18next";
 import LanguageSelector from '../LanguageSelector';
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
     return {
@@ -76,17 +77,17 @@ const Header = (props) => {
                         </button>
                         <div className="site-branding">
                             <div className="site-title">
-                                <a href="/" className="remove_underline">
+                                <Link to="/" className="remove_underline">
                                     <div className="logo">
                                         <img src={logo} alt="Keina Beauty" />
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         <ul className="icon-nav">
                             {dataIconHeader.map((item, i) => (
                                 <li>
-                                    <a href={item.path}>
+                                    <Link to={item.path}>
                                         <div className="icon icon-hvr">
                                             {item.icon}
                                         </div>
@@ -96,7 +97,7 @@ const Header = (props) => {
                                         ${item.counter ? '' : 'hidden'}`}>
                                             {props.cartData.qtyTotal || 0}
                                         </div>
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                             <li className="self-center">
@@ -111,7 +112,7 @@ const Header = (props) => {
                         <ul>
                             {dataHeader.map((item, i) => (
                                 <li className="hvr hvr-underline-from-center">
-                                    <a href={item.itemId}>{t("menu."+item.title) }</a>
+                                    <Link to={item.itemId}>{t("menu."+item.title) }</Link>
                                 </li>
                             ))
                             }
@@ -145,7 +146,7 @@ const Header = (props) => {
                         <ul>
                             {dataHeader.map((item, i) => (
                                 <li className="my-2">
-                                    <a className="hvr hvr-underline-from-center" href={item.itemId}>{t("menu."+item.title) }</a>
+                                    <Link className="hvr hvr-underline-from-center" to={item.itemId}>{t("menu."+item.title) }</Link>
                                 </li>
                             ))
                             }
@@ -156,7 +157,7 @@ const Header = (props) => {
                         <ul className="icon-nav">
                             {dataIconHeader.map((item, i) => (
                                 <li>
-                                    <a href={item.path}>
+                                    <Link to={item.path}>
                                         <div className="icon icon-hvr">
                                             {item.icon}
                                         </div>
@@ -166,7 +167,7 @@ const Header = (props) => {
                                         ${item.counter ? '' : 'hidden'}`}>
                                            {props.cartData.qtyTotal || 0}
                                         </div>
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                              <li className="self-center">

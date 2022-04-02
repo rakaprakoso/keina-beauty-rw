@@ -18,27 +18,27 @@ const PostModify = () => {
     useEffect(async () => {
         console.log(method)
         if(method === 'edit'){
-        const http = new HttpService();
-        const url = `admin/post/${id}`;
-        const tokenId = "accessToken";
-        const dataFetch = await http
-            .getDataAdmin(url, tokenId)
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                return error;
-            });
-        console.log(dataFetch)
-        // console.log(dataFetch.cartSession[5]);
-        // setRawData(dataFetch);
-        if (dataFetch.status == 200) {
-            setData(dataFetch.data);
-            setPath(basePath + "/" + dataFetch.data.id);
-        } else {
-            setData(dataFetch);
-            // console.log(dataFetch);
-        }
+            const http = new HttpService();
+            const url = `admin/post/${id}`;
+            const tokenId = "accessToken";
+            const dataFetch = await http
+                .getDataAdmin(url, tokenId)
+                .then((data) => {
+                    return data;
+                })
+                .catch((error) => {
+                    return error;
+                });
+            console.log(dataFetch)
+            // console.log(dataFetch.cartSession[5]);
+            // setRawData(dataFetch);
+            if (dataFetch.status == 200) {
+                setData(dataFetch.data);
+                setPath(basePath + "/" + dataFetch.data.id);
+            } else {
+                setData(dataFetch);
+                // console.log(dataFetch);
+            }
         }
     }, []);
 
@@ -83,21 +83,36 @@ const PostModify = () => {
       });
 
       const handleSubmit = async function (e) {
-          e.preventDefault();
-
+        e.preventDefault();
+        var url = '';
+        var methodSubmit = 'POST';
         const body = new FormData(e.target);
         console.log(body)
         var object = {};
         body.forEach((value, key) => object[key] = value);
         var bodyPost = object;
         const http = new HttpService();
-        let url = "admin/post";
+        if(method === 'edit'){
+            url = `admin/post/${id}`;
+            methodSubmit = `PUT`;
+        }else{
+            url = "admin/post";
+        }
         const tokenId = "accessToken";
-        const data = http.postData(bodyPost, url,tokenId).then((data) => {
+        const data = await http.postData(bodyPost, url,tokenId, methodSubmit).then((data) => {
             return data;
         }).catch((error) => {
             return error;
         })
+
+        // console.log(data)
+        // alert(JSON.stringify(data))
+
+        if (data.success){
+            window.location.href = "/admin/post";
+        }else{
+            alert("Error")
+        }
     }
 
     return (

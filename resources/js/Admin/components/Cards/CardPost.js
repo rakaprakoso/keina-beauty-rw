@@ -85,35 +85,35 @@ export default function CardPost({ color, data }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((item, i) => (
-                            <tr key={i}>
-                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                    <span
-                                        className={
-                                            "font-bold " +
-                                            +(color === "light" ? "text-blueGray-600" : "text-white")
-                                        }
-                                    >
-                                        {item?.id}
-                                    </span>
-                                </td>
-                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                    <div>{item?.post_title}</div>
+                            {data && data.map((item, i) => (
+                                <tr key={i}>
+                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        <span
+                                            className={
+                                                "font-bold " +
+                                                +(color === "light" ? "text-blueGray-600" : "text-white")
+                                            }
+                                        >
+                                            {item?.id}
+                                        </span>
+                                    </td>
+                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        <div>{item?.post_title}</div>
 
-                                </td>
-                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                    {item?.created_at}
-                                </td>
-                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                                    <Link to={`/admin/post/edit/${item?.id}`}
-                                        className="bg-primary text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                        type="button"
-                                    >
-                                        Detail
-                                    </Link>
-                                    <TableDropdown />
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        {item?.created_at}
+                                    </td>
+                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
+                                        <Link to={`/admin/post/edit/${item?.id}`}
+                                            className="bg-primary text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                            type="button"
+                                        >
+                                            Detail
+                                        </Link>
+                                        <TableDropdown />
+                                    </td>
+                                </tr>
                             ))}
                         </tbody>
                     </table>
