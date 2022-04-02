@@ -14,7 +14,6 @@ export default class HttpService {
     getData = async (added_url, tokenId = "") => {
         const token = await localStorage.getItem(tokenId);
         const requestOptions = this.getRequestOptions(token);
-        console.log("AKAN TARIK DATA");
         console.log(token);
         console.log(requestOptions);
         if (token) {
@@ -27,7 +26,6 @@ export default class HttpService {
 
     getDataClient = async (added_url) => {
         const requestOptions = this.getRequest();
-        console.log("AKAN TARIK DATA");
             return fetch(this.url + "/" + added_url, requestOptions).then(
                 (response) => response.json()
             );

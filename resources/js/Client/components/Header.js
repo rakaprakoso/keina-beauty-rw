@@ -86,7 +86,7 @@ const Header = (props) => {
                         </div>
                         <ul className="icon-nav">
                             {dataIconHeader.map((item, i) => (
-                                <li>
+                                <li key={i}>
                                     <Link to={item.path}>
                                         <div className="icon icon-hvr">
                                             {item.icon}
@@ -111,7 +111,7 @@ const Header = (props) => {
                     <nav>
                         <ul>
                             {dataHeader.map((item, i) => (
-                                <li className="hvr hvr-underline-from-center">
+                                <li key={i} className="hvr hvr-underline-from-center">
                                     <Link to={item.itemId}>{t("menu."+item.title) }</Link>
                                 </li>
                             ))
@@ -145,7 +145,7 @@ const Header = (props) => {
                     <nav>
                         <ul>
                             {dataHeader.map((item, i) => (
-                                <li className="my-2">
+                                <li key={i} className="my-2">
                                     <Link className="hvr hvr-underline-from-center" to={item.itemId}>{t("menu."+item.title) }</Link>
                                 </li>
                             ))
@@ -156,7 +156,7 @@ const Header = (props) => {
                     <div className="flex justify-center">
                         <ul className="icon-nav">
                             {dataIconHeader.map((item, i) => (
-                                <li>
+                                <li key={i}>
                                     <Link to={item.path}>
                                         <div className="icon icon-hvr">
                                             {item.icon}

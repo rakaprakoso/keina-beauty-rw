@@ -11,6 +11,8 @@
 
     "journey.title": "Keina's Journey",
     "journey.read_more": "Read More",
+    "journey.noData": "Our journey is coming soon",
+    "post.noUrl": "You lost, please back to main menu again",
 
     "about.title": "About Keina Beauty",
     "about.content1": "<p><b>Keina</b> means sunshine, blessing and according to Japanese, Keina is synonymous with natural freshness and greenery. Starting from a simple understanding, we have high hopes that the nutrients contained in Keina Beauty's skincare products can be a ray of sunshine for those who want to have healthy, beautiful and well-groomed skin.</p><p> Our vision is to become a brand that is eco-friendly, cruelty free and has a positive impact on the sustainability of the earth, and provides maximum effect on skin health as well as beauty. All Keina Beauty skincare products are sourced from natural raw materials obtained without exploiting nature. The absence of irritants and the lack of chemicals make Keina Beauty skincare products safe to be applied to all skin types. The production process is carried out without animal testing and each product is packaged responsibly in environmentally friendly packaging.</p><p> Making Keina Beauty skincare products a safe choice for the skin and the earth is or commitment to a better future and in line with our mission to:</p><p><ul><li> Providing the right nutrition for healthy skin for various generations </li> <li>Giving an understanding that beauty will radiate through healthy skin</li> <li>Providing benefits for the earth and the environment by using recyclable packaging</li> <li> Provides the best and safe medical-based formula that can protect the face in long-term use</li> <li> Creating a safe, comfortable, conducive and mutually supportive work environment in the hope that we can all grow and develop together.</li></ul></p>",
@@ -19,6 +21,7 @@
     "about.content3.title": "“Perfect Nutrition for Beautiful Skin”",
     "about.content3" : "As a company that produces skincare products to address various facial problems with a medical-based natural approach, we believe that natural beauty is beauty that comes from and for nature.",
 
-    "chat.wa.ask":"#AskKeina"
+    "chat.wa.ask":"#AskKeina",
+    "loading": "Loading..."
 
 }

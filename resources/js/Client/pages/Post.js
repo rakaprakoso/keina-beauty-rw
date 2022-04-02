@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 function Post(props) {
     const { t, i18n } = useTranslation();
     const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     function txt_content(txt) {
         console.log({ txt: txt });
@@ -28,8 +29,7 @@ function Post(props) {
                 return error;
             });
 
-        console.log(dataFetch);
-
+        setLoading(false);
         if (dataFetch && dataFetch.success) {
             setData(dataFetch.data.data);
         } else {
@@ -45,84 +45,106 @@ function Post(props) {
                             {t("journey.title")}
                         </h1>
                     </div>
-                    {data && data[0] && (
-                        <div className="product-container flex justify-center">
-                            <div className="product-content w-1/2">
-                                <div className="image-wrap embed-responsive responsive-16by9">
-                                    <Link to={`/journey/${data[0].id}`}>
-                                        <img
-                                            className="object-cover object-center"
-                                            src={data[0].post_image_thumbnail}
-                                            alt={data[0].name}
-                                        />
-                                    </Link>
-                                </div>
-                                <div className="text-wrap">
-                                    <div className="category">
-                                        <a href="#">Keina Author</a>
-                                    </div>
-                                    <Link
-                                        className="hvr hvr-underline-reveal pb-1"
-                                        to={`/journey/${data[0].id}`}
-                                    >
-                                        <h3 className="text-3xl mt-2 font-semibold">
-                                            {data[0].post_title}
-                                        </h3>
-                                        <p className="limit-text">
-                                            {parse(
-                                                txt_content(
-                                                    data[0].post_content
-                                                )
-                                            )}
-                                        </p>
-                                        <button className="btn-text">
-                                            {t("journey.read_more")}
-                                        </button>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                    <div className={`product-container column-4`}>
-                        {data &&
-                            data.filter((element, index) => index > 0).map((item, i) => (
-                                <div className="product-content">
-                                    <div className="image-wrap embed-responsive responsive-16by9">
-                                        <Link to={`/journey/${item.id}`}>
-                                            <img
-                                                className="object-cover object-center"
-                                                src={item.post_image_thumbnail}
-                                                alt={item.name}
-                                            />
-                                        </Link>
-                                    </div>
-                                    <div className="text-wrap">
-                                        <div className="category">
-                                            <a href="#">Keina Author</a>
+                    {loading && <div className="text-center">{t("loading")}</div>}
+                    {!loading && (
+                        <>
+                            {data >= false && (
+                                <div className="text-center">{t("journey.noData")}</div>
+                            )}
+
+                            {data && data[0] && (
+                                <div className="product-container flex justify-center">
+                                    <div className="product-content w-1/2">
+                                        <div className="image-wrap embed-responsive responsive-16by9">
+                                            <Link to={`/journey/${data[0].id}`}>
+                                                <img
+                                                    className="object-cover object-center"
+                                                    src={
+                                                        data[0]
+                                                            .post_image_thumbnail
+                                                    }
+                                                    alt={data[0].name}
+                                                />
+                                            </Link>
                                         </div>
-                                        <Link
-                                            className="hvr hvr-underline-reveal pb-1"
-                                            to={`/journey/${item.id}`}
-                                        >
-                                            <h3 className="text-3xl mt-2 font-semibold">
-                                                {item.post_title}
-                                            </h3>
-                                            <p className="limit-text">
-                                                {" "}
-                                                {parse(
-                                                    txt_content(
-                                                        item.post_content
-                                                    )
-                                                )}
-                                            </p>
-                                            <button className="btn-text">
-                                                {t("journey.read_more")}
-                                            </button>
-                                        </Link>
+                                        <div className="text-wrap">
+                                            <div className="category">
+                                                <a href="#">Keina Author</a>
+                                            </div>
+                                            <Link
+                                                className="hvr hvr-underline-reveal pb-1"
+                                                to={`/journey/${data[0].id}`}
+                                            >
+                                                <h3 className="text-3xl mt-2 font-semibold">
+                                                    {data[0].post_title}
+                                                </h3>
+                                                <p className="limit-text">
+                                                    {parse(
+                                                        txt_content(
+                                                            data[0].post_content
+                                                        )
+                                                    )}
+                                                </p>
+                                                <button className="btn-text">
+                                                    {t("journey.read_more")}
+                                                </button>
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
-                            ))}
-                    </div>
+                            )}
+                            <div className={`product-container column-4`}>
+                                {data &&
+                                    data
+                                        .filter((element, index) => index > 0)
+                                        .map((item, i) => (
+                                            <div className="product-content">
+                                                <div className="image-wrap embed-responsive responsive-16by9">
+                                                    <Link
+                                                        to={`/journey/${item.id}`}
+                                                    >
+                                                        <img
+                                                            className="object-cover object-center"
+                                                            src={
+                                                                item.post_image_thumbnail
+                                                            }
+                                                            alt={item.name}
+                                                        />
+                                                    </Link>
+                                                </div>
+                                                <div className="text-wrap">
+                                                    <div className="category">
+                                                        <a href="#">
+                                                            Keina Author
+                                                        </a>
+                                                    </div>
+                                                    <Link
+                                                        className="hvr hvr-underline-reveal pb-1"
+                                                        to={`/journey/${item.id}`}
+                                                    >
+                                                        <h3 className="text-3xl mt-2 font-semibold">
+                                                            {item.post_title}
+                                                        </h3>
+                                                        <p className="limit-text">
+                                                            {" "}
+                                                            {parse(
+                                                                txt_content(
+                                                                    item.post_content
+                                                                )
+                                                            )}
+                                                        </p>
+                                                        <button className="btn-text">
+                                                            {t(
+                                                                "journey.read_more"
+                                                            )}
+                                                        </button>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        ))}
+                            </div>
+                        </>
+                    )}
                 </section>
             </div>
         </Page>
