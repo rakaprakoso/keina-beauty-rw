@@ -29,6 +29,11 @@ export default function Sidebar() {
         icon: "fas fa-cog",
     },
     {
+        path: "/admin/coupon",
+        name: "Coupon",
+        icon: "fas fa-cog",
+    },
+    {
         path: "/admin/campaign",
         name: "Campaign",
         icon: "fas fa-clipboard-list",

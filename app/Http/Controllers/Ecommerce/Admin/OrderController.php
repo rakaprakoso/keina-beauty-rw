@@ -25,7 +25,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         if ($this->authServer($request->key)) { // return $request->full;
-            $products = Order::paginate(12);
+            $products = Order::paginate(120);
             return response()
                 ->json($products);
             // ->json(["data"=>$products]);

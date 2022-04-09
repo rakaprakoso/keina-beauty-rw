@@ -230,6 +230,7 @@ class OrderController extends Controller
         $data['price']['net_price'] += $data['price']['normal_price'] - $data['price']['discount_price'];
 
         $shippingData = $this->printShipping($request->city_id, $data['weight'], $request->shipping_method);
+        // return $shippingData;
         $order->shippingAddressBuyer = $shippingData['address'];
         $order->shipping_cost = $shippingData['cost'];
         $itemShippingCost = array(

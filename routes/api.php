@@ -9,10 +9,13 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\APIController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\CouponCodeController;
 use App\Http\Controllers\Ecommerce\OrderController;
 
 use App\Http\Controllers\Ecommerce\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Ecommerce\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\API\Admin\CouponCodeController as AdminCouponCodeController;
+
 use App\Http\Controllers\Ecommerce\Admin\ImageController;
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +70,9 @@ Route::group(['middleware' => ['CORS']], function () {
 Route::get('/v1-post', [PostController::class, 'index']);
 Route::get('/v1-post/{post}', [PostController::class, 'show']);
 
+Route::get('/v1-coupon_code', [CouponCodeController::class, 'index']);
+Route::get('/v1-coupon_code/{id}', [CouponCodeController::class, 'show']);
+
 
 Route::apiResource('/passport/products', AdminProductController::class)
     ->middleware('auth:api');
@@ -81,6 +87,7 @@ Route::group([
     Route::resource('image', ImageController::class);
     Route::resource('campaign', CampaignController::class);
     Route::resource('post', PostController::class);
+    Route::resource('coupon_code', AdminCouponCodeController::class);
 });
 
 

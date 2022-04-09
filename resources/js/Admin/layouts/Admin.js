@@ -24,6 +24,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { LoadProfileAction } from "../../redux/actions/ProfileActions.js";
 import Post from "../pages/post/Post.js";
 import PostModify from "../pages/post/PostModify.js";
+import CouponCode from "../pages/coupon_code/CouponCode.js";
+import CouponCodeModify from "../pages/coupon_code/CouponCodeModify.js";
 
 function Admin2(props) {
     return (
@@ -135,6 +137,16 @@ export default function Admin(props) {
                                         path="/admin/post/:method/:id?"
                                         exact
                                         component={PostModify}
+                                    />
+                                    <Route
+                                        path="/admin/coupon/"
+                                        exact
+                                        component={CouponCode}
+                                    />
+                                    <Route
+                                        path="/admin/coupon/:method/:id?"
+                                        exact
+                                        component={CouponCodeModify}
                                     />
                                     <Route
                                         path="/admin/campaign/"

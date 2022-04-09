@@ -114,7 +114,8 @@ const OrdersModify = () => {
                             <h2 className="mb-3 text-xl">
                                 Payment Status :
                                 <span className="font-bold">
-                                    {data && data?.payment?.status == "settlement"
+                                    {data &&
+                                    data?.payment?.status == "settlement"
                                         ? " Paid"
                                         : null}
                                     {data && data?.payment?.status !== null
@@ -139,7 +140,9 @@ const OrdersModify = () => {
                                         <td>{data.phoneBuyer}</td>
                                     </tr>
                                     <tr>
-                                        <td className="font-semibold">Address</td>
+                                        <td className="font-semibold">
+                                            Address
+                                        </td>
                                         <td>{`${data.addressBuyer} - ${data.shippingAddressBuyer}`}</td>
                                     </tr>
                                 </tbody>
@@ -166,14 +169,18 @@ const OrdersModify = () => {
                                                 <img
                                                     className="h-10 w-10 rounded-full inline-block mr-4"
                                                     src={
-                                                        item?.product?.thumbnail_img
+                                                        item?.product
+                                                            ?.thumbnail_img
                                                     }
                                                     alt={item?.name}
                                                 />
                                                 {item?.product?.name}
                                             </td>
                                             <td className="px-4 py-4">
-                                                {NumberFormat(item?.price, "Rp.")}
+                                                {NumberFormat(
+                                                    item?.price,
+                                                    "Rp."
+                                                )}
                                             </td>
                                             <td className="px-4 py-4">
                                                 {item.qty}
@@ -210,7 +217,10 @@ const OrdersModify = () => {
                                             Subtotal
                                         </td>
                                         <td className="px-4 py-2">
-                                            {NumberFormat(data?.net_price, "Rp.")}
+                                            {NumberFormat(
+                                                data?.net_price,
+                                                "Rp."
+                                            )}
                                         </td>
                                     </tr>
                                     <tr className="border border-b-0">
@@ -253,7 +263,9 @@ const OrdersModify = () => {
                                         <td className="px-4 py-2">
                                             {NumberFormat(
                                                 parseInt(data.net_price) +
-                                                    parseInt(data.shipping_cost) -
+                                                    parseInt(
+                                                        data.shipping_cost
+                                                    ) -
                                                     parseInt(
                                                         data?.couponamount
                                                             ? data?.couponamount
@@ -263,6 +275,26 @@ const OrdersModify = () => {
                                             )}
                                         </td>
                                     </tr>
+                                    {data?.couponcode && (
+                                        <tr className="border">
+                                            <td
+                                                className="px-4 py-2 text-right font-bold"
+                                                colSpan="3"
+                                            >
+                                                Coupon Used
+                                            </td>
+                                            <td className="px-4 py-2">
+                                                {data?.affiliate ? (
+                                                    <>
+                                                        <i className="fas fa-circle text-green-500 mr-2"></i>
+                                                        Affiliate | {data?.couponcode}
+                                                    </>
+                                                ) : (
+                                                    <>{data?.couponcode}</>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    )}
                                 </tfoot>
                             )}
                         </table>

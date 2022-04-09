@@ -6,7 +6,7 @@ const Form = (props, cb) => {
 
     // const [data, setData] = useState(null);
 
-    var { name, label, type, value, filetype } = props.list;
+    var { name, label, type, value, filetype, options,optionsLabel } = props.list;
     var formik = props.formik
     // console.log(filetype);
 
@@ -104,6 +104,17 @@ const Form = (props, cb) => {
                     // value={formik.values[value]}
                 ></textarea>
             );
+        } else if (type == "select") {
+            return (
+                <select
+                    name={name}
+                    className={className}
+                >
+                    {options.map((item, i) => (
+                        <option key={i} value={item} selected={value == item ? true : false}>{optionsLabel[i]}</option>
+                    ))}
+                </select>
+            );
         } else if (type == "file") {
             filetype = filetype ? filetype : type;
             // console.log(filetype);
@@ -163,7 +174,7 @@ const Form = (props, cb) => {
                 />
             );
         } else {
-            return <p>HALOO</p>;
+            return <p>{type}</p>;
         }
     };
 
