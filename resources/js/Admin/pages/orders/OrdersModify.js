@@ -7,6 +7,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { Editor as TinyMCE } from "@tinymce/tinymce-react";
 import { NumberFormat } from "../../../Client/components/Functions/NumberFormat";
 import HttpService from "../../services/HttpService";
+import moment from "moment";
 
 const OrdersModify = () => {
     let { id, method } = useParams();
@@ -144,6 +145,12 @@ const OrdersModify = () => {
                                             Address
                                         </td>
                                         <td>{`${data.addressBuyer} - ${data.shippingAddressBuyer}`}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="font-semibold">
+                                            Last Updated
+                                        </td>
+                                        <td>{moment(data.updated_at).format("DD MMMM YYYY, H:mm:ss")}</td>
                                     </tr>
                                 </tbody>
                             </table>

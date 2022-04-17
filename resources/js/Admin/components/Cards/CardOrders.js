@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import TableDropdown from "../Dropdowns/TableDropdown.js";
 import { NumberFormat } from "../../../Client/components/Functions/NumberFormat.js";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 export default function CardOrders({ color, orders }) {
     return (
@@ -76,6 +77,16 @@ export default function CardOrders({ color, orders }) {
                                             : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                                     }
                                 >
+                                    Last Updated at
+                                </th>
+                                <th
+                                    className={
+                                        "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                        (color === "light"
+                                            ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                                            : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                                    }
+                                >
                                     Affiliate
                                 </th>
                                 <th
@@ -121,6 +132,9 @@ export default function CardOrders({ color, orders }) {
                                     </td>
                                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                         {NumberFormat(item?.totalPrice, "Rp.")}
+                                    </td>
+                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        {item && moment(item?.updated_at).format("DD MMMM YY")}
                                     </td>
                                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                         {item?.affiliate ? (
