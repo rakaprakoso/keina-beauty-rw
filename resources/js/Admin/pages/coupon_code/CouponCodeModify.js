@@ -17,7 +17,7 @@ const CouponCodeModify = () => {
 
     useEffect(async () => {
         console.log(method)
-        if(method === 'edit'){
+        if (method === 'edit') {
             const http = new HttpService();
             const url = `admin/coupon_code/${id}`;
             const tokenId = "accessToken";
@@ -61,7 +61,7 @@ const CouponCodeModify = () => {
             label: 'Coupon Type',
             type: 'select',
             value: data?.coupon_type,
-            options: ['voucher','affiliate'],
+            options: ['voucher', 'affiliate'],
             optionsLabel: ['Voucher', 'Affiliate'],
         },
         {
@@ -85,11 +85,11 @@ const CouponCodeModify = () => {
             post_image_thumbnail: '',
         },
         onSubmit: values => {
-          alert(JSON.stringify(values, null, 2));
+            alert(JSON.stringify(values, null, 2));
         },
-      });
+    });
 
-      const handleSubmit = async function (e) {
+    const handleSubmit = async function (e) {
         e.preventDefault();
         var url = '';
         var methodSubmit = 'POST';
@@ -99,14 +99,14 @@ const CouponCodeModify = () => {
         body.forEach((value, key) => object[key] = value);
         var bodyPost = object;
         const http = new HttpService();
-        if(method === 'edit'){
+        if (method === 'edit') {
             url = `admin/coupon_code/${id}`;
             methodSubmit = `PUT`;
-        }else{
+        } else {
             url = "admin/coupon_code";
         }
         const tokenId = "accessToken";
-        const data = await http.postData(bodyPost, url,tokenId, methodSubmit).then((data) => {
+        const data = await http.postData(bodyPost, url, tokenId, methodSubmit).then((data) => {
             return data;
         }).catch((error) => {
             return error;
@@ -115,9 +115,9 @@ const CouponCodeModify = () => {
         // console.log(data)
         // alert(JSON.stringify(data))
 
-        if (data.success){
+        if (data.success) {
             window.location.href = "/admin/coupon";
-        }else{
+        } else {
             alert("Error")
         }
     }
@@ -127,18 +127,18 @@ const CouponCodeModify = () => {
             <div className="w-full p-10 bg-white shadow rounded">
                 <h2 className="mb-2 text-lg font-bold">Create New Code</h2>
                 <form
-                autocomplete={false}
-                // action={path}
-                onSubmit={handleSubmit}
-                    // "/api/admin/product"
-                    // method="POST" enctype="multipart/form-data"
-                    >
+                    autocomplete={false}
+                    // action={path}
+                    onSubmit={handleSubmit}
+                // "/api/admin/product"
+                // method="POST" enctype="multipart/form-data"
+                >
                     {method === 'edit' ?
                         <input type="hidden" name="_method" value="put" /> : null
                     }
                     <div>
                         {dataForm && dataForm.map((item, i) => (
-                            <Form list={item} formik={formik}/>
+                            <Form list={item} formik={formik} />
                         ))
                         }
                         <button type="submit" className="btn btn-primary">Submit</button>
