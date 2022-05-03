@@ -91,14 +91,17 @@ class ProductController extends Controller
      */
     public function show($id, Request $request)
     {
-        $product = Product::find($id);
-        $product['imagesArr'] = $product->images->pluck('image_path');
+        $responseMessage = '';
+        try {
+            $product = Product::find($id);
+            $product['imagesArr'] = $product->images->pluck('image_path');
 
-        return response()
-            ->json($product);
-        if ($this->authServer($request->key)) {
+            $responseMessage = 'Product Get Successfully!';
+            return $this->responseSuccess($responseMessage, $product);
+        } catch (\Throwable $th) {
+            $responseMessage = 'Product Error!';
+            return $this->responseFail($responseMessage, null);
         }
-        return response()->json(null);
     }
 
     /**

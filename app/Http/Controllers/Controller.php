@@ -40,6 +40,6 @@ class Controller extends BaseController
             "success" => false,
             "message" => $responseMessage,
             "data" => $data,
-        ], 200);
+        ], 500);
     }
 }

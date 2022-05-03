@@ -56,13 +56,14 @@ const Modify = () => {
                     return error;
                 });
             console.log(dataFetch)
+            // alert(JSON.stringify(dataFetch,null, 2))
             // console.log(dataFetch.cartSession[5]);
             // setRawData(dataFetch);
             if (dataFetch.status == 200) {
                 setData(dataFetch.data.data);
                 setPath(basePath + "/" + dataFetch.data.id);
             } else {
-                setData(dataFetch);
+                setData(null);
                 // console.log(dataFetch);
             }
         }
