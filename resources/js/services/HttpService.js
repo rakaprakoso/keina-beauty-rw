@@ -1,5 +1,6 @@
 export default class HttpService {
-    url = "http://localhost:8000/api";
+    url = `${MIX_API_URL}`;
+    // url = "http://localhost:8000/api";
     postData = async (item, added_url, tokenId = "") => {
         const token = await localStorage.getItem(tokenId);
         const requestOptions = this.postRequestOptions(token, item);

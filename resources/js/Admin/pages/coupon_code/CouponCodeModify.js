@@ -61,8 +61,8 @@ const CouponCodeModify = () => {
             label: 'Coupon Type',
             type: 'select',
             value: data?.coupon_type,
-            options: ['voucher','affiliate'],
-            optionsLabel: ['Voucher', 'Affiliate'],
+            options: ['voucher','affiliate','membership'],
+            optionsLabel: ['Voucher', 'Affiliate','Membership'],
         },
         {
             name: 'amount',

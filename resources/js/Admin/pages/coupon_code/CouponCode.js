@@ -20,8 +20,8 @@ const CouponCode = () => {
             });
 
         if (dataFetch.success) {
-            console.log(dataFetch.data.data)
-            setData(dataFetch.data.data);
+            console.log(dataFetch.data)
+            setData(dataFetch.data);
         } else {
             setData(null);
         }
@@ -30,7 +30,7 @@ const CouponCode = () => {
         <div>
             <div className="flex flex-wrap">
                 <div className="w-full mb-12 xl:mb-0 px-4">
-                    {data && <CardCouponCode data={data} />}
+                    {data?.data && <CardCouponCode data={data} />}
                 </div>
             </div>
         </div>
