@@ -65,12 +65,22 @@ class ProductController extends Controller
         // $product->thumbnail_img = Storage::url($path);
 
         // $product->save();
+        $responseMessage = '';
+        try {
+            $product = $this->sendData($request);
+            // $coupon = new CouponCode;
+            // $coupon->code = $request->code;
+            // $coupon->percent = $request->percent;
+            // $coupon->amount = $request->amount;
+            // $coupon->coupon_type = $request->coupon_type;
+            // $coupon->save();
 
-        $product = $this->sendData($request);
-        return redirect('/admin/product');
-
-        return response()->json($product);
-        // return response()->json($request);
+            $responseMessage = 'Product Saved';
+            return $this->responseSuccess($responseMessage, $product);
+        } catch (\Throwable $th) {
+            $responseMessage = 'Product Fail!';
+            return $this->responseFail($responseMessage, null);
+        }
     }
 
     /**
@@ -81,14 +91,17 @@ class ProductController extends Controller
      */
     public function show($id, Request $request)
     {
-        $product = Product::find($id);
-        $product['imagesArr'] = $product->images->pluck('image_path');
+        $responseMessage = '';
+        try {
+            $product = Product::find($id);
+            $product['imagesArr'] = $product->images->pluck('image_path');
 
-        return response()
-            ->json($product);
-        if ($this->authServer($request->key)) {
+            $responseMessage = 'Product Get Successfully!';
+            return $this->responseSuccess($responseMessage, $product);
+        } catch (\Throwable $th) {
+            $responseMessage = 'Product Error!';
+            return $this->responseFail($responseMessage, null);
         }
-        return response()->json(null);
     }
 
     /**
@@ -112,9 +125,18 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         // return $request->all();
-        $product = $this->sendData($request, $id);
-        return redirect('/admin/product');
-        return response()->json($product);
+        $responseMessage = '';
+        try {
+            $product = $this->sendData($request, $id);
+
+            $responseMessage = 'Product Saved';
+            return $this->responseSuccess($responseMessage, $product);
+        } catch (\Throwable $th) {
+            $responseMessage = 'Product Fail!';
+            return $this->responseFail($responseMessage, null);
+        }
+        // return redirect('/admin/product');
+        // return response()->json($product);
     }
 
     /**

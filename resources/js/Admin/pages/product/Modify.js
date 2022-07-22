@@ -15,10 +15,37 @@ const Modify = () => {
     const [data, setData] = useState(null)
     const [path, setPath] = useState(basePath)
 
+    // useEffect(async () => {
+    //     if(method === 'edit'){
+    //         const http = new HttpService();
+    //         const url = `admin/product/${id}?key=${key}`;
+    //         const tokenId = "accessToken";
+    //         const dataFetch = await http
+    //             .getDataAdmin(url, tokenId)
+    //             .then((data) => {
+    //                 return data;
+    //             })
+    //             .catch((error) => {
+    //                 return error;
+    //             });
+    //         // console.log(dataFetch.cartSession[5]);
+    //         // setRawData(dataFetch);
+    //         if (dataFetch.status == 200) {
+    //             setData(dataFetch.data);
+    //             setPath(basePath + '/' + dataFetch.data.id)
+    //             // console.log(dataFetch.data);
+    //         } else {
+    //             setData(dataFetch);
+    //             // console.log(dataFetch);
+    //         }
+    //     }
+    // }, []);
+
     useEffect(async () => {
-        if(method === 'edit'){
+        console.log(method)
+        if (method === 'edit') {
             const http = new HttpService();
-            const url = `admin/product/${id}?key=${key}`;
+            const url = `admin/product/${id}`;
             const tokenId = "accessToken";
             const dataFetch = await http
                 .getDataAdmin(url, tokenId)
@@ -28,14 +55,15 @@ const Modify = () => {
                 .catch((error) => {
                     return error;
                 });
+            console.log(dataFetch)
+            // alert(JSON.stringify(dataFetch,null, 2))
             // console.log(dataFetch.cartSession[5]);
             // setRawData(dataFetch);
             if (dataFetch.status == 200) {
-                setData(dataFetch.data);
-                setPath(basePath + '/' + dataFetch.data.id)
-                // console.log(dataFetch.data);
+                setData(dataFetch.data.data);
+                setPath(basePath + "/" + dataFetch.data.id);
             } else {
-                setData(dataFetch);
+                setData(null);
                 // console.log(dataFetch);
             }
         }
@@ -47,6 +75,39 @@ const Modify = () => {
             console.log(editorRef.current.getContent());
         }
     };
+
+    const handleSubmit = async function (e) {
+        e.preventDefault();
+        var url = '';
+        var methodSubmit = 'POST';
+        const body = new FormData(e.target);
+        console.log(body)
+        var object = {};
+        body.forEach((value, key) => object[key] = value);
+        var bodyPost = object;
+        const http = new HttpService();
+        if (method === 'edit') {
+            url = `admin/product/${id}`;
+            methodSubmit = `PUT`;
+        } else {
+            url = "admin/product";
+        }
+        const tokenId = "accessToken";
+        const data = await http.postData(bodyPost, url, tokenId, methodSubmit).then((data) => {
+            return data;
+        }).catch((error) => {
+            return error;
+        })
+
+        // console.log(data)
+        // alert(JSON.stringify(data))
+
+        if (data.success) {
+            window.location.href = "/admin/product";
+        } else {
+            alert("Error")
+        }
+    }
 
     const dataForm = [
         {
@@ -104,9 +165,12 @@ const Modify = () => {
     return (
         <div className="px-4">
             <div className="w-full p-10 bg-white shadow rounded">
-                <form action={path}
+                <form
+                    action={path}
                     // "/api/admin/product"
-                    method="POST" enctype="multipart/form-data">
+                    onSubmit={handleSubmit}
+                    // method="POST" enctype="multipart/form-data"
+                    >
                     {method === 'edit' ?
                         <input type="hidden" name="_method" value="put" /> : null
                     }

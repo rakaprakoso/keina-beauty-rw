@@ -34,11 +34,11 @@ const JoinCampaign = () => {
             </div>
             <div className="page-wrapper py-10">
                 <div>
-                    <div className="block mx-6">
+                    <div className="block mx-0 lg:mx-6">
                         {/* <form action="/api/joincampaign" method="POST"> */}
-                        <div className="mx-10 lg:mx-0 p-10 rounded shadow-lg">
+                        <div className="mx-0 lg:mx-10 p-10 rounded shadow-lg">
                             <div className="row">
-                                <div className="col-lg-12">
+                            <div className="col-lg-12">
                                     <Formik
                                         initialValues={{
                                             name: '',
@@ -91,6 +91,10 @@ const JoinCampaign = () => {
                                             Submit
                                         </button> */}
                                 </div>
+                            <div className="col-lg-12 flex">
+                                <img src='/images/benefit_campaign.jpeg' className='lg:w-1/2 w-full mx-auto' />
+                            </div>
+
                             </div>
                         </div>
                         {/* </form> */}

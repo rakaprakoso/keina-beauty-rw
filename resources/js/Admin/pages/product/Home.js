@@ -36,12 +36,13 @@ const Home = () => {
         <div>
             <div className="flex flex-wrap">
                 <div className="w-full mb-12 xl:mb-0 px-4">
-                    {data && !isEmpty && <CardProducts products={data} />}
+                    {data && <CardProducts products={data} />}
+                    {/* {data && !isEmpty && <CardProducts products={data} />}
                     {isEmpty &&
                     <div className="w-full p-2 text-center text-lg bg-gray-50 rounded">
                     Data Not Found
                     </div>
-                    }
+                    } */}
                 </div>
             </div>
             {/* <div className="table w-full p-2">

@@ -17,7 +17,7 @@ export default function CardProducts({ color, products }) {
             >
                 <div className="rounded-t mb-0 px-4 py-3 border-0">
                     <div className="flex flex-wrap items-center">
-                        <div className="relative w-full px-4 max-w-full flex-grow flex-1">
+                        <div className="relative px-4 max-w-full flex-grow">
                             <h3
                                 className={
                                     "font-semibold text-lg " +
@@ -26,6 +26,14 @@ export default function CardProducts({ color, products }) {
                             >
                                 Products List
                             </h3>
+                        </div>
+                        <div className="relative px-4">
+                            <Link to={`/admin/product/create`}
+                                        className="bg-primary text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="button"
+                                    >
+                                        Create
+                                    </Link>
                         </div>
                     </div>
                 </div>
@@ -77,7 +85,7 @@ export default function CardProducts({ color, products }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {products.map((item, i) => (
+                            {products && products.map((item, i) => (
                             <tr key={i}>
                                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
                                     <img
