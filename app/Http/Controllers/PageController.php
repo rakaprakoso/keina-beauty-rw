@@ -11,7 +11,7 @@ class PageController extends Controller
         return view('home');
     }
     public function index(){
-        SEOTools::setTitle('Perfect Nutrition for Beautiful Skin');
+        SEOTools::setTitle('Secure Your Skin Secure Your Family');
         SEOTools::setDescription('Keina memiliki arti cahaya matahari, berkah dan menurut Bahasa Jepang, Keina identik dengan kesegaran alam dan kehijauan. Bermula dari pengertian sederhana, kami memiliki harapan tinggi bahwa nutrisi yang terkandung dalam produk skincare Keina Beauty dapat menjadi cahaya matahari bagi mereka yang ingin memiliki kulit sehat, cantik dan terawat.');
         SEOTools::opengraph()->setUrl('https://keinabeauty.com/');
         SEOTools::setCanonical('https://keinabeauty.com/shop');

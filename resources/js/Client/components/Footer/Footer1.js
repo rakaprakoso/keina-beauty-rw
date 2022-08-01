@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
-import logo from "../../../Public/Logo Big.png"
+import logo from "../../../Public/Logo Big.png";
 
 const Footer1 = () => {
     const socmedData = [
@@ -20,31 +20,43 @@ const Footer1 = () => {
             url: "https://twitter.com/keinabeauty",
             icon: <FaTwitter />,
         },
-    ]
+    ];
     return (
         <footer>
             <div className="footer-wrapper">
                 <div className="top-part">
                     <div className="row">
-                        <div className="col-lg-6">
-
-                            <div className="logo flex">
-                                <a href="/" className="remove_underline mx-auto lg:mx-0 ">
-                                    <img className="mx-auto lg:mx-0"
-                                    src={logo} alt="Keina Beauty" />
+                        <div className="col-lg-4">
+                            <div className="logo flex mb-3">
+                                <a
+                                    href="/"
+                                    className="remove_underline mx-auto lg:mx-0 "
+                                >
+                                    <img
+                                        className="mx-auto lg:mx-0"
+                                        src={logo}
+                                        alt="Keina Beauty"
+                                    />
                                 </a>
                             </div>
-
+                            <div>
+                                <h4>No WhatsApp:</h4>
+                                +62 811 3890 2333
+                                <h4>Address:</h4>
+                                Jl. Tukad Badung No.212, Renon, Denpasar
+                                Selatan, Kota Denpasar, Bali 80226
+                            </div>
                         </div>
-                        <div className="col-lg-6 flex justify-center lg:justify-end">
+                        <div className="col-lg-8 flex justify-center lg:justify-end">
                             <div className="social-container">
-                                <div className="text-center lg:text-right">Follow Us</div>
+                                <div className="text-center lg:text-right">
+                                    Follow Us
+                                </div>
                                 {socmedData.map((item, i) => (
                                     <a key={i} href={item.url}>
                                         {item.icon}
                                     </a>
-                                ))
-                                }
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -57,7 +69,7 @@ const Footer1 = () => {
                 </div>
             </div>
         </footer>
-    )
-}
+    );
+};
 
-export default Footer1
+export default Footer1;

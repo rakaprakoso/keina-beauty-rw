@@ -129,10 +129,29 @@ const Modify = () => {
             value: data?.discount_price,
         },
         {
+            name: 'product_weight',
+            label: 'Product Weight',
+            placeholder: '100 ml / 120 gr / 100 cc',
+            type: 'text',
+            value: data?.product_weight,
+        },
+        {
             name: 'weight',
             label: 'Weight (gr)',
             type: 'number',
             value: data?.weight,
+        },
+        {
+            name: 'preview',
+            label: 'Show on Thumbnail?',
+            type: 'checkbox',
+            value: data?.preview,
+        },
+        {
+            name: 'hero',
+            label: 'Main Product?',
+            type: 'checkbox',
+            value: data?.hero,
         },
         {
             name: 'short_description',
@@ -165,6 +184,11 @@ const Modify = () => {
     return (
         <div className="px-4">
             <div className="w-full p-10 bg-white shadow rounded">
+                <h2 className="text-xl">
+                    {method !== 'edit' ?
+                            "Create New Product" : "Edit Product"
+                    }
+                </h2>
                 <form
                     action={path}
                     // "/api/admin/product"

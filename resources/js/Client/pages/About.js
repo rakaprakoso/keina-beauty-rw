@@ -201,13 +201,13 @@ function About(props) {
                             <div className="m-5">
                                 <div className="flex flex-wrap">
                                     {featureProducts.map((item, i) => (
-                                        <div className="w-1/2 lg:w-1/4 px-3 mb-5 lg:mb-0">
+                                        <div className="w-1/3 lg:w-1/6 px-3 mb-5 lg:mb-0">
                                             <img
                                                 src={item}
                                                 className="rounded w-full"
                                                 style={{
-                                                    objectFit: "cover",
-                                                    height: "200px",
+                                                    objectFit: "contain",
+                                                    height: "150px",
                                                 }}
                                                 alt
                                             />
@@ -220,7 +220,7 @@ function About(props) {
                 </section>
                 {/* Featured Section Begin */}
                 <section className="featured spad">
-                    <div className="page-wrapper py-7">
+                    <div className="page-wrapper py-10">
                         <div className="flex">
                             {features.map((item, i) => (
                                 <div className="w-1/5 px-2 flex">
@@ -229,7 +229,7 @@ function About(props) {
                                         className="mx-auto"
                                         style={{
                                             objectFit: "contain",
-                                            height: "80px",
+                                            height: "120px",
                                         }}
                                         alt
                                     />
@@ -245,10 +245,18 @@ function About(props) {
 }
 
 const featureProducts = [
-    "/images/Products/DSCF0705.jpg",
-    "/images/Products//DSCF1024-200x140.jpg",
-    "/images/Products/IMG_7527.jpg",
-    "/images/Products/IMG_7526.jpg",
+    "/storage/assets/active_ingredients/black tea trans (1).png",
+    "/storage/assets/active_ingredients/chamomile trans (1).png",
+    "/storage/assets/active_ingredients/cystoseira trans@4x (1).png",
+    "/storage/assets/active_ingredients/ha trans (1).png",
+    "/storage/assets/active_ingredients/jeruk transparan (1).png",
+    "/storage/assets/active_ingredients/matahari trans (1).png",
+    "/storage/assets/active_ingredients/niacinamide trans@4x.png",
+    "/storage/assets/active_ingredients/noni trans (1).png",
+    "/storage/assets/active_ingredients/pomegranate transparan.png",
+    "/storage/assets/active_ingredients/rice trans (1).png",
+    "/storage/assets/active_ingredients/rose transparent (1).png",
+    "/storage/assets/active_ingredients/tea tree trans (1).png",
 ];
 
 const features = [

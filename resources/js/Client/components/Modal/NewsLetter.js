@@ -32,9 +32,9 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 const NewsLetter = () =>
-    // { openModal, submitted, setIsOpen }
     {
-
+        // multiply by second
+        const timerDelay = 1000*10
         const [cookies, setCookies] = useCookies(["newsletter"]);
         const [isOpen, setIsOpen] = useState(false);
 
@@ -47,7 +47,7 @@ const NewsLetter = () =>
         }
 
         useEffect(async () => {
-            await timeout(5000);
+            await timeout(timerDelay);
             if (cookies.newsletter != "true") {
                 setIsOpen(true);
             }

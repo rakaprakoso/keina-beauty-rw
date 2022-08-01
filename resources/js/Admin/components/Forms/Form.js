@@ -6,7 +6,7 @@ const Form = (props, cb) => {
 
     // const [data, setData] = useState(null);
 
-    var { name, label, type, value, filetype, options,optionsLabel } = props.list;
+    var { name, label, type, value, filetype, options,optionsLabel,placeholder } = props.list;
     var formik = props.formik
     // console.log(filetype);
 
@@ -86,7 +86,7 @@ const Form = (props, cb) => {
                 <input
                     type={type}
                     name={name}
-                    placeholder={label}
+                    placeholder={placeholder || label}
                     className={className}
                     defaultValue={value}
                     // onChange={formik.handleChange}
@@ -103,6 +103,18 @@ const Form = (props, cb) => {
                     // onChange={formik.handleChange}
                     // value={formik.values[value]}
                 ></textarea>
+            );
+        } else if (type == "checkbox") {
+            return (
+                <div className={`form-input block`}>
+                    <input
+                        type={type}
+                        name={name}
+                        placeholder={placeholder || label}
+                        defaultValue={'1'}
+                        defaultChecked={value && value =='1' ? true : false}
+                    /> Yes
+                </div>
             );
         } else if (type == "select") {
             return (

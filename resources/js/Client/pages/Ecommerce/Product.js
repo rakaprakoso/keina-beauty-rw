@@ -146,7 +146,7 @@ class Product extends Component {
                                             </div>
                                         </div>
                                         {item.images.map((img, i) => (
-                                                <div className="thumbnail-img">
+                                                <div key={i} className="thumbnail-img">
                                                     <div className="embed-responsive responsive-1by1">
                                                         <img className="object-cover object-center left-0" src={img.image_path} alt={item.name} />
                                                     </div>
@@ -159,6 +159,13 @@ class Product extends Component {
                                 <div className="col-lg-6 flex items-center">
                                     <div className="product-brief">
                                         <h1 className="product-name">{item.name}</h1>
+                                        {item.product_weight &&
+                                            <div>
+                                                <span className="bg-primary text-white px-2 py-1 rounded-lg">
+                                                {item.product_weight}
+                                                </span>
+                                            </div>
+                                        }
                                         {item.discount_price !== null ? (
                                             <>
                                                 <h2 className="text-red-600 line-through text-base inline-block">
@@ -258,7 +265,7 @@ class Product extends Component {
                                                                 renderArrowNext={CarouselNav1Next}
                                                             >
                                                                 {testimonialsData.map((item, i) => (
-                                                                    <div className="mx-6 lg:mx-24 md:px-4 mt-6 md:mt-0 ">
+                                                                    <div key={i} className="mx-6 lg:mx-24 md:px-4 mt-6 md:mt-0 ">
                                                                         <div className="testimonial rounded-xl p-6 border-2 border-solid flex flex-col lg:flex-row hover:border-indigo-400 hover:bg-indigo-100 transition-colors duration-300 m-auto justify-center">
                                                                             {/* <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden md:mr-6 flex-shrink-0">
                                                                                 <img src="//via.placeholder.com/100/eee" alt="profile image" className="w-full h-full object-cover" />

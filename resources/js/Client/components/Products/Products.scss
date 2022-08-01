@@ -21,7 +21,7 @@
         }
     }
     .text-wrap{
-        @apply my-0;
+        @apply my-0 relative overflow-hidden pb-3;
         .title{
             @apply text-lg font-semibold;
         }
@@ -29,4 +29,16 @@
             @apply font-semibold;
         }
     }
+    .detail-product{
+        @apply p-1 bg-primary text-white rounded text-xs inline-block absolute right-0 -bottom-full duration-700;
+    }
+    .product-link{
+        @apply relative;
+        &:hover {
+            .detail-product{
+                @apply bottom-0;
+            }
+        }
+    }
 }
+

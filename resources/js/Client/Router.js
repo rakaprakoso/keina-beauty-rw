@@ -14,9 +14,10 @@ import Product from './pages/Ecommerce/Product';
 import {Cart,Checkout} from './pages/Ecommerce/Transactions.module'
 import Order from './pages/Ecommerce/Order';
 import JoinCampaign from './pages/JoinCampaign';
-import NewsLetter from './components/Modal/NewsLetter';
 import Post from './pages/Post';
 import PostDetail from './pages/PostDetail';
+import PopUpPromo from './components/Modal/PopUpPromo';
+import Location from './pages/Location';
 
 const Main = props => {
     return (
@@ -32,6 +33,7 @@ const Main = props => {
                 <Route path="/about" component={About} />
                 <Route path="/shop" component={Shop} />
                 <Route exact path="/journey" component={Post} />
+                <Route exact path="/location" component={Location} />
                 <Route path="/journey/:slug" component={PostDetail} />
                 <Route path="/joincampaign" component={JoinCampaign} />
                 <Route path="/product/:slug" component={Product}/>
@@ -42,9 +44,7 @@ const Main = props => {
                 <Route path="/contact" component={Contact}/>
                 <Route component={NotFound} />
             </Switch>
-            <NewsLetter
-            // openModal={isOpen} setIsOpen={setIsOpen}
-            />
+            <PopUpPromo/>
             <Footer1 />
         </>
     )

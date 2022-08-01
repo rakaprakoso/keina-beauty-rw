@@ -1,18 +1,14 @@
 [
     {
-        "name": "Reviving Facial Wash",
-        "video": "/assets/video/Reviving Facial Wash.mp4"
+        "name": null,
+        "asset": "/storage/assets/video/video-1.mp4",
+        "type": "video",
+        "overlay":false
     },
     {
-        "name": "Calming Cy-Essence",
-        "video": "/assets/video/Calming Cy-Essence.mp4"
-    },
-    {
-        "name": "Cy-Brightening Moisturizer",
-        "video": "/assets/video/Cy-Brightening Moisturizer.mp4"
-    },
-    {
-        "name": "Protecting CC Cream",
-        "video": "/assets/video/Protecting CC Cream.mp4"
+        "name": null,
+        "asset": "/storage/assets/slide2.jpeg",
+        "type": "image",
+        "overlay":false
     }
 ]

@@ -23,22 +23,44 @@ const Hero2 = () => {
         const dataFetch = await axios
             .get("/api/product?hero=true")
             .then(function (response) {
-                console.log(response.data);
+                // console.log(response.data);
                 return response.data;
             })
             .catch(function (error) {
                 console.log(error);
             });
-        setHeroData(dataFetch);
+        if (JSON.stringify(dataFetch) != '{}') {
+            setHeroData(dataFetch);
+        }
+    }, []);
+
+    const [heroAsset, setHeroAsset] = useState(false);
+    useEffect(async () => {
+        const dataFetch = await axios
+            .get("/js/data/HeroProduct.json")
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+            });
+
+            setHeroAsset(dataFetch);
+
+        // const loadCart = async () => {
+        //     // setIsLoading(true);
+        //     await dispatch(fetchCart());
+        //     // setIsLoading(false);
+        // };
+        // loadCart();
     }, []);
 
     return (
-        <section className="hero hero-90">
+        <section className="hero embed-responsive responsive-16by9">
             <div className="h-full">
                 <div className="hero-background">
                     <div className="absolute w-full h-full object-cover" style={{ zIndex: '-1' }}>
                         <img className="w-full h-full object-cover"
-                            src="/images/Products/DSCF0705.jpg"
+                            src={ heroAsset?.asset || "/images/Products/DSCF0705.jpg"}
                         />
                     </div>
                 </div>

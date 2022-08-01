@@ -54,8 +54,17 @@ ul.slider {
     @apply h-full;
 }
 
+.carousel {
+    .thumb img{
+        @apply m-0;
+    }
+}
 
 .carousel-root {
+    &.carousel-h-0 .slider-wrapper,
+    &.carousel-h-0 .carousel-slider{
+        @apply h-auto;
+    }
     .carousel-nav {
         @apply z-10;
         position: absolute;
@@ -128,7 +137,8 @@ ul.slider {
     embed,
     img,
     video,
-    iframe {
+    iframe,
+    > div {
         @apply absolute w-full h-full top-0;
     }
 }

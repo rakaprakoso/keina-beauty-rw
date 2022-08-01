@@ -251,6 +251,10 @@ const dataHeader = [
         title: 'article',
         itemId: '/journey',
     },
+    {
+        title: 'location',
+        itemId: '/location',
+    },
 ]
 
 const dataIconHeader = [

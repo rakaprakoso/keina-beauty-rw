@@ -187,10 +187,21 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->discount_price = $request->discount_price;
         $product->weight = $request->weight;
+        $product->product_weight = $request->product_weight;
         $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->slug = $this->slugify($request->name);
         $product->thumbnail_img = $request->image;
+        if (isset($request->hero)) {
+            $product->hero = '1';
+        }else{
+            $product->hero = '0';
+        }
+        if (isset($request->preview)) {
+            $product->preview = '1';
+        }else{
+            $product->preview = '0';
+        }
         // if ($request->file('image')) {
         //     $uploadedFile = $request->file('image');
         //     $path = $uploadedFile->store('public/products');

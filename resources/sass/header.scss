@@ -3,6 +3,7 @@ $sidebar-bg-color: #e9e9e9;
 @import '~react-pro-sidebar/dist/scss/styles.scss';
 
 #header {
+    @apply sticky top-0 z-50 bg-white;
     &.site-header {
         background-color: rgba(255, 255, 255, 0.7);
     }

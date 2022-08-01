@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 // components
 import TableDropdown from "../Dropdowns/TableDropdown.js"
-import { NumberFormat } from "../../../Client/components/Functions/NumberFormat.js";
+import { NumberFormat, PercentFormat } from "../../../Client/components/Functions/NumberFormat.js";
 import { Link } from "react-router-dom";
 
 export default function CardProducts({ color, products }) {
@@ -80,6 +80,16 @@ export default function CardProducts({ color, products }) {
                                             : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                                     }
                                 >
+                                    Main Product
+                                </th>
+                                <th
+                                    className={
+                                        "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                                        (color === "light"
+                                            ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                                            : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                                    }
+                                >
                                     Action
                                 </th>
                             </tr>
@@ -92,7 +102,7 @@ export default function CardProducts({ color, products }) {
                                         src={item.thumbnail_img}
                                         className="h-12 w-12 bg-white rounded-full border"
                                         alt={item.name}
-                                    ></img>{" "}
+                                    ></img>
                                     <span
                                         className={
                                             "ml-3 font-bold " +
@@ -103,7 +113,18 @@ export default function CardProducts({ color, products }) {
                                     </span>
                                 </th>
                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                    {NumberFormat(item.price, 'Rp.')}
+                                {item.discount_price !== null ? (
+                                            <>
+                                                <div className="text-red-600 line-through">
+                                                    {NumberFormat(item.price, 'Rp.')}
+                                                <span className="inline-block bg-gray-200 p-1 ml-2 rounded text-gray-900">{PercentFormat(item.discount_price, item.price)}</span>
+                                                </div>
+                                                <div>{NumberFormat(item.discount_price, 'Rp.')}</div>
+                                            </>
+                                        ) :
+                                            NumberFormat(item.price, 'Rp.')
+                                        }
+                                    {/* {NumberFormat(item.price, 'Rp.')} */}
                                 </td>
                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                     {/* <i className="fas fa-circle text-orange-500 mr-2"></i> pending */}
@@ -111,6 +132,14 @@ export default function CardProducts({ color, products }) {
                                         <><i className="fas fa-circle text-green-500 mr-2"></i> Show</>
                                         :
                                         <><i className="fas fa-circle text-gray-500 mr-2"></i> Hidden</>
+                                    }
+                                </td>
+                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                    {/* <i className="fas fa-circle text-orange-500 mr-2"></i> pending */}
+                                    {item.hero == '1' ?
+                                        <><i className="fas fa-circle text-green-500 mr-2"></i> Yes</>
+                                        :
+                                        <><i className="fas fa-circle text-gray-500 mr-2"></i> No</>
                                     }
                                 </td>
                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
