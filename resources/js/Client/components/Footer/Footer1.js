@@ -41,10 +41,9 @@ const Footer1 = () => {
                             </div>
                             <div>
                                 <h4>No WhatsApp:</h4>
-                                +62 811 3890 2333
+                                0811-3890-2333
                                 <h4>Address:</h4>
-                                Jl. Tukad Badung No.212, Renon, Denpasar
-                                Selatan, Kota Denpasar, Bali 80226
+                                Jl. Tukad Badung No.212, Renon, Denpasar Selatan, Kota Denpasar, Bali 80226
                             </div>
                         </div>
                         <div className="col-lg-8 flex justify-center lg:justify-end">
