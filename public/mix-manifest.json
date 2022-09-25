@@ -1,7 +1,7 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/js/admin/app.js": "/js/admin/app.js",
-    "/css/appClient.css": "/css/appClient.css",
-    "/css/appAdmin.css": "/css/appAdmin.css",
-    "/css/app.css": "/css/app.css"
+    "/js/app.js": "/js/app.js?id=49ffbb411ec75afef841",
+    "/js/admin/app.js": "/js/admin/app.js?id=09104be755486658e5ac",
+    "/css/appClient.css": "/css/appClient.css?id=1658256f6d77f3848ca4",
+    "/css/appAdmin.css": "/css/appAdmin.css?id=f5547ee1be5a17f38fe9",
+    "/css/app.css": "/css/app.css?id=5627340ad4194c45937c"
 }
