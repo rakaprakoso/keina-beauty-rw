@@ -25,7 +25,7 @@ class ProductController extends Controller
     {
         if ($this->authServer($request->key)) { // return $request->full;
 
-            $products = Product::paginate(12);
+            $products = Product::paginate(20);
             return response()
                 ->json($products);
             // ->json(["data"=>$products]);

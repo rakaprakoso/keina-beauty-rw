@@ -23,7 +23,7 @@ class ProductController extends Controller
         }elseif($request->hero == 'true'){
             $products = Product::where('hero', true)->first();
         }else{
-            $products = Product::show()->paginate(12);
+            $products = Product::show()->paginate(20);
         }
         return response()
         ->json($products);
