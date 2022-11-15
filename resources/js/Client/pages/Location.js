@@ -11,23 +11,23 @@ const Location = () => {
                 "/storage/assets/location/keina2.jpg",
             ]
         },
-        {
-            name: 'SunnySide Shop & Playscape',
-            address: 'Jl. Tukad Batanghari No.55, Dauh Puri Klod, Denpasar Selatan, Kota Denpasar, Bali 80225',
-            map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.0859651395576!2d115.23046599999999!3d-8.6833751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2414721cf9653%3A0x4ee8f2ca2d56e3a0!2sSunnySide%20Shop%20%26%20Playscape!5e0!3m2!1sen!2sid!4v1664070353057!5m2!1sen!2sid',
-            img:[
-                "/storage/assets/location/sunny1.jpg",
-                "/storage/assets/location/sunny2.jpg",
-            ]
-        },
-        {
-            name: 'Apotek A-Farma',
-            address: 'Jl. Tukad Pakerisan No.69, Dauh Puri Klod, Kec. Denpasar Bar., Kota Denpasar, Bali 80114',
-            map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.0448358879016!2d115.2220896348877!3d-8.687286399999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd24149fa7f5777%3A0x7c70e34ea1e5223!2sApotek%20A-Farma!5e0!3m2!1sen!2sid!4v1664071154955!5m2!1sen!2sid',
-            img:[
-                "/storage/assets/location/farma.jpg",
-            ]
-        },
+        // {
+        //     name: 'SunnySide Shop & Playscape',
+        //     address: 'Jl. Tukad Batanghari No.55, Dauh Puri Klod, Denpasar Selatan, Kota Denpasar, Bali 80225',
+        //     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.0859651395576!2d115.23046599999999!3d-8.6833751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd2414721cf9653%3A0x4ee8f2ca2d56e3a0!2sSunnySide%20Shop%20%26%20Playscape!5e0!3m2!1sen!2sid!4v1664070353057!5m2!1sen!2sid',
+        //     img:[
+        //         "/storage/assets/location/sunny1.jpg",
+        //         "/storage/assets/location/sunny2.jpg",
+        //     ]
+        // },
+        // {
+        //     name: 'Apotek A-Farma',
+        //     address: 'Jl. Tukad Pakerisan No.69, Dauh Puri Klod, Kec. Denpasar Bar., Kota Denpasar, Bali 80114',
+        //     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.0448358879016!2d115.2220896348877!3d-8.687286399999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd24149fa7f5777%3A0x7c70e34ea1e5223!2sApotek%20A-Farma!5e0!3m2!1sen!2sid!4v1664071154955!5m2!1sen!2sid',
+        //     img:[
+        //         "/storage/assets/location/farma.jpg",
+        //     ]
+        // },
         {
             name: 'Salt Store',
             address: 'Jl. Canggu Padang Linjong No.64, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80351',
@@ -62,14 +62,14 @@ const Location = () => {
                 "/storage/assets/location/balidirectbumbak.jpg",
             ]
         },
-        {
-            name: 'Apotekin Tukad Badung',
-            address: 'Jl. Tukad Badung XI A No.7, Renon, Denpasar Selatan, Kota Denpasar, Bali 80226',
-            map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.058355583123!2d115.23863309999999!3d-8.6860009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd24055a5e53747%3A0xfa9a8a6fff1f9e36!2sJl.%20Tukad%20Badung%20XI%20A%20No.7%2C%20Renon%2C%20Denpasar%20Selatan%2C%20Kota%20Denpasar%2C%20Bali%2080226!5e0!3m2!1sen!2sid!4v1664071765794!5m2!1sen!2sid',
-            img:[
-                "/storage/assets/location/apotekin.jpg",
-            ]
-        },
+        // {
+        //     name: 'Apotekin Tukad Badung',
+        //     address: 'Jl. Tukad Badung XI A No.7, Renon, Denpasar Selatan, Kota Denpasar, Bali 80226',
+        //     map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.058355583123!2d115.23863309999999!3d-8.6860009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd24055a5e53747%3A0xfa9a8a6fff1f9e36!2sJl.%20Tukad%20Badung%20XI%20A%20No.7%2C%20Renon%2C%20Denpasar%20Selatan%2C%20Kota%20Denpasar%2C%20Bali%2080226!5e0!3m2!1sen!2sid!4v1664071765794!5m2!1sen!2sid',
+        //     img:[
+        //         "/storage/assets/location/apotekin.jpg",
+        //     ]
+        // },
         {
             name: 'AMETHYST Beauty Store',
             address: 'Jl. Kebo Iwa Selatan No.10, Padangsambian, Kec. Denpasar Bar., Kota Denpasar, Bali 80118',
@@ -132,6 +132,25 @@ const Location = () => {
                         </div>
                     </div>
                     ))}
+                </div>
+                <div>
+                <div className="mb-4 lg:my-16 bg-gray-50 rounded-lg p-10 shadow ml-0 lg:-ml-16">
+                                <h3 className="text-left mb-4 text-2xl">
+                                    <strong>
+                                    Testimoni Media
+                                    </strong>
+                                </h3>
+                                <hr />
+                                <p className="break-words">
+                                   <ul>
+                                        <li><a href="https://id.berita.yahoo.com/peduli-bumi-inilah-rekomendasi-produk-013000494.html" target="_blank">https://id.berita.yahoo.com/peduli-bumi-inilah-rekomendasi-produk-013000494.html</a></li>
+                                        <li><a href="http://m.fimela.com/beauty-health/read/4581233/peduli-bumi-inilah-rekomendasi-produk-skincare-lokal-yang-ramah-lingkungan?utm_source=Mobile&utm_medium=whatsapp&utm_campaign=Share_Top" target="_blank">http://m.fimela.com/beauty-health/read/4581233/peduli-bumi-inilah-rekomendasi-produk-skincare-lokal-yang-ramah-lingkungan?utm_source=Mobile&utm_medium=whatsapp&utm_campaign=Share_Top</a></li>
+                                        <li><a href="https://hypeabis.id/read/1321-nirmala-aninda/keina-beau" target="_blank">https://hypeabis.id/read/1321-nirmala-aninda/keina-beau</a></li>
+                                        <li><a href="https://kurio.id/app/articles/60c80650001c23c062998ae7" target="_blank">https://kurio.id/app/articles/60c80650001c23c062998ae7</a></li>
+                                        <li><a href="https://liff.line.me/1454988026-zWDdDpKq/v2/article/jlrxzD?utm_source=washare" target="_blank">https://liff.line.me/1454988026-zWDdDpKq/v2/article/jlrxzD?utm_source=washare</a></li>
+                                   </ul>
+                                </p>
+                            </div>
                 </div>
             </div>
         </section>
