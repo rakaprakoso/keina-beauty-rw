@@ -146,6 +146,25 @@ function Post(props) {
                         </>
                     )}
                 </section>
+                <div>
+                    <div className="mb-4 lg:my-16 bg-gray-50 rounded-lg p-10 shadow ml-0 lg:-ml-16">
+                        <h3 className="text-left mb-4 text-2xl">
+                            <strong>
+                            Testimoni Media
+                            </strong>
+                        </h3>
+                        <hr />
+                        <p className="break-words">
+                            <ul>
+                                <li><a href="https://id.berita.yahoo.com/peduli-bumi-inilah-rekomendasi-produk-013000494.html" target="_blank">https://id.berita.yahoo.com/peduli-bumi-inilah-rekomendasi-produk-013000494.html</a></li>
+                                <li><a href="http://m.fimela.com/beauty-health/read/4581233/peduli-bumi-inilah-rekomendasi-produk-skincare-lokal-yang-ramah-lingkungan?utm_source=Mobile&utm_medium=whatsapp&utm_campaign=Share_Top" target="_blank">http://m.fimela.com/beauty-health/read/4581233/peduli-bumi-inilah-rekomendasi-produk-skincare-lokal-yang-ramah-lingkungan?utm_source=Mobile&utm_medium=whatsapp&utm_campaign=Share_Top</a></li>
+                                <li><a href="https://hypeabis.id/read/1321-nirmala-aninda/keina-beau" target="_blank">https://hypeabis.id/read/1321-nirmala-aninda/keina-beau</a></li>
+                                <li><a href="https://kurio.id/app/articles/60c80650001c23c062998ae7" target="_blank">https://kurio.id/app/articles/60c80650001c23c062998ae7</a></li>
+                                <li><a href="https://liff.line.me/1454988026-zWDdDpKq/v2/article/jlrxzD?utm_source=washare" target="_blank">https://liff.line.me/1454988026-zWDdDpKq/v2/article/jlrxzD?utm_source=washare</a></li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
             </div>
         </Page>
     );
